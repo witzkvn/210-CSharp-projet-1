@@ -12,10 +12,13 @@ namespace NotEdu_JKD
     {
 
         static string jsonString;
-        static JsonSerializer serialiser;
+        static JsonSerializer serialiser; //Initialisation de JsonSerializer qui est une classe qui permet de sérialiser des données
 
         static void Main(string[] args)
         {
+            /*            Serveur.EcrireLog("ouaou c'est top");*/
+
+            Serveur serveur = new Serveur();
 
             serialiser = new JsonSerializer();
             while (true)
@@ -26,16 +29,16 @@ namespace NotEdu_JKD
                 switch (input)
                 {
                     case "serialiser":
-                        Serialiser();
+                        serveur.Serialiser();
                         break;
                     case "deserialiser":
-                        Deserialiser();
+                        serveur.Deserialiser();
                         break;
                     case "exporter":
-                        Exporter();
+                        serveur.Exporter(serialiser, jsonString) ;
                         break;
                     case "importer":
-                        Importer();
+                        serveur.Importer(serialiser);
                         break;
                     default:
                         break;
@@ -44,52 +47,10 @@ namespace NotEdu_JKD
 
 
 
-        }
-
-        static  void Serialiser()
-        {
-            Serveur eleve = new Serveur
-            {
-                nom = "Toto",
-                prenom = "Titi",
-                dateCreation = DateTime.Now,
-            };
-            jsonString = JsonConvert.SerializeObject(eleve, Formatting.Indented);
-            Console.WriteLine(jsonString);
-
 
         }
 
-        static void Deserialiser()
-        {
-            Serveur eleve = JsonConvert.DeserializeObject<Serveur>(jsonString);
-            Console.WriteLine(eleve.ToString());
 
-        }
 
-        static void Exporter()
-        { 
-            using (var streamWriter = new StreamWriter("donnees.json"))
-            {
-                using (var jsonWriter = new JsonTextWriter(streamWriter))
-                {
-                    jsonWriter.Formatting = Formatting.Indented;
-                    serialiser.Serialize(jsonWriter, JsonConvert.DeserializeObject(jsonString));
-                    Console.WriteLine("Export OK");
-                }
-            }
-        }
-
-        static void Importer()
-        {
-            using(var streamReader=new StreamReader("donnees.json"))
-            {
-                using(var jsonReader=new JsonTextReader(streamReader))
-                {
-                    var eleve = serialiser.Deserialize<Serveur>(jsonReader);
-                    Console.WriteLine(eleve.ToString());
-                }
-            }
-        }
     }
 }
