@@ -12,13 +12,13 @@ namespace NotEdu_JKD
            Ainsi une note n'a pas besoin de l'ID de l'Eleve car il en fait partie
          */
 
-        public int IdCoursLié { get; }
+        public int IdCoursLie { get; }
         public double ValeurNote { get; }
         public string Appreciation { get; } 
 
-        public Note(Cours coursLié, double valeurNote, string appreciation = "") // String vide comme valeur par défaut si aucune appréciation rentrée
+        public Note(Cours coursLie, double valeurNote, string appreciation = "") // String vide comme valeur par défaut si aucune appréciation rentrée
         {
-            IdCoursLié = coursLié.Id;
+            IdCoursLie = coursLie.Id;
             ValeurNote = valeurNote;
             Appreciation = appreciation;
         }
