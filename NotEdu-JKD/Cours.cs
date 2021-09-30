@@ -8,19 +8,6 @@ namespace NotEdu_JKD
 {
     class Cours
     {
-<<<<<<< HEAD
-        public int ID { get; set; }
-        public string Nom { get; set; }
-        public Cours()
-        {
-
-        }
-
-        public Cours(int id, string nom)
-        {
-            this.ID = id;
-            this.Nom = nom;
-=======
         static private int _idGlobal = 0; // ID global partagé entre toutes les instances de Cours
         public int Id { get; }            // ID unique d'une instance de Cours avec un get
         private string _titre;            // Titre d'une instance d'un Cours
@@ -52,7 +39,6 @@ namespace NotEdu_JKD
                 Console.WriteLine("Annulation de la suppression du cours.");
                 return;
             }
->>>>>>> ecbf229b017c9250b951d70153dd6d54e6184214
         }
     }
 }

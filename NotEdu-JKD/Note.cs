@@ -12,9 +12,9 @@ namespace NotEdu_JKD
         public double ValeurNote { get; set; }
         public string Appreciation { get; }
 
-        public Note(Eleve eleve, Cours cours, double note, string appreciation)
+        public Note(Cours cours, double note, string appreciation)
         {
-            this.CoursID = cours.ID;
+            this.CoursID = cours.Id;
             this.ValeurNote = note;
             this.Appreciation = appreciation;
         }
