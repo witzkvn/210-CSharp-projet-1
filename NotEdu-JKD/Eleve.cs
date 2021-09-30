@@ -8,7 +8,11 @@ namespace NotEdu_JKD
 {
     class Eleve
     {
+<<<<<<< HEAD
         private static int elevesCount; // au lancement du programme, regarder le id le plus haut des élèves déjà ajoutés et initialiser à cette valeur
+=======
+        private static int elevesCount { get; set; } // au lancement du programme, regarder le id le plus haut des élèves déjà ajoutés et initialiser à cette valeur
+>>>>>>> 98cd79ed0f8dccfd252791182ffdad27da1000ca
         public int ID { get; set; }
         public string Nom { get; set; }
         public string Prenom { get; set; }
