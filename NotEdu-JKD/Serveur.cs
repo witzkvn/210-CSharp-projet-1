@@ -96,7 +96,5 @@ namespace NotEdu_JKD
                 }
             }
         }
-
-
     }
 }
