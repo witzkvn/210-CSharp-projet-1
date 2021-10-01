@@ -22,6 +22,5 @@ namespace NotEdu_JKD
             ValeurNote = valeurNote;
             Appreciation = appreciation;
         }
-
     }
 }
