@@ -8,15 +8,19 @@ namespace NotEdu_JKD
 {
     class Note
     {
-        public int CoursID { get; set; }
-        public double ValeurNote { get; set; }
-        public string Appreciation { get; }
+        /* Implémenter dans la classe Eleve une methode pour ajouter une note dans la liste de Note
+           Ainsi une note n'a pas besoin de l'ID de l'Eleve car il en fait partie
+         */
 
-        public Note(Cours cours, double note, string appreciation)
+        public int IdCoursLie { get; }
+        public double ValeurNote { get; }
+        public string Appreciation { get; } 
+
+        public Note(Cours coursLie, double valeurNote, string appreciation = "") // String vide comme valeur par défaut si aucune appréciation rentrée
         {
-            this.CoursID = cours.Id;
-            this.ValeurNote = note;
-            this.Appreciation = appreciation;
+            IdCoursLie = coursLie.Id;
+            ValeurNote = valeurNote;
+            Appreciation = appreciation;
         }
     }
 }
