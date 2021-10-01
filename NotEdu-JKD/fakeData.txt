@@ -1,0 +1,83 @@
+﻿{
+  "Eleves": [
+    {
+      "ID": 1,
+      "Nom": "nom1",
+      "Prenom": "eleve1",
+      "DateNaissance": "2001-09-08T19:01:55.714942+03:00",
+      "listeNotes": [
+        {
+          "CoursID": 1,
+          "ValeurNote": 12.3,
+          "Appreciation": "Pas mal !"
+        },
+        {
+          "CoursID": 2,
+          "ValeurNote": 6.3,
+          "Appreciation": "Peu mieux faire..."
+        },
+        {
+          "CoursID": 3,
+          "ValeurNote": 17.7,
+          "Appreciation": "Super travail !"
+        }
+    ]
+    },
+    {
+      "ID": 2,
+      "Nom": "nom2",
+      "Prenom": "eleve2",
+      "DateNaissance": "2002-09-08T19:01:55.714942+03:00",
+      "listeNotes": [
+        {
+          "CoursID": 2,
+          "ValeurNote": 13.4,
+          "Appreciation": "Pas mal du tout !"
+        },
+        {
+          "CoursID": 3,
+          "ValeurNote": 9.9,
+          "Appreciation": "Plutôt moyen."
+        }
+      ]
+      },
+    {
+      "ID": 3,
+      "Nom": "nom3",
+      "Prenom": "eleve3",
+      "DateNaissance": "2003-09-08T19:01:55.714942+03:00",
+      "listeNotes": [
+        {
+          "EleveID": 3,
+          "CoursID": 1,
+          "ValeurNote": 1.2,
+          "Appreciation": "Avez-vous révisé ??"
+        },
+        {
+          "EleveID": 3,
+          "CoursID": 4,
+          "ValeurNote": 11.256,
+          "Appreciation": "Bien mais il faudra fournir plus d'efforts !"
+        }
+      ]
+    }
+  ],
+  "Cours": [
+    {
+      "ID": 1,
+      "Nom": "Math"
+    },
+    {
+      "ID": 2,
+      "Nom": "Francais"
+    },
+    {
+      "ID": 3,
+      "Nom": "Histoire"
+    },
+    {
+      "ID": 4,
+      "Nom": "Physique-chimie"
+    }
+  ]
+}
