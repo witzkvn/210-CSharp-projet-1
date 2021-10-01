@@ -8,20 +8,33 @@ namespace NotEdu_JKD
 {
     class ListeCours
     {
-        private Dictionary<int, Cours> _listeDesCours = new Dictionary<int, Cours>();
-        public Dictionary<int, Cours> ListeDesCours { get { return _listeDesCours; } }
-        public ListeCours()
+        public static Dictionary<int, Cours> ListeDesCours { get; }
+        static ListeCours()
         {
+            ListeDesCours = new Dictionary<int, Cours>();
         }
-        public void AjouterCours(Cours nouveauCours)
+        public static void AjouterCours(Cours nouveauCours)
         {
-            _listeDesCours.Add(nouveauCours.Id, nouveauCours);
+            if (ListeDesCours.ContainsKey(nouveauCours.Id))
+            {
+                Console.WriteLine("Le cours existe déjà, veuillez réessayer avec un autre cours.");
+            }
+            else
+            {
+                ListeDesCours.Add(nouveauCours.Id, nouveauCours);
+
+            }
         }
 
         /*Suppression de toutes les occurences d'un cours.*/
-        public void SuppressionCours(int coursId)
+        public static void SuppressionCours(int coursId)
         {
-            Cours coursASupprimer = _listeDesCours[coursId];
+            if (!ListeDesCours.ContainsKey(coursId))
+            {
+                Console.WriteLine("Ce cours n'existe pas, veuillez entré un cours valide.");
+                return;
+            }
+            Cours coursASupprimer = ListeDesCours[coursId];
             Console.Write("/!\\ La suppression d'un cours entraîne la suppression de toutes les notes " +
                 "et appréciations qui lui sont liées. \n" +
                 $"Voulez-vous vraiment supprimer le cours {coursASupprimer.Titre}? (Oui/Non) ");
@@ -30,12 +43,11 @@ namespace NotEdu_JKD
             if (reponseSuppression == "oui")
             {
                 /* Loop à travers tout les élèves, dans toutes leurs notes pour trouver l'ID correspondant*/
-                _listeDesCours.Remove(coursId);
+                ListeDesCours.Remove(coursId);
             }
             else
             {
                 Console.WriteLine("Annulation de la suppression du cours.");
-                return;
             }
         }
     }
