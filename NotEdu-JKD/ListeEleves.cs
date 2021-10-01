@@ -8,21 +8,22 @@ namespace NotEdu_JKD
 {
     class ListeEleves
     {
-        public static List<Eleve> listeEleves = new List<Eleve>();
+        static Dictionary<int, Eleve> _listeDesEleves;
         public ListeEleves()
         {
             // récupérer liste du JSON et la mettre dans listeEleves à la première init
+            _listeDesEleves = new Dictionary<int, Eleve>();
         }
 
         public static void AjouterEleveDansListe(Eleve nouvelEleve)
         {
-            listeEleves.Add(nouvelEleve);
+            _listeDesEleves.Add(nouvelEleve.ID, nouvelEleve);
             ActualiserListeJSON();
         }
 
         public static void SupprimerEleveDansListe(int eleveID)
         {
-            Eleve eleveASupprimer = listeEleves[eleveID];
+            Eleve eleveASupprimer = _listeDesEleves[eleveID];
             if(eleveASupprimer == null)
             {
                 Console.WriteLine("Désolé, aucun cours avec cet identifiant n'a été trouvé dans la liste.");
@@ -36,7 +37,7 @@ namespace NotEdu_JKD
                 if (reponseSuppression == "oui")
                 {
                     /* Loop à travers les notes de l'élève et les supprimer toutes avant suppression élève */
-                    listeEleves = listeEleves.Where(eleve => eleve.ID != eleveID).ToList();
+                    _listeDesEleves.Remove(eleveID);
                 }
                 else
                 {
