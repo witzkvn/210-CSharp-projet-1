@@ -11,15 +11,14 @@ namespace NotEdu_JKD
     class Program
     {
 
-        static string jsonString;
-        static JsonSerializer serialiser; //Initialisation de JsonSerializer qui est une classe qui permet de sérialiser des données
-
         static void Main(string[] args)
         {
-            /*            Serveur.EcrireLog("ouaou c'est top");*/
+            /*Serveur.EcrireLog("ouaou c'est top");*/
+            Menu menu = new Menu();
 
-            Serveur serveur = new Serveur();
+            menu.MenuPrincipal();
 
+/*          Serveur serveur = new Serveur();
             serialiser = new JsonSerializer();
             while (true)
             {
@@ -43,7 +42,7 @@ namespace NotEdu_JKD
                     default:
                         break;
                 }
-            }
+            }*/
 
 
 
