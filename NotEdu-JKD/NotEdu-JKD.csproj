@@ -86,11 +86,13 @@
     <Content Include="packages\Newtonsoft.Json.13.0.1\packageIcon.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="bin\Release\" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fakeData.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Release\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
