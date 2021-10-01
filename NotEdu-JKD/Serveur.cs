@@ -12,6 +12,8 @@ namespace NotEdu_JKD
     public class Serveur
     {
 
+        static JsonSerializer serialiser;
+
         public string nom;
         public string prenom;
         public DateTime dateCreation;
@@ -48,16 +50,17 @@ namespace NotEdu_JKD
                     Console.WriteLine(jsonString);
                 }*/
 
-        public void Serialiser()
+        public void Serialiser(List<string> eleve)
         {
-            Serveur eleve = new Serveur
+/*           Serveur eleve = new Serveur
             {
                 nom = "Toto",
                 prenom = "Titi",
                 dateCreation = DateTime.Now,
-            };
+            };*/
             jsonString = JsonConvert.SerializeObject(eleve, Formatting.Indented);
             Console.WriteLine(jsonString);
+
 
 
         }
@@ -66,11 +69,11 @@ namespace NotEdu_JKD
         {
             Serveur eleve = JsonConvert.DeserializeObject<Serveur>(jsonString);
             Console.WriteLine(eleve.ToString());
+        
 
         }
         public void Exporter(JsonSerializer serialiser,string b)
         {
-
             using (var streamWriter = new StreamWriter("donnees.json"))
             {
                 using (var jsonWriter = new JsonTextWriter(streamWriter))
