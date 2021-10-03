@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ListeCours.cs" />
     <Compile Include="obj\Debug\.NETFramework,Version=v4.7.2.AssemblyAttributes.cs" />
     <Compile Include="obj\Release\.NETFramework,Version=v4.7.2.AssemblyAttributes.cs" />
     <Compile Include="Cours.cs" />
@@ -84,11 +85,13 @@
     <Content Include="packages\Newtonsoft.Json.13.0.1\packageIcon.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="bin\Release\" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fakeData.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Release\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

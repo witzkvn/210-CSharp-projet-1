@@ -17,12 +17,12 @@ namespace NotEdu_JKD
         {
             if (ListeDesCours.ContainsKey(nouveauCours.Id))
             {
-                Console.WriteLine("Le cours existe déjà, veuillez réessayer avec un autre cours.");
+                Console.WriteLine($"Le cours {nouveauCours.Titre} existe déjà, veuillez réessayer avec un autre cours.");
             }
             else
             {
                 ListeDesCours.Add(nouveauCours.Id, nouveauCours);
-
+                Console.WriteLine($"Ajout du cours {nouveauCours.Titre} réussi.");
             }
         }
 
@@ -31,7 +31,7 @@ namespace NotEdu_JKD
         {
             if (!ListeDesCours.ContainsKey(coursId))
             {
-                Console.WriteLine("Ce cours n'existe pas, veuillez entré un cours valide.");
+                Console.WriteLine("Ce cours n'existe pas, veuillez entrer un cours valide.");
                 return;
             }
             Cours coursASupprimer = ListeDesCours[coursId];
@@ -49,6 +49,18 @@ namespace NotEdu_JKD
             {
                 Console.WriteLine("Annulation de la suppression du cours.");
             }
+        }
+        public static void AfficherToutLesCours()
+        {
+            Console.WriteLine("\tListe de tout les cours disponibles : \n");
+            foreach (KeyValuePair<int, Cours> cours in ListeDesCours)
+            {
+                Console.WriteLine($"\t Cours : {cours.Value.Titre} ; ID : {cours.Value.Id}");
+            }
+        }
+        public static void AfficherNotesCours(Cours cours)
+        {
+            /* Loop dans la liste des élèves pour trouver les notes correspondants au cours */
         }
     }
 }
