@@ -8,12 +8,12 @@ namespace NotEdu_JKD
 {
     class Utilitaire
     {
-        public string FormatterNoteSurVingt(double note)
+        public static string FormatterNoteSurVingt(double note)
         {
             return $"{note}/20";
         }
 
-        public string FormatterDateCourteString(DateTime date)
+        public static string FormatterDateCourteString(DateTime date)
         {
             return date.ToString("dd/MM/yyyy");
         }
