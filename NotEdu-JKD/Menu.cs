@@ -95,6 +95,16 @@ namespace NotEdu_JKD
 
         }
 
+        public void RetourMenuPrincipal(string NomDuCours)
+        {
+
+            if (NomDuCours == "r")
+            {
+                Console.Clear();
+                MenuCours();
+            }
+
+        }
         public void MenuPrincipal()
         {
             Console.ForegroundColor = ConsoleColor.Green;
@@ -185,26 +195,33 @@ namespace NotEdu_JKD
             switch (choix)
             {
                 case 1:
-                    //Lister les cours existant
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.WriteLine("                                                       Back (r+entree)");
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    ListeCours.AfficherTousLesCours();
+                    string NomDuCours1 = Console.ReadLine();
+                    RetourMenuPrincipal(NomDuCours1);
                     break;
 
                 case 2:
-                    //Ajouter un nouveau cours au programme
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.WriteLine("                                                       Back (r+entree)");
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine("\n\n\n     Entrer le nom du cours à ajouter : ");
+                    string NomDuCours2 = Console.ReadLine();
+                    RetourMenuPrincipal(NomDuCours2);
+                    ListeCours.AjouterCours(new Cours(NomDuCours2));
+
+
                     break;
 
                 case 3:
                     Console.ForegroundColor = ConsoleColor.White;
                     Console.WriteLine("                                                       Back (r+entree)");
                     Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine("\n\n\n     Entrer le nom du cours à supprimer : ");
-                    string NomDuCours = Console.ReadLine();
-                    if (NomDuCours == "r")
-                    {
-                        Console.Clear();
-                        MenuPrincipal();
-                    }
-                    Cours cour = new Cours(NomDuCours);
-                    Cours.SuppressionCours(cour);
+                    ListeCours.SuppressionCours();
+                    string NomDuCours3 = Console.ReadLine();
+                    RetourMenuPrincipal(NomDuCours3);
                     break;
 
                 case 4:

@@ -6,46 +6,47 @@ using System.Threading.Tasks;
 
 namespace NotEdu_JKD
 {
-    class ListeCours
+    static class ListeCours
     {
-        public Dictionary<int, Cours> ListeDesCours { get; }
-        public ListeCours()
+        private static Dictionary<int, Cours> _listeDesCours = new Dictionary<int, Cours>();
+
+        public static Cours GetCoursById(int idCours)
         {
-            ListeDesCours = new Dictionary<int, Cours>();
+            return _listeDesCours[idCours];
         }
-        public void AjouterCours(Cours nouveauCours)
+        public static void AjouterCours(Cours nouveauCours)
         {
-            if (ListeDesCours.ContainsKey(nouveauCours.Id))
+            if (_listeDesCours.ContainsKey(nouveauCours.Id))
             {
                 Console.WriteLine($"Le cours {nouveauCours.Titre} existe déjà, veuillez réessayer avec un autre cours.");
             }
             else
             {
-                ListeDesCours.Add(nouveauCours.Id, nouveauCours);
+                _listeDesCours.Add(nouveauCours.Id, nouveauCours);
                 Console.WriteLine($"Ajout du cours {nouveauCours.Titre} réussi.");
             }
         }
-        public void AfficherTousLesCours()
+        public static void AfficherTousLesCours()
         {
             Console.WriteLine("Liste de tous les cours disponibles : \n");
-            foreach (KeyValuePair<int, Cours> cours in ListeDesCours)
+            foreach (KeyValuePair<int, Cours> cours in _listeDesCours)
             {
                 Console.WriteLine($" ID : {cours.Value.Id} | Cours : {cours.Value.Titre}\n");
             }
         }
 
         /*Suppression de toutes les occurences d'un cours.*/
-        public void SuppressionCours()
+        public static void SuppressionCours()
         {
             AfficherTousLesCours();
             Console.Write("Entrez l'ID du cours à supprimer : ");
             int coursId = int.Parse(Console.ReadLine());
-            if (!ListeDesCours.ContainsKey(coursId))
+            if (!_listeDesCours.ContainsKey(coursId))
             {
                 Console.WriteLine("Ce cours n'existe pas, veuillez entrer un cours valide.");
                 return;
             }
-            Cours coursASupprimer = ListeDesCours[coursId];
+            Cours coursASupprimer = _listeDesCours[coursId];
             Console.Write("/!\\ La suppression d'un cours entraîne la suppression de touses les notes " +
                 "et appréciations qui lui sont liées. \n" +
                 $"Voulez-vous vraiment supprimer le cours {coursASupprimer.Titre}? (Oui/Non) ");
@@ -54,14 +55,14 @@ namespace NotEdu_JKD
             if (reponseSuppression == "oui")
             {
                 /* Loop à travers tout les élèves, dans toutes leurs notes pour trouver l'ID correspondant*/
-                ListeDesCours.Remove(coursId);
+                _listeDesCours.Remove(coursId);
             }
             else
             {
                 Console.WriteLine("Annulation de la suppression du cours.");
             }
         }
-        public void AfficherNotesCours()
+        public static void AfficherNotesCours()
         {
             AfficherTousLesCours();
             Console.Write("Entrez l'ID du cours à afficher : ");
