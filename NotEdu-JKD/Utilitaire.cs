@@ -17,5 +17,19 @@ namespace NotEdu_JKD
         {
             return date.ToString("dd/MM/yyyy");
         }
+
+        public static string PremiereLettreMajuscule(string mot)
+        {
+            if (mot.Length == 0)
+            {
+                return mot;
+            } else if (mot.Length == 1)
+            {
+                return "" + char.ToUpper(mot[0]);
+            } else
+            {
+                return char.ToUpper(mot[0]) + mot.Substring(1);
+            }  
+        }
     }
 }
