@@ -8,20 +8,28 @@ namespace NotEdu_JKD
 {
     class ListeEleves
     {
-        static Dictionary<int, Eleve> _listeDesEleves;
+        private Dictionary<int, Eleve> _listeDesEleves;
         public ListeEleves()
         {
             // récupérer liste du JSON et la mettre dans listeEleves à la première init
             _listeDesEleves = new Dictionary<int, Eleve>();
         }
 
-        public static void AjouterEleveDansListe(Eleve nouvelEleve)
+        public void AjouterEleveDansListe(Eleve nouvelEleve)
         {
-            _listeDesEleves.Add(nouvelEleve.ID, nouvelEleve);
-            ActualiserListeJSON();
+            if (_listeDesEleves.ContainsKey(nouvelEleve.ID))
+            {
+                Console.WriteLine($"L'ID {nouvelEleve.ID} est déjà attribué à un autre élève. Merci de réessayer en créant un nouvel élève.");
+            }
+            else
+            {
+                _listeDesEleves.Add(nouvelEleve.ID, nouvelEleve);
+                Console.WriteLine($"Ajout de l'élève {nouvelEleve.Nom} {nouvelEleve.Prenom} réussi.");
+                ActualiserListeJSON();
+            }
         }
 
-        public static void SupprimerEleveDansListe(int eleveID)
+        public void SupprimerEleveDansListe(int eleveID)
         {
             Eleve eleveASupprimer = _listeDesEleves[eleveID];
             if(eleveASupprimer == null)
@@ -49,7 +57,7 @@ namespace NotEdu_JKD
             ActualiserListeJSON();
         }
 
-        private static void ActualiserListeJSON()
+        private void ActualiserListeJSON()
         {
             // actualiser la listeEleves dans le JSON
         }
