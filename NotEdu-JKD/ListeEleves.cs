@@ -34,7 +34,7 @@ namespace NotEdu_JKD
             Eleve eleveASupprimer = _listeDesEleves[eleveID];
             if(eleveASupprimer == null)
             {
-                Console.WriteLine("Désolé, aucun cours avec cet identifiant n'a été trouvé dans la liste.");
+                Console.WriteLine("Désolé, aucun élève avec cet identifiant n'a été trouvé dans la liste.");
             } else
             {
                 Console.Write("/!\\ La suppression d'un élève entraîne la suppression de toutes les notes " +
