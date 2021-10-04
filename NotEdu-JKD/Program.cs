@@ -14,6 +14,7 @@ namespace NotEdu_JKD
         static void Main(string[] args)
         {
             /*Serveur.EcrireLog("ouaou c'est top");*/
+
             Menu menu = new Menu();
 
             menu.MenuPrincipal();
