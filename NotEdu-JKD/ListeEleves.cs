@@ -61,5 +61,21 @@ namespace NotEdu_JKD
         {
             // actualiser la listeEleves dans le JSON
         }
+
+        public void AfficherListeEleves()
+        {
+            if(_listeDesEleves.Count == 0)
+            {
+                Console.WriteLine("Aucun élève répertorié pour le moment.");
+            } else
+            {
+                Console.WriteLine("Liste des élèves du campus (ID --- NOM Prénom) : ");
+                Console.WriteLine();
+                foreach (KeyValuePair<int, Eleve> eleve in _listeDesEleves)
+                {
+                    Console.WriteLine($"{eleve.Key} --- {eleve.Value.Nom.ToUpper()} {Utilitaire.PremiereLettreMajuscule(eleve.Value.Prenom)}");
+                }
+            }
+        }
     }
 }
