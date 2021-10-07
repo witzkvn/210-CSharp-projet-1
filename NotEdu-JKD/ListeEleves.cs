@@ -9,21 +9,17 @@ namespace NotEdu_JKD
     static class ListeEleves
     {
         static private Dictionary<int, Eleve> _listeDesEleves = _listeDesEleves = new Dictionary<int, Eleve>();
-        // récupérer liste du JSON et la mettre dans listeEleves à la première init
+        // TODO récupérer liste des élèves du JSON et la mettre dans _listeEleves
+        private static int _idGlobalEleve = _listeDesEleves.Count == 0 ? 0 : _listeDesEleves.Keys.Max();
 
 
         static public void AjouterEleveDansListe(Eleve nouvelEleve)
         {
-            if (_listeDesEleves.ContainsKey(nouvelEleve.ID))
-            {
-                Console.WriteLine($"L'ID {nouvelEleve.ID} est déjà attribué à un autre élève. Merci de réessayer en créant un nouvel élève.");
-            }
-            else
-            {
-                _listeDesEleves.Add(nouvelEleve.ID, nouvelEleve);
-                Console.WriteLine($"Ajout de l'élève {nouvelEleve.Nom} {nouvelEleve.Prenom} réussi.");
-                ActualiserListeJSON();
-            }
+            _idGlobalEleve++;
+            _listeDesEleves.Add(_idGlobalEleve, nouvelEleve);
+            Console.WriteLine($"Ajout de l'élève {nouvelEleve.Nom} {nouvelEleve.Prenom} réussi.");
+            ActualiserListeJSON();
+            // ajouter appel méthode retour au menu
         }
 
         static public void SupprimerEleveDansListe(int eleveID)
