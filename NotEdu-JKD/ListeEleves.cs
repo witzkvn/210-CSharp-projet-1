@@ -6,30 +6,23 @@ using System.Threading.Tasks;
 
 namespace NotEdu_JKD
 {
-    class ListeEleves
+    static class ListeEleves
     {
-        private Dictionary<int, Eleve> _listeDesEleves;
-        public ListeEleves()
+        static private Dictionary<int, Eleve> _listeDesEleves = _listeDesEleves = new Dictionary<int, Eleve>();
+        // TODO récupérer liste des élèves du JSON et la mettre dans _listeEleves
+        private static int _idGlobalEleve = _listeDesEleves.Count == 0 ? 0 : _listeDesEleves.Keys.Max();
+
+
+        static public void AjouterEleveDansListe(Eleve nouvelEleve)
         {
-            // récupérer liste du JSON et la mettre dans listeEleves à la première init
-            _listeDesEleves = new Dictionary<int, Eleve>();
+            _idGlobalEleve++;
+            _listeDesEleves.Add(_idGlobalEleve, nouvelEleve);
+            Console.WriteLine($"Ajout de l'élève {nouvelEleve.Nom} {nouvelEleve.Prenom} réussi.");
+            ActualiserListeJSON();
+            // ajouter appel méthode retour au menu
         }
 
-        public void AjouterEleveDansListe(Eleve nouvelEleve)
-        {
-            if (_listeDesEleves.ContainsKey(nouvelEleve.ID))
-            {
-                Console.WriteLine($"L'ID {nouvelEleve.ID} est déjà attribué à un autre élève. Merci de réessayer en créant un nouvel élève.");
-            }
-            else
-            {
-                _listeDesEleves.Add(nouvelEleve.ID, nouvelEleve);
-                Console.WriteLine($"Ajout de l'élève {nouvelEleve.Nom} {nouvelEleve.Prenom} réussi.");
-                ActualiserListeJSON();
-            }
-        }
-
-        public void SupprimerEleveDansListe(int eleveID)
+        static public void SupprimerEleveDansListe(int eleveID)
         {
             Eleve eleveASupprimer = _listeDesEleves[eleveID];
             if(eleveASupprimer == null)
@@ -57,12 +50,12 @@ namespace NotEdu_JKD
             ActualiserListeJSON();
         }
 
-        private void ActualiserListeJSON()
+        static private void ActualiserListeJSON()
         {
             // actualiser la listeEleves dans le JSON
         }
 
-        public void AfficherListeEleves()
+        static public void AfficherListeEleves()
         {
             if(_listeDesEleves.Count == 0)
             {
