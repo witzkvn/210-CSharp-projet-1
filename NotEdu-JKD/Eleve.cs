@@ -13,7 +13,7 @@ namespace NotEdu_JKD
         public string Nom { get; set; }
         public string Prenom { get; set; }
         public DateTime DateNaissance { get; set; }
-        public List<Note> ListeNotes { get; set; } = new List<Note>();
+        public List<Note> ListeNotes { get; set; }
 
         public Eleve(string nom, string prenom, DateTime dateNaissance)
         {
@@ -22,6 +22,7 @@ namespace NotEdu_JKD
             this.Prenom = prenom;
             this.DateNaissance = dateNaissance;
             this.ID = elevesCount;
+            ListeNotes =  new List<Note>();
         }
 
         public void AfficherInfoEleve()
