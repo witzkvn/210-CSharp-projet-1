@@ -13,7 +13,7 @@ namespace NotEdu_JKD
         public string Nom { get; set; }
         public string Prenom { get; set; }
         public DateTime DateNaissance { get; set; }
-        public List<Note> ListeNotes { get; set; }
+        public List<Note> ListeNotes { get; set; } = new List<Note>();
 
         public Eleve(string nom, string prenom, DateTime dateNaissance)
         {
@@ -66,6 +66,11 @@ namespace NotEdu_JKD
                 }
                 Console.WriteLine("    Moyenne : " + Utilitaire.FormatterNoteSurVingt(sommeNotes / ListeNotes.Count));
             }
-        }    
+        }  
+        
+        public void SupprimerCours(int coursId)
+        {
+            ListeNotes.RemoveAll(note => note.IdCoursLie == coursId);
+        }
     }
 }
