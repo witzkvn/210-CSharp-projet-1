@@ -14,11 +14,7 @@ namespace NotEdu_JKD
         {
             var formats = new[] { "d/M/yyyy", "dd/M/yyyy", "d/MM/yyyy", "dd/MM/yyyy" };
             DateTime dateVerifiee;
-            if (DateTime.TryParseExact(dateString, formats, null, DateTimeStyles.None, out dateVerifiee) && dateVerifiee < DateTime.Now)
-            {
-                return true;
-            }
-            return false;
+            return DateTime.TryParseExact(dateString, formats, null, DateTimeStyles.None, out dateVerifiee) && dateVerifiee < DateTime.Now;
         }
 
         public static DateTime StringToDate(string dateString)
