@@ -6,16 +6,13 @@ using System.Threading.Tasks;
 
 namespace NotEdu_JKD
 {
-    class ListeEleves
+    static class ListeEleves
     {
-        private Dictionary<int, Eleve> _listeDesEleves;
-        public ListeEleves()
-        {
-            // récupérer liste du JSON et la mettre dans listeEleves à la première init
-            _listeDesEleves = new Dictionary<int, Eleve>();
-        }
+        static private Dictionary<int, Eleve> _listeDesEleves = _listeDesEleves = new Dictionary<int, Eleve>();
+        // récupérer liste du JSON et la mettre dans listeEleves à la première init
 
-        public void AjouterEleveDansListe(Eleve nouvelEleve)
+
+        static public void AjouterEleveDansListe(Eleve nouvelEleve)
         {
             if (_listeDesEleves.ContainsKey(nouvelEleve.ID))
             {
@@ -29,7 +26,7 @@ namespace NotEdu_JKD
             }
         }
 
-        public void SupprimerEleveDansListe(int eleveID)
+        static public void SupprimerEleveDansListe(int eleveID)
         {
             Eleve eleveASupprimer = _listeDesEleves[eleveID];
             if(eleveASupprimer == null)
@@ -57,12 +54,12 @@ namespace NotEdu_JKD
             ActualiserListeJSON();
         }
 
-        private void ActualiserListeJSON()
+        static private void ActualiserListeJSON()
         {
             // actualiser la listeEleves dans le JSON
         }
 
-        public void AfficherListeEleves()
+        static public void AfficherListeEleves()
         {
             if(_listeDesEleves.Count == 0)
             {
