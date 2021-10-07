@@ -10,31 +10,6 @@ namespace NotEdu_JKD
 {
     class Menu
     {
-        static string jsonString;
-        static JsonSerializer serialiser;
-
-        //----------------------------Classe Eleve temporaire----------------------------------------//
-        class Eleve
-        {
-            public int ID { get; private set; }
-            public string Nom { get; private set; }
-            public string Prenom { get; private set; }
-
-
-            public Eleve(int ID, string Nom, string Prenom)
-            {
-                this.ID = ID;
-                this.Nom = Nom;
-                this.Prenom = Prenom;
-
-            }
-            //          internal void Add(string nom)
-            //           {
-            //               throw new NotImplementedException();
-            //           }
-        }
-
-        //----------------------------FIN Classe Eleve temporaire----------------------------------------//
 
         public Menu()
         {
@@ -115,7 +90,6 @@ namespace NotEdu_JKD
             Console.WriteLine("     Effectuer votre choix\n\n\n");
             int choix = int.Parse(Console.ReadLine());
             Console.Clear();
-            int resultat = 0;
 
 
             switch (choix)
@@ -139,14 +113,17 @@ namespace NotEdu_JKD
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("\n\n\n      - - - - - - - - - -MENU DES ELEVES- - - - - - - - - -\n\n\n\n\n");
             Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine("     1-Lister les élèves\n\n\n     2-Créer un nouvel élève\n\n\n     3-Consulter un élève existant\n\n\n     4-Ajouter une note et une appréciation pour un cours\n\n\n     5-Revenir au menu Principal\n\n\n\n\n");
+            Console.WriteLine("     1-Lister les élèves\n\n\n");
+            Console.WriteLine("     2 -Créer un nouvel élève\n\n\n");
+            Console.WriteLine("     3-Consulter un élève existant\n\n\n");
+            Console.WriteLine("     4-Ajouter une note et une appréciation pour un cours\n\n\n");
+            Console.WriteLine("     5-Revenir au menu Principal\n\n\n\n\n");
+           
             Console.ForegroundColor = ConsoleColor.Yellow;
 
             Console.WriteLine("     Que voulez-vous faire ?");
             int choix = int.Parse(Console.ReadLine());
             Console.Clear();
-
-            int resultat = 0;
 
             switch (choix)
             {
@@ -183,13 +160,15 @@ namespace NotEdu_JKD
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("\n\n\n     - - - - - - - - - -MENU DES COURS- - - - - - - - - -\n\n\n\n\n");
             Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine("     1-Lister les cours existant\n\n\n     2-Ajouter un nouveau cours au programme\n\n\n     3-Supprimer un cours par son identifiant\n\n\n     4-Revenir au menu Principal\n\n\n\n\n");
+            Console.WriteLine("     1-Lister les cours existant\n\n\n");
+            Console.WriteLine("     2-Ajouter un nouveau cours au programme\n\n\n");
+            Console.WriteLine("     3-Supprimer un cours par son identifiant\n\n\n");
+            Console.WriteLine("     4-Revenir au menu Principal\n\n\n\n\n");
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("     Que voulez-vous faire ?\n\n\n");
 
             int choix = int.Parse(Console.ReadLine());
             Console.Clear();
-            int resultat = 0;
 
 
             switch (choix)
