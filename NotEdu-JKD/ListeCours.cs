@@ -11,8 +11,10 @@ namespace NotEdu_JKD
         private static Dictionary<int, string> _listeDesCours = new Dictionary<int, string>();
         private static int _idGlobalCours = _listeDesCours.Count == 0 ? 0 : _listeDesCours.Keys.Max();
         
-        public static void AjouterCours(string titreNouveauCours)
+        public static void AjouterCours()
         {
+            Console.WriteLine("Quel est le titre du cours que vous voulez ajouter ?");
+            string titreNouveauCours = Console.ReadLine();
             while (_listeDesCours.ContainsValue(titreNouveauCours))
             {
                 Console.WriteLine("Un cours avec ce titre existe déjà, veuillez entrer un autre titre.");
