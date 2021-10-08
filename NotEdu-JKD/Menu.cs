@@ -56,9 +56,9 @@ namespace NotEdu_JKD
             Console.WriteLine("     Rentrez la matière :");
             string matiere = Console.ReadLine();
             Console.WriteLine("     Rentrez l'ID de l'élève concerné :");
-            int ID = Convert.ToInt32(Console.ReadLine());
+            int ID = int.Parse(Console.ReadLine());
             Console.WriteLine("     Note de lélève : ");
-            double note = Convert.ToDouble(Console.ReadLine());
+            double note = Double.Parse(Console.ReadLine());
             Console.WriteLine("     Appreciation de lélève : ");
             string appreciation = Console.ReadLine();
             Console.ForegroundColor = ConsoleColor.White;
@@ -85,7 +85,8 @@ namespace NotEdu_JKD
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("\n\n\n     - - - - - - - - - -MENU- - - - - - - - - -\n\n\n\n\n");
             Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine("     1-Elèves\n\n\n     2-Cours\n\n\n\n\n");
+            Console.WriteLine("     1-Elèves\n\n\n");
+            Console.WriteLine("     2-Cours\n\n\n\n\n");
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("     Effectuer votre choix\n\n\n");
             int choix = int.Parse(Console.ReadLine());
