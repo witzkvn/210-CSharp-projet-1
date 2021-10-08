@@ -13,12 +13,14 @@ namespace NotEdu_JKD
          */
 
         public int IdCoursLie { get; }
+        public string CoursTitreLie { get; }
         public double ValeurNote { get; }
-        public string Appreciation { get; } 
+        public string Appreciation { get; }
 
-        public Note(Cours coursLie, double valeurNote, string appreciation = "") // String vide comme valeur par défaut si aucune appréciation rentrée
+        public Note(int idCoursLie, string titreCoursLie, double valeurNote, string appreciation = "") // String vide comme valeur par défaut si aucune appréciation rentrée
         {
-            IdCoursLie = coursLie.Id;
+            IdCoursLie = idCoursLie;
+            CoursTitreLie = titreCoursLie;
             ValeurNote = valeurNote;
             Appreciation = appreciation;
         }
