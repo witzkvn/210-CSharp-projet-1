@@ -51,7 +51,6 @@
     <Compile Include="ListeEleves.cs" />
     <Compile Include="ListeCours.cs" />
     <Compile Include="obj\Debug\.NETFramework,Version=v4.7.2.AssemblyAttributes.cs" />
-    <Compile Include="obj\Release\.NETFramework,Version=v4.7.2.AssemblyAttributes.cs" />
     <Compile Include="Eleve.cs" />
     <Compile Include="Menu.cs" />
     <Compile Include="Note.cs" />
@@ -94,6 +93,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\Release\" />
+    <Folder Include="obj\Release\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
