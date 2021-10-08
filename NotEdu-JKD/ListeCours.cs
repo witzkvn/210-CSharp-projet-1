@@ -8,30 +8,28 @@ namespace NotEdu_JKD
 {
     static class ListeCours
     {
-        private static Dictionary<int, Cours> _listeDesCours = new Dictionary<int, Cours>();
-
-        public static Cours GetCoursById(int idCours)
+        private static Dictionary<int, string> _listeDesCours = new Dictionary<int, string>();
+        private static int _idGlobalCours = _listeDesCours.Count == 0 ? 0 : _listeDesCours.Keys.Max();
+        
+        public static void AjouterCours()
         {
-            return _listeDesCours[idCours];
-        }
-        public static void AjouterCours(Cours nouveauCours)
-        {
-            if (_listeDesCours.ContainsKey(nouveauCours.Id))
+            Console.WriteLine("Quel est le titre du cours que vous voulez ajouter ?");
+            string titreNouveauCours = Console.ReadLine();
+            while (_listeDesCours.ContainsValue(titreNouveauCours))
             {
-                Console.WriteLine($"Le cours {nouveauCours.Titre} existe déjà, veuillez réessayer avec un autre cours.");
+                Console.WriteLine("Un cours avec ce titre existe déjà, veuillez entrer un autre titre.");
+                titreNouveauCours = Console.ReadLine();
             }
-            else
-            {
-                _listeDesCours.Add(nouveauCours.Id, nouveauCours);
-                Console.WriteLine($"Ajout du cours {nouveauCours.Titre} réussi.");
-            }
+            _listeDesCours.Add(_idGlobalCours, titreNouveauCours);
+            Console.WriteLine($"Ajout du cours {titreNouveauCours} réussi.");
+            _idGlobalCours++;
         }
         public static void AfficherTousLesCours()
         {
             Console.WriteLine("Liste de tous les cours disponibles : \n");
-            foreach (KeyValuePair<int, Cours> cours in _listeDesCours)
+            foreach (KeyValuePair<int, string> cours in _listeDesCours)
             {
-                Console.WriteLine($" ID : {cours.Value.Id} | Cours : {cours.Value.Titre}\n");
+                Console.WriteLine($" ID : {cours.Key} | Cours : {cours.Value}\n");
             }
         }
 
@@ -46,10 +44,10 @@ namespace NotEdu_JKD
                 Console.WriteLine("Ce cours n'existe pas, veuillez entrer un cours valide.");
                 return;
             }
-            Cours coursASupprimer = _listeDesCours[coursId];
+            string coursASupprimer = _listeDesCours[coursId];
             Console.Write("/!\\ La suppression d'un cours entraîne la suppression de touses les notes " +
                 "et appréciations qui lui sont liées. \n" +
-                $"Voulez-vous vraiment supprimer le cours {coursASupprimer.Titre}? (Oui/Non) ");
+                $"Voulez-vous vraiment supprimer le cours {coursASupprimer}? (Oui/Non) ");
             string reponseSuppression = Console.ReadLine().ToLower();
 
             if (reponseSuppression == "oui")

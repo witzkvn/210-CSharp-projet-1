@@ -48,10 +48,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ListeEleves.cs" />
     <Compile Include="ListeCours.cs" />
     <Compile Include="obj\Debug\.NETFramework,Version=v4.7.2.AssemblyAttributes.cs" />
     <Compile Include="obj\Release\.NETFramework,Version=v4.7.2.AssemblyAttributes.cs" />
-    <Compile Include="Cours.cs" />
     <Compile Include="Eleve.cs" />
     <Compile Include="Menu.cs" />
     <Compile Include="Note.cs" />

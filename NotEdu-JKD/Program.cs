@@ -13,7 +13,8 @@ namespace NotEdu_JKD
 
         static void Main(string[] args)
         {
-            Console.WriteLine("\tTest de tabulations");
+            ListeCours.AjouterCours();
+            ListeCours.AjouterCours();
             Console.ReadLine();
             /*Serveur.EcrireLog("ouaou c'est top");*/
 
