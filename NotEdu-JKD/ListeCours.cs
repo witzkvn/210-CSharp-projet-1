@@ -8,8 +8,9 @@ namespace NotEdu_JKD
 {
     class ListeCours
     {
-        private static Dictionary<int, string> _listeDesCours;
-        private static int _idGlobalCours;
+        private static Dictionary<int, string> _listeDesCours = new Dictionary<int, string>(); 
+        // TODO dans le futur, implémenter une fonction qui retourne un dict depuis le json
+        private static int _idGlobalCours = _listeDesCours.Count == 0 ? 0 : _listeDesCours.Keys.Max();
 
         public ListeCours()
         {
