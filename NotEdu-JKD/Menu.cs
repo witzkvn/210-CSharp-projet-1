@@ -64,9 +64,9 @@ namespace NotEdu_JKD
             Console.ForegroundColor = ConsoleColor.White;
 
 
-            Cours lie = new Cours(matiere);
+            //Cours lie = new Cours(matiere);
 
-            Note noteEtAppreciation = new Note(lie, note, appreciation);
+            //Note noteEtAppreciation = new Note(lie, note, appreciation);
 
         }
 
@@ -100,6 +100,9 @@ namespace NotEdu_JKD
 
                 case 2:
                     MenuCours();//Si le choix=2 alors on se rend dans le menu cours
+                    break;
+                default :
+                    MenuPrincipal();
                     break;
             }
 
@@ -146,6 +149,9 @@ namespace NotEdu_JKD
                 case 5:
                     MenuPrincipal();//Retour au menu principal
                     break;
+                default:
+                    MenuEleves();
+                    break;
 
             }
         }
@@ -189,7 +195,7 @@ namespace NotEdu_JKD
                     Console.WriteLine("\n\n\n     Entrer le nom du cours à ajouter : ");
                     string NomDuCours2 = Console.ReadLine();
                     RetourMenuPrincipal(NomDuCours2);
-                    ListeCours.AjouterCours(new Cours(NomDuCours2));
+                    ListeCours.AjouterCours();//new Cours(NomDuCours2));
 
 
                     break;
@@ -205,6 +211,9 @@ namespace NotEdu_JKD
 
                 case 4:
                     MenuPrincipal();//Retour au menu principal
+                    break;
+                default:
+                    MenuCours();
                     break;
 
             }
