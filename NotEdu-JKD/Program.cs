@@ -16,9 +16,9 @@ namespace NotEdu_JKD
             ListeEleves.AjouterEleveDansListe(kevin);
             ListeEleves.AjouterEleveDansListe(naim);
             programme.AjouterCours();
-            kevin.ListeNotes.();
-            naim.ListeNotes.Add(new Note(programme.ListeDesCours[0], 17, "Très bien"));
-            programme.SuppressionCours(campus);
+            kevin.ListeNotes.Add(new Note(0, "Maths", 17, "Très bien"));
+            naim.ListeNotes.Add(new Note(0, "Maths", 13, " Bien"));
+            programme.SuppressionCours();
 
             Console.ReadLine();
         }
