@@ -10,8 +10,6 @@ namespace NotEdu_JKD
     {
         static void Main(string[] args)
         {
-            Eleve.CreerNouvelEleve();
-            ListeEleves.AfficherListeEleves();
             Console.ReadLine();
         }
     }
