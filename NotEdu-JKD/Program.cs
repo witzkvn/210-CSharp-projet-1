@@ -10,15 +10,14 @@ namespace NotEdu_JKD
     {
         static void Main(string[] args)
         {
-            ListeCours programme = new ListeCours();
             Eleve kevin = new Eleve("Witz", "Kévin", new DateTime(1995, 08, 01));
             Eleve naim = new Eleve("El Moudni", "Naïm", new DateTime(1992, 10, 17));
             ListeEleves.AjouterEleveDansListe(kevin);
             ListeEleves.AjouterEleveDansListe(naim);
-            programme.AjouterCours();
+            ListeCours.AjouterCours();
             kevin.ListeNotes.Add(new Note(0, "Maths", 17, "Très bien"));
             naim.ListeNotes.Add(new Note(0, "Maths", 13, " Bien"));
-            programme.SuppressionCours();
+            ListeCours.SuppressionCours();
 
             Console.ReadLine();
         }

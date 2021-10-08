@@ -6,19 +6,13 @@ using System.Threading.Tasks;
 
 namespace NotEdu_JKD
 {
-    class ListeCours
+    static class ListeCours
     {
         private static Dictionary<int, string> _listeDesCours = new Dictionary<int, string>(); 
         // TODO dans le futur, implémenter une fonction qui retourne un dict depuis le json
         private static int _idGlobalCours = _listeDesCours.Count == 0 ? 0 : _listeDesCours.Keys.Max();
 
-        public ListeCours()
-        {
-            _listeDesCours = new Dictionary<int, string>();
-            _idGlobalCours = 0;
-        }
-
-        public void AjouterCours()
+        public static void AjouterCours()
         {
             Console.WriteLine("Quel est le titre du cours que vous voulez ajouter ?");
             string titreNouveauCours = Console.ReadLine();
@@ -41,7 +35,7 @@ namespace NotEdu_JKD
         }
 
         /*Suppression de toutes les occurences d'un cours.*/
-        public void SuppressionCours()
+        public static void SuppressionCours()
         {
             AfficherTousLesCours();
             Console.Write("Entrez l'ID du cours à supprimer : ");
