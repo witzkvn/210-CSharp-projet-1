@@ -10,7 +10,6 @@ namespace NotEdu_JKD
     {
         static void Main(string[] args)
         {
-            ListeEleves.SupprimerEleveDansListe();
             Console.ReadLine();
         }
     }
