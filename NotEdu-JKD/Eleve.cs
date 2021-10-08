@@ -18,6 +18,7 @@ namespace NotEdu_JKD
             this.Nom = nom;
             this.Prenom = prenom;
             this.DateNaissance = dateNaissance;
+            ListeNotes = new List<Note>();
         }
 
         public void AfficherInfoEleve()
