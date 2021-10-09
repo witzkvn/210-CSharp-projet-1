@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 using System.Globalization;
+using System.Threading;
 
 namespace NotEdu_JKD
 {
@@ -61,6 +62,13 @@ namespace NotEdu_JKD
             {
                 return char.ToUpper(mot[0]) + mot.Substring(1);
             }  
+        }
+
+        public static void Delais()
+        {
+            Thread.Sleep(3000);
+            Menu.MenuPrincipal();
+            Console.Clear();
         }
     }
 }
