@@ -8,12 +8,7 @@ namespace NotEdu_JKD
 {
     static class ListeEleves
     {
-        static private Dictionary<int, Eleve> _listeDesEleves = new Dictionary<int, Eleve>()
-        {
-            {1, new Eleve("NOM1","Prenom1", DateTime.Parse("11/11/2001") ) },
-            {2, new Eleve("NOM2","Prenom2", DateTime.Parse("07/07/2007") ) },
-            {3, new Eleve("NOM3","Prenom3", DateTime.Parse("13/03/2003") ) },
-        };
+        static private Dictionary<int, Eleve> _listeDesEleves = new Dictionary<int, Eleve>();
         // TODO récupérer liste des élèves du JSON et la mettre dans _listeEleves
         private static int _idGlobalEleve = _listeDesEleves.Count == 0 ? 0 : _listeDesEleves.Keys.Max();
 

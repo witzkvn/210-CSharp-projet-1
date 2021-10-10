@@ -10,6 +10,8 @@ namespace NotEdu_JKD
     {
         static void Main(string[] args)
         {
+            Menu menu = new Menu();
+            menu.MenuCours();
             Console.ReadLine();
         }
     }

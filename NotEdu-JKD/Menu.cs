@@ -73,7 +73,7 @@ namespace NotEdu_JKD
         public void RetourMenuPrincipal(string NomDuCours)
         {
 
-            if (NomDuCours == "r")
+            if (NomDuCours.ToLower() == "retour")
             {
                 Console.Clear();
                 MenuCours();
@@ -182,7 +182,7 @@ namespace NotEdu_JKD
             {
                 case 1:
                     Console.ForegroundColor = ConsoleColor.White;
-                    Console.WriteLine("                                                       Back (r+entree)");
+                    Console.WriteLine("                                                       (Retour : 'retour' + Entree)");
                     Console.ForegroundColor = ConsoleColor.Yellow;
                     ListeCours.AfficherTousLesCours();
                     string NomDuCours1 = Console.ReadLine();
@@ -191,7 +191,7 @@ namespace NotEdu_JKD
 
                 case 2:
                     Console.ForegroundColor = ConsoleColor.White;
-                    Console.WriteLine("                                                       Back (r+entree)");
+                    Console.WriteLine("                                                       (Retour : 'retour' + Entree)");
                     Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.WriteLine("\n\n\n     Entrer le nom du cours à ajouter : ");
                     string NomDuCours2 = Console.ReadLine();
@@ -203,7 +203,7 @@ namespace NotEdu_JKD
 
                 case 3:
                     Console.ForegroundColor = ConsoleColor.White;
-                    Console.WriteLine("                                                       Back (r+entree)");
+                    Console.WriteLine("                                                       (Retour : 'retour' + Entree)");
                     Console.ForegroundColor = ConsoleColor.Yellow;
                     ListeCours.SuppressionCours();
                     string NomDuCours3 = Console.ReadLine();
