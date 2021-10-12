@@ -33,10 +33,10 @@ namespace NotEdu_JKD
         }
         public  void AfficherTousLesCours()
         {
-            Console.WriteLine("Liste de tous les cours disponibles : \n");
+            Console.WriteLine("Liste de tous les cours disponibles (ID --- Nom du cours) : \n");
             foreach (KeyValuePair<int, string> cours in _listeDesCours)
             {
-                Console.WriteLine($" ID : {cours.Key} | Cours : {cours.Value}\n");
+                Console.WriteLine($"{cours.Key} --- {cours.Value}");
             }
         }
 
@@ -52,9 +52,8 @@ namespace NotEdu_JKD
                 SuppressionCours(campus);
             }
             string coursASupprimer = _listeDesCours[coursId];
-            Console.Write("/!\\ La suppression d'un cours entraîne la suppression de touses les notes " +
-                "et appréciations qui lui sont liées. \n" +
-                $"Voulez-vous vraiment supprimer le cours {coursASupprimer}? (Oui/Non) ");
+            Console.Write("/!\\ La suppression d'un cours entraîne la suppression de touses les notes et appréciations qui lui sont liées.");
+            Console.WriteLine($"Voulez-vous vraiment supprimer le cours {coursASupprimer}? (Oui/Non) ");
             string reponseSuppression = Console.ReadLine().ToLower();
 
             if (reponseSuppression == "oui")

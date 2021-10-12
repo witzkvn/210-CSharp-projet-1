@@ -8,9 +8,9 @@ namespace NotEdu_JKD
 {
     class Eleve
     {
-        public string Nom { get; set; }
-        public string Prenom { get; set; }
-        public DateTime DateNaissance { get; set; }
+        public string Nom { get; private set; }
+        public string Prenom { get; private set; }
+        public DateTime DateNaissance { get; private set; }
         public List<Note> ListeNotes { get; set; }
 
         public Eleve(string nom, string prenom, DateTime dateNaissance)
