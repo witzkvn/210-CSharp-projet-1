@@ -8,9 +8,10 @@ namespace NotEdu_JKD
 {
     static class ListeCours
     {
-        private static Dictionary<int, string> _listeDesCours = new Dictionary<int, string>();
+        private static Dictionary<int, string> _listeDesCours = new Dictionary<int, string>(); 
+        // TODO dans le futur, implémenter une fonction qui retourne un dict depuis le json
         private static int _idGlobalCours = _listeDesCours.Count == 0 ? 0 : _listeDesCours.Keys.Max();
-        
+
         public static void AjouterCours()
         {
             Console.WriteLine("Quel est le titre du cours que vous voulez ajouter ?");
@@ -42,7 +43,7 @@ namespace NotEdu_JKD
             if (!_listeDesCours.ContainsKey(coursId))
             {
                 Console.WriteLine("Ce cours n'existe pas, veuillez entrer un cours valide.");
-                return;
+                SuppressionCours();
             }
             string coursASupprimer = _listeDesCours[coursId];
             Console.Write("/!\\ La suppression d'un cours entraîne la suppression de touses les notes et appréciations qui lui sont liées.");
@@ -52,7 +53,9 @@ namespace NotEdu_JKD
             if (reponseSuppression == "oui")
             {
                 /* Loop à travers tout les élèves, dans toutes leurs notes pour trouver l'ID correspondant*/
+                ListeEleves.SupprimerCours(coursId);
                 _listeDesCours.Remove(coursId);
+                Console.WriteLine($"Le cours {coursASupprimer} à bien été supprimé.");
             }
             else
             {
