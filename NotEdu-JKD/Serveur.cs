@@ -16,7 +16,6 @@ namespace NotEdu_JKD
 
             if (!Directory.Exists(path))
             {
-                Console.WriteLine("call");
                 Directory.CreateDirectory(path);
             }
             return path;
@@ -30,7 +29,6 @@ namespace NotEdu_JKD
         public static void AddLog(string logMessage)
         {
             string logFilePath = GetFilePath("campusDB.log");
-            DateTime.Now.ToString("['dd' - 'MM' - 'yyyy' --- 'HH':'mm':'ss']");
             File.AppendAllText(logFilePath, $"{DateTime.Now:[dd/MM/yyyy --- HH:mm:ss]} : {logMessage}\n");
         }
     }
