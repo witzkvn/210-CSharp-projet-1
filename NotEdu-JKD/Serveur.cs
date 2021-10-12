@@ -43,5 +43,19 @@ namespace NotEdu_JKD
             string campusJSON = JsonConvert.SerializeObject(campus);
             File.WriteAllText(jsonFilePath, campusJSON);
         }
+
+        public static Campus DeserializeJSON()
+        {
+            string jsonFilePath = GetFilePath("campusDB.json");
+            if (!File.Exists(jsonFilePath))
+            {
+                return new Campus();
+            } else
+            {
+                string jsonDB = File.ReadAllText(jsonFilePath);
+                Campus campus = JsonConvert.DeserializeObject<Campus>(jsonDB);
+                return campus;
+            }
+        }
     }
 }
