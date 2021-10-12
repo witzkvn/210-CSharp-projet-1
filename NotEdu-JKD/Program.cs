@@ -10,7 +10,8 @@ namespace NotEdu_JKD
     {
         static void Main(string[] args)
         {
-            Console.ReadLine();
+            Campus campus = new Campus();
+            campus.Programme.AfficherNotesCours();
         }
     }
 }
