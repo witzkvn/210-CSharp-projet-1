@@ -64,16 +64,16 @@ namespace NotEdu_JKD
             }  
         }
 
-        public static void RetourMenuApresDelais(int choixMenu)
+        public static void RetourMenuApresDelais(Campus campus, int choixMenu)
         {
-            Menu menu = new Menu();
+            
             Thread.Sleep(3000);
             if (choixMenu == 1)
-                menu.MenuPrincipal();
+                Menu.MenuPrincipal(campus);
             else if (choixMenu == 2)
-                menu.MenuEleves();
+                Menu.MenuEleves(campus);
             else if (choixMenu == 3)
-                menu.MenuCours();
+                Menu.MenuCours(campus);
             Console.Clear();
         }
     }
