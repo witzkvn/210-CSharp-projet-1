@@ -41,7 +41,7 @@ namespace NotEdu_JKD
         }
 
         /*Suppression de toutes les occurences d'un cours.*/
-        public  void SuppressionCours()
+        public void SuppressionCours(ListeEleves campus)
         {
             AfficherTousLesCours();
             Console.Write("Entrez l'ID du cours à supprimer : ");
@@ -49,7 +49,7 @@ namespace NotEdu_JKD
             if (!_listeDesCours.ContainsKey(coursId))
             {
                 Console.WriteLine("Ce cours n'existe pas, veuillez entrer un cours valide.");
-                SuppressionCours();
+                SuppressionCours(campus);
             }
             string coursASupprimer = _listeDesCours[coursId];
             Console.Write("/!\\ La suppression d'un cours entraîne la suppression de touses les notes " +
@@ -60,7 +60,7 @@ namespace NotEdu_JKD
             if (reponseSuppression == "oui")
             {
                 /* Loop à travers tout les élèves, dans toutes leurs notes pour trouver l'ID correspondant*/
-                ListeEleves.SupprimerCours(coursId);
+                campus.SupprimerCours(coursId);
                 _listeDesCours.Remove(coursId);
                 Console.WriteLine($"Le cours {coursASupprimer} à bien été supprimé.");
             }
