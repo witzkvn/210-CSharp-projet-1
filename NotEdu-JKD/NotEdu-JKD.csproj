@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="bin\Debug\campusDB.log" />
     <None Include="bin\Debug\NotEdu-JKD.exe.config" />
     <None Include="packages\Newtonsoft.Json.13.0.1\.signature.p7s" />
     <None Include="packages\Newtonsoft.Json.13.0.1\LICENSE.md" />
