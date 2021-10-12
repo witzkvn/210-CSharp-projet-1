@@ -6,12 +6,19 @@ using System.Threading.Tasks;
 
 namespace NotEdu_JKD
 {
-    static class ListeCours
+     class ListeCours
     {
-        private static Dictionary<int, string> _listeDesCours = new Dictionary<int, string>();
-        private static int _idGlobalCours = _listeDesCours.Count == 0 ? 0 : _listeDesCours.Keys.Max();
-        
-        public static void AjouterCours()
+        private Dictionary<int, string> _listeDesCours;
+        // TODO dans le futur, implémenter une fonction qui retourne un dict depuis le json
+        private int _idGlobalCours;
+
+        public ListeCours()
+        {
+            _listeDesCours = new Dictionary<int, string>();
+            _idGlobalCours = 0;
+        }
+
+        public  void AjouterCours()
         {
             Console.WriteLine("Quel est le titre du cours que vous voulez ajouter ?");
             string titreNouveauCours = Console.ReadLine();
@@ -24,7 +31,7 @@ namespace NotEdu_JKD
             Console.WriteLine($"Ajout du cours {titreNouveauCours} réussi.");
             _idGlobalCours++;
         }
-        public static void AfficherTousLesCours()
+        public  void AfficherTousLesCours()
         {
             Console.WriteLine("Liste de tous les cours disponibles : \n");
             foreach (KeyValuePair<int, string> cours in _listeDesCours)
@@ -34,7 +41,7 @@ namespace NotEdu_JKD
         }
 
         /*Suppression de toutes les occurences d'un cours.*/
-        public static void SuppressionCours()
+        public  void SuppressionCours()
         {
             AfficherTousLesCours();
             Console.Write("Entrez l'ID du cours à supprimer : ");
@@ -42,7 +49,7 @@ namespace NotEdu_JKD
             if (!_listeDesCours.ContainsKey(coursId))
             {
                 Console.WriteLine("Ce cours n'existe pas, veuillez entrer un cours valide.");
-                return;
+                SuppressionCours();
             }
             string coursASupprimer = _listeDesCours[coursId];
             Console.Write("/!\\ La suppression d'un cours entraîne la suppression de touses les notes " +
@@ -53,14 +60,16 @@ namespace NotEdu_JKD
             if (reponseSuppression == "oui")
             {
                 /* Loop à travers tout les élèves, dans toutes leurs notes pour trouver l'ID correspondant*/
+                ListeEleves.SupprimerCours(coursId);
                 _listeDesCours.Remove(coursId);
+                Console.WriteLine($"Le cours {coursASupprimer} à bien été supprimé.");
             }
             else
             {
                 Console.WriteLine("Annulation de la suppression du cours.");
             }
         }
-        public static void AfficherNotesCours()
+        public  void AfficherNotesCours()
         {
             AfficherTousLesCours();
             Console.Write("Entrez l'ID du cours à afficher : ");

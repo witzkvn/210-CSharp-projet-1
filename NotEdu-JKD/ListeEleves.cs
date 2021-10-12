@@ -6,19 +6,20 @@ using System.Threading.Tasks;
 
 namespace NotEdu_JKD
 {
-    static class ListeEleves
+    class ListeEleves
     {
-        static private Dictionary<int, Eleve> _listeDesEleves = new Dictionary<int, Eleve>()
-        {
-            {1, new Eleve("NOM1","Prenom1", DateTime.Parse("11/11/2001") ) },
-            {2, new Eleve("NOM2","Prenom2", DateTime.Parse("07/07/2007") ) },
-            {3, new Eleve("NOM3","Prenom3", DateTime.Parse("13/03/2003") ) },
-        };
+        private Dictionary<int, Eleve> _listeDesEleves;
+        
         // TODO récupérer liste des élèves du JSON et la mettre dans _listeEleves
-        private static int _idGlobalEleve = _listeDesEleves.Count == 0 ? 0 : _listeDesEleves.Keys.Max();
+        private int _idGlobalEleve;
 
+        public ListeEleves()
+        {
+            _listeDesEleves = new Dictionary<int, Eleve>();
+            _idGlobalEleve = 0;
+        }
 
-        static public void AjouterEleveDansListe(Eleve nouvelEleve)
+        public void AjouterEleveDansListe(Eleve nouvelEleve)
         {
             _idGlobalEleve++;
             _listeDesEleves.Add(_idGlobalEleve, nouvelEleve);
@@ -27,7 +28,7 @@ namespace NotEdu_JKD
             // ajouter appel méthode retour au menu
         }
 
-        public static void SupprimerEleveDansListe()
+        public void SupprimerEleveDansListe()
         {
             Console.Clear();
             Console.WriteLine("Suppression d'un élève");
@@ -83,12 +84,12 @@ namespace NotEdu_JKD
             SupprimerEleveDansListe();
         }
 
-        static private void ActualiserListeJSON()
+        private void ActualiserListeJSON()
         {
             // actualiser la listeEleves dans le JSON
         }
 
-        static public void AfficherListeEleves()
+        public void AfficherListeEleves()
         {
             if(_listeDesEleves.Count == 0)
             {
