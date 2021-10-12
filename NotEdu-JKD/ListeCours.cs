@@ -27,6 +27,7 @@ namespace NotEdu_JKD
         }
         public static void AfficherTousLesCours()
         {
+            // TODO retour menu si liste de cours vide
             Console.WriteLine("Liste de tous les cours disponibles (ID --- Nom du cours) : \n");
             foreach (KeyValuePair<int, string> cours in _listeDesCours)
             {
