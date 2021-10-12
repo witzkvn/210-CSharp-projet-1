@@ -59,7 +59,7 @@ namespace NotEdu_JKD
             if (reponseSuppression == "oui")
             {
                 /* Loop à travers tout les élèves, dans toutes leurs notes pour trouver l'ID correspondant*/
-                campus.Promotion.SupprimerCours(coursId);
+                campus.ListeEleves.SupprimerCours(coursId);
                 _listeDesCours.Remove(coursId);
                 Console.WriteLine($"Le cours {coursASupprimer} à bien été supprimé.");
             }

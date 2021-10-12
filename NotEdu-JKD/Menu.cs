@@ -90,7 +90,7 @@ namespace NotEdu_JKD
             else if (choixLettre == "q")
                 Environment.Exit(1);
             else
-                MenuPrincipal();
+                MenuPrincipal(campus);
 
 
             int choix = int.Parse(choixLettre);
