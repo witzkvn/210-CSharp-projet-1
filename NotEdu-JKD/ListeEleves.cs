@@ -6,14 +6,20 @@ using System.Threading.Tasks;
 
 namespace NotEdu_JKD
 {
-    static class ListeEleves
+    class ListeEleves
     {
-        static private Dictionary<int, Eleve> _listeDesEleves = new Dictionary<int, Eleve>();
+        private Dictionary<int, Eleve> _listeDesEleves;
+        
         // TODO récupérer liste des élèves du JSON et la mettre dans _listeEleves
-        private static int _idGlobalEleve = _listeDesEleves.Count == 0 ? 0 : _listeDesEleves.Keys.Max();
+        private int _idGlobalEleve;
 
+        public ListeEleves()
+        {
+            _listeDesEleves = new Dictionary<int, Eleve>();
+            _idGlobalEleve = 0;
+        }
 
-        static public void AjouterEleveDansListe(Eleve nouvelEleve)
+        public void AjouterEleveDansListe(Eleve nouvelEleve)
         {
             _idGlobalEleve++;
             _listeDesEleves.Add(_idGlobalEleve, nouvelEleve);
@@ -22,7 +28,7 @@ namespace NotEdu_JKD
             // ajouter appel méthode retour au menu
         }
 
-        static public void CreerNouvelEleve()
+        public void CreerNouvelEleve()
         {
             string nom = "";
             string prenom = "";
@@ -85,7 +91,7 @@ namespace NotEdu_JKD
             Console.WriteLine();
             if (choixAction == "1")
             {
-                ListeEleves.AjouterEleveDansListe(nouvelEleve);
+                this.AjouterEleveDansListe(nouvelEleve);
             }
             else if (choixAction == "2")
             {
@@ -99,7 +105,7 @@ namespace NotEdu_JKD
             }
         }
 
-        public static void SupprimerEleveDansListe()
+        public void SupprimerEleveDansListe()
         {
             Console.Clear();
             Console.WriteLine("Suppression d'un élève");
@@ -155,12 +161,12 @@ namespace NotEdu_JKD
             SupprimerEleveDansListe();
         }
 
-        static private void ActualiserListeJSON()
+        private void ActualiserListeJSON()
         {
             // actualiser la listeEleves dans le JSON
         }
 
-        static public void AfficherListeEleves()
+        public void AfficherListeEleves()
         {
             if(_listeDesEleves.Count == 0)
             {
@@ -176,7 +182,7 @@ namespace NotEdu_JKD
             }
         }
 
-        public static void SupprimerCours(int coursId)
+        public void SupprimerCours(int coursId)
         {
             foreach (KeyValuePair<int, Eleve> eleve in _listeDesEleves)
             {
