@@ -8,14 +8,8 @@ using System.Threading.Tasks;
 
 namespace NotEdu_JKD
 {
-    class Menu
+    static class Menu
     {
-
-        public Menu()
-        {
-
-        }
-
         /*        public void AfficherListe(List<string> liste) // Permet d'afficher la liste d'élève
                 {
                     for (int i=0; i<3; i++)
@@ -25,7 +19,7 @@ namespace NotEdu_JKD
 
                 }*/
 
-        public void ListeEleve()
+        public static void ListeEleve()
         {
             var nomEleves = new List<string>();
             while (true)
@@ -50,7 +44,7 @@ namespace NotEdu_JKD
 
         }
 
-        public void NoteEtAppreciation()
+        public static void NoteEtAppreciation()
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("     Rentrez la matière :");
@@ -70,7 +64,7 @@ namespace NotEdu_JKD
 
         }
 
-        public void RetourMenuPrincipal(Campus campus, string NomDuCours)
+        public static void RetourMenuPrincipal(Campus campus, string NomDuCours)
         {
 
             if (NomDuCours.ToLower() == "retour")
@@ -80,7 +74,7 @@ namespace NotEdu_JKD
             }
 
         }
-        public void MenuPrincipal(Campus campus)
+        public static void MenuPrincipal(Campus campus)
         {
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("\n\n\n     - - - - - - - - - -MENU- - - - - - - - - -\n\n\n\n\n");
@@ -112,7 +106,7 @@ namespace NotEdu_JKD
 
         //-----------------MENU ELEVES------------------------------------------------------
 
-        public void MenuEleves(Campus campus)
+        public static void MenuEleves(Campus campus)
         {
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("\n\n\n      - - - - - - - - - -MENU DES ELEVES- - - - - - - - - -\n\n\n\n\n");
@@ -162,7 +156,7 @@ namespace NotEdu_JKD
 
 
         //----------------MENU COURS--------------------------------------------------------
-        public void MenuCours(Campus campus)
+        public static void MenuCours(Campus campus)
         {
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("\n\n\n     - - - - - - - - - -MENU DES COURS- - - - - - - - - -\n\n\n\n\n");
