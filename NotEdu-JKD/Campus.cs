@@ -8,13 +8,13 @@ namespace NotEdu_JKD
 {
     class Campus
     {
-        public  ListeEleves Promotion { get; }
-        public  ListeCours Programme { get; }
+        public  ListeEleves ListeEleves { get; }
+        public  ListeCours ListeCours { get; }
 
         public Campus()
         {
-            Promotion = new ListeEleves();
-            Programme = new ListeCours();
+            ListeEleves = new ListeEleves();
+            ListeCours = new ListeCours();
         }
     }
 }

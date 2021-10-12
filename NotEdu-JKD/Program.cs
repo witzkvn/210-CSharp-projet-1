@@ -10,8 +10,18 @@ namespace NotEdu_JKD
     {
         static void Main(string[] args)
         {
-            Campus campus = new Campus();
-            campus.Programme.AfficherNotesCours();
+            Campus campus = Serveur.DeserializeJSON();
+            if(campus is null)
+            {
+                campus = new Campus();
+            }
+
+
+            Eleve mario = new Eleve("BROS", "Mario", DateTime.Parse("11/11/2001"));
+            campus.ListeEleves.AjouterEleveDansListe(mario);
+            campus.ListeEleves.AfficherListeEleves();
+
+            Console.ReadLine();
         }
     }
 }

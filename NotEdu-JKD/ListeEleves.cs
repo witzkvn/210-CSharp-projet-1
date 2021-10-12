@@ -8,21 +8,21 @@ namespace NotEdu_JKD
 {
     class ListeEleves
     {
-        private Dictionary<int, Eleve> _listeDesEleves;
+        public Dictionary<int, Eleve> ListeDesEleves;
         
         // TODO récupérer liste des élèves du JSON et la mettre dans _listeEleves
         private int _idGlobalEleve;
 
         public ListeEleves()
         {
-            _listeDesEleves = new Dictionary<int, Eleve>();
-            _idGlobalEleve = 0;
+            ListeDesEleves = new Dictionary<int, Eleve>();
+            _idGlobalEleve = ListeDesEleves.Count == 0 ? 0 : ListeDesEleves.Keys.Max();
         }
 
         public void AjouterEleveDansListe(Eleve nouvelEleve)
         {
             _idGlobalEleve++;
-            _listeDesEleves.Add(_idGlobalEleve, nouvelEleve);
+            ListeDesEleves.Add(_idGlobalEleve, nouvelEleve);
             Console.WriteLine($"Ajout de l'élève {nouvelEleve.Nom} {nouvelEleve.Prenom} réussi.");
             ActualiserListeJSON();
             // ajouter appel méthode retour au menu
@@ -112,7 +112,7 @@ namespace NotEdu_JKD
             Console.WriteLine();
             AfficherListeEleves();
 
-            if (_listeDesEleves.Count == 0)
+            if (ListeDesEleves.Count == 0)
             {
                 Console.WriteLine("La liste des élèves étant vide, vous ne pouvez pas en supprimer.");
                 // ajouter appel méthode retour au menu
@@ -126,7 +126,7 @@ namespace NotEdu_JKD
             {
                 Console.Write("Quel élève souhaitez-vous supprimer ? (donner son ID ou taper 'retour' pour revenir au menu principal) : ");
                 saisieUtilisateur = Console.ReadLine().ToLower();
-            } while((!Int32.TryParse(saisieUtilisateur, out idEleveASupprimer) || !_listeDesEleves.ContainsKey(idEleveASupprimer)) && saisieUtilisateur != "retour");
+            } while((!Int32.TryParse(saisieUtilisateur, out idEleveASupprimer) || !ListeDesEleves.ContainsKey(idEleveASupprimer)) && saisieUtilisateur != "retour");
 
             if (saisieUtilisateur == "retour")
             {
@@ -136,7 +136,7 @@ namespace NotEdu_JKD
             }
             else
             {
-                Eleve eleveASupprimer = _listeDesEleves[idEleveASupprimer];
+                Eleve eleveASupprimer = ListeDesEleves[idEleveASupprimer];
                 Console.Clear();
                 Console.WriteLine("Elève sélectionné : ");
                 eleveASupprimer.AfficherInfoEleve();
@@ -149,7 +149,7 @@ namespace NotEdu_JKD
 
                 if (reponseSuppression == "oui")
                 {
-                    _listeDesEleves.Remove(idEleveASupprimer);
+                    ListeDesEleves.Remove(idEleveASupprimer);
                     Console.WriteLine("Suppression de l'élève réussie.");
                     ActualiserListeJSON();
                 }
@@ -168,14 +168,14 @@ namespace NotEdu_JKD
 
         public void AfficherListeEleves()
         {
-            if(_listeDesEleves.Count == 0)
+            if(ListeDesEleves.Count == 0)
             {
                 Console.WriteLine("Aucun élève répertorié pour le moment.");
             } else
             {
                 Console.WriteLine("Liste des élèves du campus (ID --- NOM Prénom) : ");
                 Console.WriteLine();
-                foreach (KeyValuePair<int, Eleve> eleve in _listeDesEleves)
+                foreach (KeyValuePair<int, Eleve> eleve in ListeDesEleves)
                 {
                     Console.WriteLine($"{eleve.Key} --- {eleve.Value.Nom.ToUpper()} {Utilitaire.PremiereLettreMajuscule(eleve.Value.Prenom)}");
                 }
@@ -184,7 +184,7 @@ namespace NotEdu_JKD
 
         public void SupprimerCours(int coursId)
         {
-            foreach (KeyValuePair<int, Eleve> eleve in _listeDesEleves)
+            foreach (KeyValuePair<int, Eleve> eleve in ListeDesEleves)
             {
                 eleve.Value.SupprimerCours(coursId);
             }
