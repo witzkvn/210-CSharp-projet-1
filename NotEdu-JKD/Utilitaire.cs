@@ -64,7 +64,7 @@ namespace NotEdu_JKD
             }  
         }
 
-        public static void Delais(int choixMenu)
+        public static void RetourMenuApresDelais(int choixMenu)
         {
             Menu menu = new Menu();
             Thread.Sleep(3000);
