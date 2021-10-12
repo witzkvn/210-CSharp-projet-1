@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 using System.Globalization;
+using System.Threading;
 
 namespace NotEdu_JKD
 {
@@ -61,6 +62,19 @@ namespace NotEdu_JKD
             {
                 return char.ToUpper(mot[0]) + mot.Substring(1);
             }  
+        }
+
+        public static void RetourMenuApresDelais(int choixMenu)
+        {
+            Menu menu = new Menu();
+            Thread.Sleep(3000);
+            if (choixMenu == 1)
+                menu.MenuPrincipal();
+            else if (choixMenu == 2)
+                menu.MenuEleves();
+            else if (choixMenu == 3)
+                menu.MenuCours();
+            Console.Clear();
         }
     }
 }

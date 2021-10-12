@@ -83,9 +83,17 @@ namespace NotEdu_JKD
             Console.WriteLine("     2-Cours\n\n\n\n\n");
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("     Effectuer votre choix\n\n\n");
-            int choix = int.Parse(Console.ReadLine());
+            string choixLettre = Console.ReadLine();
             Console.Clear();
 
+            if (choixLettre == "1" || choixLettre == "2") { }
+            else if (choixLettre == "q")
+                Environment.Exit(1);
+            else
+                MenuPrincipal();
+
+
+            int choix = int.Parse(choixLettre);
 
             switch (choix)
             {
