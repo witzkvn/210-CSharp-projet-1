@@ -28,7 +28,7 @@ namespace NotEdu_JKD
             // ajouter appel méthode retour au menu
         }
 
-        static public void CreerNouvelEleve()
+        public void CreerNouvelEleve()
         {
             string nom = "";
             string prenom = "";
@@ -91,7 +91,7 @@ namespace NotEdu_JKD
             Console.WriteLine();
             if (choixAction == "1")
             {
-                ListeEleves.AjouterEleveDansListe(nouvelEleve);
+                this.AjouterEleveDansListe(nouvelEleve);
             }
             else if (choixAction == "2")
             {
@@ -105,7 +105,7 @@ namespace NotEdu_JKD
             }
         }
 
-        public static void SupprimerEleveDansListe()
+        public void SupprimerEleveDansListe()
         {
             Console.Clear();
             Console.WriteLine("Suppression d'un élève");
