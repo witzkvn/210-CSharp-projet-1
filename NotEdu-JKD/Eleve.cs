@@ -18,6 +18,7 @@ namespace NotEdu_JKD
             this.Nom = nom;
             this.Prenom = prenom;
             this.DateNaissance = dateNaissance;
+            ListeNotes = new List<Note>();
         }
 
         public void AfficherInfoEleve()
@@ -62,6 +63,11 @@ namespace NotEdu_JKD
                 }
                 Console.WriteLine("    Moyenne : " + Utilitaire.FormatterNoteSurVingt(sommeNotes / ListeNotes.Count));
             }
-        }    
+        }  
+        
+        public void SupprimerCours(int coursId)
+        {
+            ListeNotes.RemoveAll(note => note.IdCoursLie == coursId);
+        }
     }
 }
