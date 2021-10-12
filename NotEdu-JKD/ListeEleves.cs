@@ -32,12 +32,11 @@ namespace NotEdu_JKD
             {
                 Console.Write("Quel est le nom du nouvel élève ? (lettres uniquement -- 'retour' pour quitter) : ");
                 nom = Console.ReadLine().ToLower();
-                if (nom == "retour") break;
-            }
-            if (nom == "retour")
-            {
-                // appeler méthode de menu pour revenir au menu principal
-                Console.WriteLine("Retour menu principal");
+                if (nom == "retour")
+                {
+                    // appeler méthode de menu pour revenir au menu principal
+                    break;
+                }
             }
 
             while (!Utilitaire.VerifUniquementLettres(prenom) || prenom == "")
