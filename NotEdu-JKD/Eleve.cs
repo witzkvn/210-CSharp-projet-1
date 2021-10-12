@@ -30,14 +30,14 @@ namespace NotEdu_JKD
             Console.WriteLine("Date de naissance : " + Utilitaire.FormatterDateCourteString(this.DateNaissance));
         }
 
-        public void AjouterNote(ListeCours programme)
+        public void AjouterNote(Campus campus)
         {
-            programme.AfficherTousLesCours();
+            campus.Programme.AfficherTousLesCours(campus);
             try
             {
                 Console.Write("Quel est l'ID du cours de la note ? ");
                 int idCours = int.Parse(Console.ReadLine());
-                (int id, string titre) coursIdTitre = programme.GetCoursById(idCours);
+                (int id, string titre) coursIdTitre = campus.Programme.GetCoursById(idCours);
                 Console.Write("Quelle est la valeur de la note ? ");
                 double valeurNote = double.Parse(Console.ReadLine());
                 //!valeurNote.IsDouble ? AjouterNote();
@@ -57,7 +57,7 @@ namespace NotEdu_JKD
             catch
             {
                 Console.WriteLine("Erreur lors de la saisie de la note.\nVeuillez réessayer.");
-                AjouterNote(programme);
+                AjouterNote(campus);
             }
             Console.Write("La saisie est-elle correcte ? (Oui/Non) ");
             string reponse = Console.ReadLine().ToLower();
@@ -67,7 +67,7 @@ namespace NotEdu_JKD
             }
             else
             {
-                AjouterNote(programme);
+                AjouterNote(campus);
             }
         }
 

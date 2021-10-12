@@ -11,7 +11,7 @@ namespace NotEdu_JKD
         static void Main(string[] args)
         {
             Campus campus = new Campus();
-            campus.Programme.AfficherNotesCours();
+            campus.Programme.AfficherNotesCours(campus);
         }
     }
 }

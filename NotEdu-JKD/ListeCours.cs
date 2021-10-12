@@ -31,8 +31,12 @@ namespace NotEdu_JKD
             Console.WriteLine($"Ajout du cours {titreNouveauCours} réussi.");
             _idGlobalCours++;
         }
-        public  void AfficherTousLesCours()
+        public void AfficherTousLesCours(Campus campus)
         {
+            if(_listeDesCours.Count == 0)
+            {
+                Menu.MenuCours(campus);
+            }
             // TODO retour menu si liste de cours vide
             Console.WriteLine("Liste de tous les cours disponibles (ID --- Nom du cours) : \n");
             foreach (KeyValuePair<int, string> cours in _listeDesCours)
@@ -44,7 +48,7 @@ namespace NotEdu_JKD
         /*Suppression de toutes les occurences d'un cours.*/
         public void SuppressionCours(Campus campus)
         {
-            AfficherTousLesCours();
+            AfficherTousLesCours(campus);
             Console.Write("Entrez l'ID du cours à supprimer : ");
             int coursId = int.Parse(Console.ReadLine());
             if (!_listeDesCours.ContainsKey(coursId))
@@ -69,9 +73,9 @@ namespace NotEdu_JKD
                 Console.WriteLine("Annulation de la suppression du cours.");
             }
         }
-        public  void AfficherNotesCours()
+        public void AfficherNotesCours(Campus campus)
         {
-            AfficherTousLesCours();
+            AfficherTousLesCours(campus);
             Console.Write("Entrez l'ID du cours à afficher : ");
             int coursId = int.Parse(Console.ReadLine());
             /* Loop dans la liste des élèves pour trouver les notes correspondants au cours */
