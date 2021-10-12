@@ -105,7 +105,7 @@ namespace NotEdu_JKD
             }
         }
 
-        public static void SupprimerCours(int coursId)
+        public void SupprimerCours(int coursId)
         {
             foreach (KeyValuePair<int, Eleve> eleve in _listeDesEleves)
             {
