@@ -43,24 +43,22 @@ namespace NotEdu_JKD
             {
                 Console.Write("Quel est le prénom du nouvel élève ? (lettres uniquement -- 'retour' pour quitter) : ");
                 prenom = Console.ReadLine().ToLower();
-                if (prenom == "retour") break;
-            }
-            if (prenom == "retour")
-            {
-                // appeler méthode de menu pour revenir au menu principal
-                Console.WriteLine("Retour menu principal");
+                if (prenom == "retour")
+                {
+                    // appeler méthode de menu pour revenir au menu principal
+                    break;
+                }
             }
 
             while (!Utilitaire.VerifFormatDate(dateNaissance) || dateNaissance == "")
             {
                 Console.Write("Quel est la date de naissance du nouvel élève ? (format JJ/MM/AAAA -- 'retour' pour quitter) : ");
                 dateNaissance = Console.ReadLine().ToLower();
-                if (dateNaissance == "retour") break;
-            }
-            if (dateNaissance == "retour")
-            {
-                // appeler méthode de menu pour revenir au menu principal
-                Console.WriteLine("Retour menu principal");
+                if (dateNaissance == "retour")
+                {
+                    // appeler méthode de menu pour revenir au menu principal
+                    break;
+                }
             }
 
             DateTime dateNaissanceValideEleve = Utilitaire.StringToDate(dateNaissance);
