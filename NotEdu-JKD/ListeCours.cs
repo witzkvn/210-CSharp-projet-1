@@ -1,15 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NotEdu_JKD
 {
-     class ListeCours
+    class ListeCours
     {
         public  Dictionary<int, string> ListeDesCours { get; }
-        // TODO dans le futur, implémenter une fonction qui retourne un dict depuis le json
         public int IdGlobalCours { get; private set; }
 
         public ListeCours()
@@ -33,7 +29,7 @@ namespace NotEdu_JKD
         }
         public void AfficherTousLesCours(Campus campus)
         {
-            if(_listeDesCours.Count == 0)
+            if(ListeDesCours.Count == 0)
             {
                 Console.WriteLine("Aucun cours disponible.");
                 Console.ReadLine();
@@ -66,7 +62,7 @@ namespace NotEdu_JKD
             if (reponseSuppression == "oui")
             {
                 /* Loop à travers tout les élèves, dans toutes leurs notes pour trouver l'ID correspondant*/
-                campus.Promotion.SupprimerCours(coursId);
+                campus.ListeEleves.SupprimerCours(coursId);
                 ListeDesCours.Remove(coursId);
                 Console.WriteLine($"Le cours {coursASupprimer} à bien été supprimé.");
             }
