@@ -32,10 +32,9 @@ namespace NotEdu_JKD
             if(ListeDesCours.Count == 0)
             {
                 Console.WriteLine("Aucun cours disponible.");
-                Console.ReadLine();
-                Menu.MenuCours(campus);
+                Utilitaire.RetourMenuApresDelais(campus, 3);
+                
             }
-            // TODO retour menu si liste de cours vide
             Console.WriteLine("Liste de tous les cours disponibles (ID --- Nom du cours) : \n");
             foreach (KeyValuePair<int, string> cours in ListeDesCours)
             {
