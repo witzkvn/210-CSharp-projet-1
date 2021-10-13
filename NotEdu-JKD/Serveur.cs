@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -30,6 +31,31 @@ namespace NotEdu_JKD
         {
             string logFilePath = GetFilePath("campusDB.log");
             File.AppendAllText(logFilePath, $"{DateTime.Now:[dd/MM/yyyy --- HH:mm:ss]} : {logMessage}\n");
+        }
+
+        public static void SerializeAndWriteInJSON(Campus campus)
+        {
+            string jsonFilePath = GetFilePath("campusDB.json");
+            if (!File.Exists(jsonFilePath))
+            {
+                File.Create(jsonFilePath);
+            }
+            string campusJSON = JsonConvert.SerializeObject(campus);
+            File.WriteAllText(jsonFilePath, campusJSON);
+        }
+
+        public static Campus DeserializeJSON()
+        {
+            string jsonFilePath = GetFilePath("campusDB.json");
+            if (!File.Exists(jsonFilePath))
+            {
+                return new Campus();
+            } else
+            {
+                string jsonDB = File.ReadAllText(jsonFilePath);
+                Campus campus = JsonConvert.DeserializeObject<Campus>(jsonDB);
+                return campus;
+            }
         }
     }
 }
