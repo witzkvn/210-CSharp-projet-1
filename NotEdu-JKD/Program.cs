@@ -10,7 +10,7 @@ namespace NotEdu_JKD
     {
         static void Main(string[] args)
         {
-            
+            Console.WriteLine("Hello world");
         }
     }
 }
