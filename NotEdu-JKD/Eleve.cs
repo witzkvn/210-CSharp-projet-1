@@ -8,10 +8,10 @@ namespace NotEdu_JKD
 {
     class Eleve
     {
-        public string Nom { get; private set; }
-        public string Prenom { get; private set; }
-        public DateTime DateNaissance { get; private set; }
-        public List<Note> ListeNotes { get; set; }
+        public string Nom { get; }
+        public string Prenom { get; }
+        public DateTime DateNaissance { get; }
+        public List<Note> ListeNotes { get; }
 
         public Eleve(string nom, string prenom, DateTime dateNaissance)
         {
@@ -37,7 +37,7 @@ namespace NotEdu_JKD
             {
                 Console.Write("Quel est l'ID du cours de la note ? ");
                 int idCours = int.Parse(Console.ReadLine());
-                (int id, string titre) coursIdTitre = campus.Programme.GetCoursById(idCours);
+                string  coursTitre = campus.Programme.ListeDesCours[idCours];
                 Console.Write("Quelle est la valeur de la note ? ");
                 double valeurNote = double.Parse(Console.ReadLine());
                 //!valeurNote.IsDouble ? AjouterNote();
@@ -45,11 +45,11 @@ namespace NotEdu_JKD
                 valeurNote = valeurNote > 20 ? 20 : valeurNote;
                 Console.WriteLine("Quelle est l'appréciation ? (Touche Entrée si vide) ");
                 string appreciationNote = Console.ReadLine();
-                ListeNotes.Add(new Note(coursIdTitre.id, coursIdTitre.titre, valeurNote, appreciationNote));
+                ListeNotes.Add(new Note(idCours, coursTitre, valeurNote, appreciationNote));
 
                 Console.WriteLine("Récapitulatif de la saisie : ");
                 Console.WriteLine($"Nom de l'élève : {Nom} {Prenom}");
-                Console.WriteLine("Cours de la note : " + coursIdTitre.titre);
+                Console.WriteLine("Cours de la note : " + coursTitre);
                 Console.WriteLine("Valeur de la note : " + valeurNote);
                 Console.WriteLine("Appréciation : " + appreciationNote);
 
