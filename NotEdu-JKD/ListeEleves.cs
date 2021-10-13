@@ -8,21 +8,21 @@ namespace NotEdu_JKD
 {
     class ListeEleves
     {
-        public Dictionary<int, Eleve> ListeDesEleves;
+        public Dictionary<int, Eleve> ListeDesEleves { get; }
         
         // TODO récupérer liste des élèves du JSON et la mettre dans _listeEleves
-        private int _idGlobalEleve;
+        public int IdGlobalEleve { get; private set; }
 
         public ListeEleves()
         {
             ListeDesEleves = new Dictionary<int, Eleve>();
-            _idGlobalEleve = ListeDesEleves.Count == 0 ? 0 : ListeDesEleves.Keys.Max();
+            IdGlobalEleve = 0;
         }
 
         public void AjouterEleveDansListe(Eleve nouvelEleve)
         {
-            _idGlobalEleve++;
-            ListeDesEleves.Add(_idGlobalEleve, nouvelEleve);
+            IdGlobalEleve++;
+            ListeDesEleves.Add(IdGlobalEleve, nouvelEleve);
             Console.WriteLine($"Ajout de l'élève {nouvelEleve.Nom} {nouvelEleve.Prenom} réussi.");
             ActualiserListeJSON();
             // ajouter appel méthode retour au menu

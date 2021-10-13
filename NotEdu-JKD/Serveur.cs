@@ -50,8 +50,7 @@ namespace NotEdu_JKD
             if (!File.Exists(jsonFilePath))
             {
                 return new Campus();
-            }
-            else
+            } else
             {
                 string jsonDB = File.ReadAllText(jsonFilePath);
                 Campus campus = JsonConvert.DeserializeObject<Campus>(jsonDB);

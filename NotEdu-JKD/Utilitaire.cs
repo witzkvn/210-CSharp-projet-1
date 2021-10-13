@@ -64,17 +64,17 @@ namespace NotEdu_JKD
             }  
         }
 
-        public static void RetourMenuApresDelais(int choixMenu, Campus campus)
+        public static void RetourMenuApresDelais(Campus campus, int choixMenu)
         {
             
-            //Thread.Sleep(3000);
-            //if (choixMenu == 1)
-            //    Menu.MenuPrincipal();
-            //else if (choixMenu == 2)
-            //    Menu.MenuEleves();
-            //else if (choixMenu == 3)
-            //    Menu.MenuCours();
-            //Console.Clear();
+            Thread.Sleep(3000);
+            if (choixMenu == 1)
+                Menu.MenuPrincipal(campus);
+            else if (choixMenu == 2)
+                Menu.MenuEleves(campus);
+            else if (choixMenu == 3)
+                Menu.MenuCours(campus);
+            Console.Clear();
         }
     }
 }
