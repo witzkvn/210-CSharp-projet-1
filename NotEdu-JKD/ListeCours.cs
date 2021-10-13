@@ -1,13 +1,10 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NotEdu_JKD
 {
-     class ListeCours
+    class ListeCours
     {
         [JsonProperty]
         public  Dictionary<int, string> ListeDesCours { get; }
@@ -37,9 +34,10 @@ namespace NotEdu_JKD
         {
             if(ListeDesCours.Count == 0)
             {
-                Menu.MenuCours(campus);
+                Console.WriteLine("Aucun cours disponible.");
+                Utilitaire.RetourMenuApresDelais(campus, 3);
+                
             }
-            // TODO retour menu si liste de cours vide
             Console.WriteLine("Liste de tous les cours disponibles (ID --- Nom du cours) : \n");
             foreach (KeyValuePair<int, string> cours in ListeDesCours)
             {
