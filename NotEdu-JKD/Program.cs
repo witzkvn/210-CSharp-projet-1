@@ -10,7 +10,13 @@ namespace NotEdu_JKD
     {
         static void Main(string[] args)
         {
-            
+            Campus campus = Serveur.DeserializeJSON();
+            if(campus is null)
+            {
+                campus = new Campus();
+            }
+
+            Menu.MenuPrincipal(campus);
         }
     }
 }
