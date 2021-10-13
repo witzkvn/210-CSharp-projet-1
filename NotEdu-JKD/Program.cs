@@ -10,7 +10,9 @@ namespace NotEdu_JKD
     {
         static void Main(string[] args)
         {
-            
+            Campus campus = new Campus();
+
+            campus.ListeCours.AfficherTousLesCours(campus);
         }
     }
 }
