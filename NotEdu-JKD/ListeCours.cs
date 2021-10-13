@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,8 +9,9 @@ namespace NotEdu_JKD
 {
      class ListeCours
     {
+        [JsonProperty]
         public  Dictionary<int, string> ListeDesCours { get; }
-        // TODO dans le futur, implémenter une fonction qui retourne un dict depuis le json
+        [JsonProperty]
         public int IdGlobalCours { get; private set; }
 
         public ListeCours()
@@ -64,7 +66,7 @@ namespace NotEdu_JKD
             if (reponseSuppression == "oui")
             {
                 /* Loop à travers tout les élèves, dans toutes leurs notes pour trouver l'ID correspondant*/
-                campus.Promotion.SupprimerCours(coursId);
+                campus.ListeEleves.SupprimerCours(coursId);
                 ListeDesCours.Remove(coursId);
                 Console.WriteLine($"Le cours {coursASupprimer} à bien été supprimé.");
             }

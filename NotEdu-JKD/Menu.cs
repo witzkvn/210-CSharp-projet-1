@@ -186,7 +186,7 @@ namespace NotEdu_JKD
                     Console.ForegroundColor = ConsoleColor.White;
                     Console.WriteLine("                                                       (Retour : 'retour' + Entree)");
                     Console.ForegroundColor = ConsoleColor.Yellow;
-                    campus.Programme.AfficherTousLesCours(campus);
+                    campus.ListeCours.AfficherTousLesCours(campus);
                     string NomDuCours1 = Console.ReadLine();
                     RetourMenuPrincipal(campus, NomDuCours1);
                     break;
@@ -198,7 +198,7 @@ namespace NotEdu_JKD
                     Console.WriteLine("\n\n\n     Entrer le nom du cours à ajouter : ");
                     string NomDuCours2 = Console.ReadLine();
                     RetourMenuPrincipal(campus, NomDuCours2);
-                    campus.Programme.AjouterCours();//new Cours(NomDuCours2));
+                    campus.ListeCours.AjouterCours();//new Cours(NomDuCours2));
 
 
                     break;
@@ -207,7 +207,7 @@ namespace NotEdu_JKD
                     Console.ForegroundColor = ConsoleColor.White;
                     Console.WriteLine("                                                       (Retour : 'retour' + Entree)");
                     Console.ForegroundColor = ConsoleColor.Yellow;
-                    campus.Programme.SuppressionCours(campus);
+                    campus.ListeCours.SuppressionCours(campus);
                     string NomDuCours3 = Console.ReadLine();
                     RetourMenuPrincipal(campus, NomDuCours3);
                     break;

@@ -9,7 +9,7 @@ namespace NotEdu_JKD
     class Eleve
     {
         public string Nom { get; }
-        public string Prenom { get; }
+        public string Prenom { get;  }
         public DateTime DateNaissance { get; }
         public List<Note> ListeNotes { get; }
 
@@ -32,12 +32,12 @@ namespace NotEdu_JKD
 
         public void AjouterNote(Campus campus)
         {
-            campus.Programme.AfficherTousLesCours(campus);
+            campus.ListeCours.AfficherTousLesCours(campus);
             try
             {
                 Console.Write("Quel est l'ID du cours de la note ? ");
                 int idCours = int.Parse(Console.ReadLine());
-                string  coursTitre = campus.Programme.ListeDesCours[idCours];
+                string  coursTitre = campus.ListeCours.ListeDesCours[idCours];
                 Console.Write("Quelle est la valeur de la note ? ");
                 double valeurNote = double.Parse(Console.ReadLine());
                 //!valeurNote.IsDouble ? AjouterNote();

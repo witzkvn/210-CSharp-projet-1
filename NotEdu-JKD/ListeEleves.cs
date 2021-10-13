@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,9 +9,10 @@ namespace NotEdu_JKD
 {
     class ListeEleves
     {
+        [JsonProperty]
         public Dictionary<int, Eleve> ListeDesEleves { get; }
-        
-        // TODO récupérer liste des élèves du JSON et la mettre dans _listeEleves
+
+        [JsonProperty]
         public int IdGlobalEleve { get; private set; }
 
         public ListeEleves()
