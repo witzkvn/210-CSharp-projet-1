@@ -36,15 +36,16 @@ namespace NotEdu_JKD
         {
             if(ListeDesCours.Count == 0)
             {
-                Console.WriteLine("Aucun cours disponible.");
+                Console.WriteLine("     Aucun cours disponible.");
                 Utilitaire.RetourMenuApresDelais(campus, 3);
                 
             }
-            Console.WriteLine("Liste de tous les cours disponibles (ID --- Nom du cours) : \n");
+            Console.WriteLine("      Liste de tous les cours disponibles (ID --- Nom du cours) : \n");
             foreach (KeyValuePair<int, string> cours in ListeDesCours)
             {
-                Console.WriteLine($"{cours.Key} --- {cours.Value}");
+                Console.WriteLine($"     {cours.Key} --- {cours.Value}");
             }
+            Console.ReadLine();
         }
 
         /*Suppression de toutes les occurences d'un cours.*/
@@ -79,7 +80,7 @@ namespace NotEdu_JKD
             }
             int coursId = int.Parse(input);
             string coursASupprimer = ListeDesCours[coursId];
-            Console.Write("/!\\ La suppression d'un cours entraîne la suppression de touses les notes et appréciations qui lui sont liées.");
+            Console.Write("     /!\\ La suppression d'un cours entraîne la suppression de touses les notes et appréciations qui lui sont liées.");
             Console.WriteLine($"Voulez-vous vraiment supprimer le cours {coursASupprimer}? (Oui/Non) ");
             string reponseSuppression = Console.ReadLine().ToLower();
 
@@ -87,11 +88,11 @@ namespace NotEdu_JKD
             {
                 campus.ListeEleves.SupprimerCours(coursId);
                 ListeDesCours.Remove(coursId);
-                Console.WriteLine($"Le cours {coursASupprimer} à bien été supprimé.");
+                Console.WriteLine($"     Le cours {coursASupprimer} à bien été supprimé.");
             }
             else
             {
-                Console.WriteLine("Annulation de la suppression du cours.");
+                Console.WriteLine("     Annulation de la suppression du cours.");
             }
         }
     }
