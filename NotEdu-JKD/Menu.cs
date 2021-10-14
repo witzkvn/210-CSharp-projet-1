@@ -198,7 +198,7 @@ namespace NotEdu_JKD
                     Console.WriteLine("\n\n\n     Entrer le nom du cours à ajouter : ");
                     string NomDuCours2 = Console.ReadLine();
                     RetourMenuPrincipal(campus, NomDuCours2);
-                    campus.ListeCours.AjouterCours();//new Cours(NomDuCours2));
+                    campus.ListeCours.AjouterCours(campus);//new Cours(NomDuCours2));
 
 
                     break;
