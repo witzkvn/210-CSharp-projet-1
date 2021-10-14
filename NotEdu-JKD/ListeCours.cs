@@ -14,7 +14,7 @@ namespace NotEdu_JKD
             IdGlobalCours = 0;
         }
 
-        public  void AjouterCours()
+        public  void AjouterCours(Campus campus)
         {
             Console.Write("     Quel est le titre du cours que vous voulez ajouter ?");
             string titreNouveauCours = Console.ReadLine();
@@ -27,6 +27,10 @@ namespace NotEdu_JKD
             {
                 Console.WriteLine("     Le titre ne doit contenir que des lettres. Réessayez. ");
                 titreNouveauCours = Console.ReadLine();
+            }
+            if (titreNouveauCours.ToLower() == "retour")
+            {
+                Utilitaire.RetourMenuApresDelais(campus, 3);
             }
             ListeDesCours.Add(IdGlobalCours, titreNouveauCours);
             Console.WriteLine($"      Ajout du cours {titreNouveauCours} réussi.");
@@ -54,14 +58,15 @@ namespace NotEdu_JKD
             AfficherTousLesCours(campus);
             Console.Write("     Entrez l'ID du cours à supprimer : ");
             string input = Console.ReadLine();
-            if (input.ToLower() == "retour")
-            {
-                Console.WriteLine("     Retour au menu précédent.");
-                Utilitaire.RetourMenuApresDelais(campus, 3);
-            }
+            
             while (true)
             {
-                if (!Utilitaire.VerifUniquementEntiers(input))
+                if (input.ToLower() == "retour")
+                {
+                    Console.WriteLine("     Retour au menu précédent.");
+                    Utilitaire.RetourMenuApresDelais(campus, 3);
+                }
+                else if (!Utilitaire.VerifUniquementEntiers(input))
                 {
                     Console.Write("     L'ID doit être un entier. Réessayez.");
                     input = Console.ReadLine();
