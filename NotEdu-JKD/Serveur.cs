@@ -13,7 +13,6 @@ namespace NotEdu_JKD
         static string GetAndVerifyDBDirectory()
         {
             string path = "DB";
-            Console.WriteLine(Directory.GetCurrentDirectory());
 
             if (!Directory.Exists(path))
             {
@@ -53,8 +52,14 @@ namespace NotEdu_JKD
             } else
             {
                 string jsonDB = File.ReadAllText(jsonFilePath);
-                Campus campus = JsonConvert.DeserializeObject<Campus>(jsonDB);
-                return campus;
+                if (jsonDB == "" || jsonDB == "null")
+                {
+                    return new Campus();
+                } else
+                {
+                    Campus campus = JsonConvert.DeserializeObject<Campus>(jsonDB);
+                    return campus;
+                }
             }
         }
     }

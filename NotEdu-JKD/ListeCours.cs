@@ -1,11 +1,14 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 
 namespace NotEdu_JKD
 {
     class ListeCours
     {
+        [JsonProperty]
         public  Dictionary<int, string> ListeDesCours { get; }
+        [JsonProperty]
         public int IdGlobalCours { get; private set; }
 
         public ListeCours()

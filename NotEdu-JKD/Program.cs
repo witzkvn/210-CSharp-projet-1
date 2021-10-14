@@ -10,9 +10,12 @@ namespace NotEdu_JKD
     {
         static void Main(string[] args)
         {
-            Campus campus = new Campus();
+            Campus campus = Serveur.DeserializeJSON();
 
-            campus.ListeCours.AfficherTousLesCours(campus);
+            Menu.MenuPrincipal(campus);
+
+            Serveur.SerializeAndWriteInJSON(campus);  // à utiliser pour actualiser le campus dans le JSON
+            Console.ReadLine();
         }
     }
 }
