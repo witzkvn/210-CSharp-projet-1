@@ -14,8 +14,6 @@ namespace NotEdu_JKD
 
             Menu.MenuPrincipal(campus);
 
-            Serveur.SerializeAndWriteInJSON(campus);  // à utiliser pour actualiser le campus dans le JSON
-            Console.ReadLine();
         }
     }
 }
