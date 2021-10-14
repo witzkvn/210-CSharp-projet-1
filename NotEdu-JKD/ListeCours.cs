@@ -94,10 +94,12 @@ namespace NotEdu_JKD
                 campus.ListeEleves.SupprimerCours(coursId);
                 ListeDesCours.Remove(coursId);
                 Console.WriteLine($"     Le cours {coursASupprimer} à bien été supprimé.");
+                Utilitaire.RetourMenuApresDelais(campus, 3);
             }
             else
             {
                 Console.WriteLine("     Annulation de la suppression du cours.");
+                Utilitaire.RetourMenuApresDelais(campus, 3);
             }
         }
     }
