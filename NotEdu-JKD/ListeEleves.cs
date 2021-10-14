@@ -28,7 +28,7 @@ namespace NotEdu_JKD
             // ajouter appel méthode retour au menu
         }
 
-        public void CreerNouvelEleve()
+        public void CreerNouvelEleve(Campus campus)
         {
             string nom = "";
             string prenom = "";
@@ -40,7 +40,7 @@ namespace NotEdu_JKD
                 nom = Console.ReadLine().ToLower();
                 if (nom == "retour")
                 {
-                    // appeler méthode de menu pour revenir au menu principal
+                    Utilitaire.RetourMenuApresDelais(campus, 2);
                     break;
                 }
             }
@@ -51,7 +51,7 @@ namespace NotEdu_JKD
                 prenom = Console.ReadLine().ToLower();
                 if (prenom == "retour")
                 {
-                    // appeler méthode de menu pour revenir au menu principal
+                    Utilitaire.RetourMenuApresDelais(campus, 2);
                     break;
                 }
             }
@@ -62,7 +62,7 @@ namespace NotEdu_JKD
                 dateNaissance = Console.ReadLine().ToLower();
                 if (dateNaissance == "retour")
                 {
-                    // appeler méthode de menu pour revenir au menu principal
+                    Utilitaire.RetourMenuApresDelais(campus, 2);
                     break;
                 }
             }
@@ -96,7 +96,7 @@ namespace NotEdu_JKD
             else if (choixAction == "2")
             {
                 Console.Clear();
-                CreerNouvelEleve();
+                CreerNouvelEleve(campus);
             }
             else
             {
@@ -105,12 +105,12 @@ namespace NotEdu_JKD
             }
         }
 
-        public void SupprimerEleveDansListe()
+        public void SupprimerEleveDansListe(Campus campus)
         {
             Console.Clear();
             Console.WriteLine("Suppression d'un élève");
             Console.WriteLine();
-            AfficherListeEleves();
+            AfficherListeEleves(campus);
 
             if (ListeDesEleves.Count == 0)
             {
@@ -158,7 +158,7 @@ namespace NotEdu_JKD
                     Console.WriteLine("Annulation de la suppression de l'élève.");
                 }
             }
-            SupprimerEleveDansListe();
+            SupprimerEleveDansListe(campus);
         }
 
         private void ActualiserListeJSON()
@@ -166,11 +166,12 @@ namespace NotEdu_JKD
             // actualiser la listeEleves dans le JSON
         }
 
-        public void AfficherListeEleves()
+        public void AfficherListeEleves(Campus campus)
         {
             if(ListeDesEleves.Count == 0)
             {
                 Console.WriteLine("Aucun élève répertorié pour le moment.");
+                Utilitaire.RetourMenuApresDelais(campus, 2);
             } else
             {
                 Console.WriteLine("Liste des élèves du campus (ID --- NOM Prénom) : ");
@@ -179,7 +180,9 @@ namespace NotEdu_JKD
                 {
                     Console.WriteLine($"{eleve.Key} --- {eleve.Value.Nom.ToUpper()} {Utilitaire.PremiereLettreMajuscule(eleve.Value.Prenom)}");
                 }
-            }
+                Console.WriteLine("Touche Entrée pour retour");
+            }   Console.ReadLine();
+
         }
 
         public void SupprimerCours(int coursId)
