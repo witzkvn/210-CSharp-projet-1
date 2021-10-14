@@ -134,15 +134,15 @@ namespace NotEdu_JKD
             switch (choix)
             {
                 case 1:
-                    //Lister des élèves
+                    campus.ListeEleves.AfficherListeEleves(campus);
                     break;
 
                 case 2:
-                    ListeEleve();
+                    campus.ListeEleves.CreerNouvelEleve(campus);
                     break;
 
                 case 3:
-                    //Consulter un élève existant
+                    campus.ListeEleves.AfficherUnEleve(campus);
                     break;
 
                 case 4:

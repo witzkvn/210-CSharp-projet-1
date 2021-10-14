@@ -189,5 +189,27 @@ namespace NotEdu_JKD
                 eleve.Value.SupprimerCours(coursId);
             }
         }
+        public void AfficherUnEleve(Campus campus)
+        {
+            AfficherListeEleves(campus);
+            Console.WriteLine("     Entrez l'ID de l'élève à afficher : ");
+            string input = Console.ReadLine();
+            if (input.ToLower() == "retour")
+            {
+                Utilitaire.RetourMenuApresDelais(campus, 2);
+            }
+            if (!Utilitaire.VerifUniquementEntiers(input))
+            {
+                Console.WriteLine("     L'ID doit être un entier. Retour au menu précédent.");
+                Utilitaire.RetourMenuApresDelais(campus, 2);
+            }
+            int idEleve = int.Parse(input);
+            if (!ListeDesEleves.ContainsKey(idEleve))
+            {
+                Console.WriteLine("     L'ID n'existe pas. Retour au menu précédent.");
+                Utilitaire.RetourMenuApresDelais(campus, 2);
+            }
+            ListeDesEleves[idEleve].AfficherInfoEleve();
+        }
     }
 }

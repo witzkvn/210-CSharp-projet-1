@@ -12,7 +12,7 @@ namespace NotEdu_JKD
         {
             Campus campus = new Campus();
 
-            campus.ListeCours.AfficherTousLesCours(campus);
+            Menu.MenuPrincipal(campus);
         }
     }
 }
