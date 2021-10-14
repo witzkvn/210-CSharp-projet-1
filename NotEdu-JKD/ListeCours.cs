@@ -33,10 +33,12 @@ namespace NotEdu_JKD
             }
             if (titreNouveauCours.ToLower() == "retour")
             {
+                Serveur.AddLog("Retour au menu cours");
                 Utilitaire.RetourMenuApresDelais(campus, 3);
             }
             ListeDesCours.Add(IdGlobalCours, titreNouveauCours);
             Console.WriteLine($"      Ajout du cours {titreNouveauCours} réussi.");
+            Serveur.AddLog($"Ajout du cours{titreNouveauCours}");
             IdGlobalCours++;
         }
         public void AfficherTousLesCours(Campus campus)
@@ -67,6 +69,7 @@ namespace NotEdu_JKD
                 if (input.ToLower() == "retour")
                 {
                     Console.WriteLine("     Retour au menu précédent.");
+                    Serveur.AddLog("Retour menu Cours");
                     Utilitaire.RetourMenuApresDelais(campus, 3);
                 }
                 else if (!Utilitaire.VerifUniquementEntiers(input))
@@ -97,11 +100,13 @@ namespace NotEdu_JKD
                 campus.ListeEleves.SupprimerCours(coursId);
                 ListeDesCours.Remove(coursId);
                 Console.WriteLine($"     Le cours {coursASupprimer} à bien été supprimé.");
+                Serveur.AddLog($"Suppression du cours {coursASupprimer}");
                 Utilitaire.RetourMenuApresDelais(campus, 3);
             }
             else
             {
                 Console.WriteLine("     Annulation de la suppression du cours.");
+                Serveur.AddLog("Annulation de la suppression du cours");
                 Utilitaire.RetourMenuApresDelais(campus, 3);
             }
         }

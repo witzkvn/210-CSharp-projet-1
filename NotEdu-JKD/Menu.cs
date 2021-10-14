@@ -57,10 +57,7 @@ namespace NotEdu_JKD
             string appreciation = Console.ReadLine();
             Console.ForegroundColor = ConsoleColor.White;
 
-
-            //Cours lie = new Cours(matiere);
-
-            //Note noteEtAppreciation = new Note(lie, note, appreciation);
+            Serveur.AddLog($"Ajout d'une note en {matiere} et d'une appréciation");
 
         }
 
@@ -98,10 +95,12 @@ namespace NotEdu_JKD
             switch (choix)
             {
                 case 1:
+                    Serveur.AddLog("Menu Elèves");
                     MenuEleves(campus);//Si le choix = 1 alors on se rend dans le menu élève
                     break;
 
                 case 2:
+                    Serveur.AddLog("Menu Cours");
                     MenuCours(campus);//Si le choix=2 alors on se rend dans le menu cours
                     break;
                 default :
@@ -135,21 +134,31 @@ namespace NotEdu_JKD
             {
                 case 1:
                     campus.ListeEleves.AfficherListeEleves(campus);
+                    Serveur.AddLog("Consultation de la liste des élèves");
+                    Utilitaire.RetourMenuApresDelais(campus, 2);
                     break;
 
                 case 2:
                     campus.ListeEleves.CreerNouvelEleve(campus);
+                    Serveur.AddLog("Création d'un nouvelle élève");
+                    Utilitaire.RetourMenuApresDelais(campus, 2);
                     break;
 
                 case 3:
                     campus.ListeEleves.AfficherUnEleve(campus);
+                    Serveur.AddLog("Consultation de la liste des élèves");
+                    Utilitaire.RetourMenuApresDelais(campus, 2);
                     break;
 
                 case 4:
+                    campus.ListeEleves.AfficherListeEleves(campus);
                     NoteEtAppreciation();  //Ajouter une note et une appréciation pour un cours
+                    Serveur.AddLog("Retour au Menu Principal");
+                    Utilitaire.RetourMenuApresDelais(campus, 2);
                     break;
 
                 case 5:
+                    Serveur.AddLog("Retour au Menu Principal");
                     MenuPrincipal(campus);//Retour au menu principal
                     break;
                 default:
@@ -162,6 +171,8 @@ namespace NotEdu_JKD
 
         //----------------FIN MENU ELEVES---------------------------------------------------
 
+
+ 
 
         //----------------MENU COURS--------------------------------------------------------
         public static void MenuCours(Campus campus)
@@ -183,36 +194,28 @@ namespace NotEdu_JKD
             switch (choix)
             {
                 case 1:
-                    Console.ForegroundColor = ConsoleColor.White;
-                    Console.WriteLine("                                                       (Retour : 'retour' + Entree)");
                     Console.ForegroundColor = ConsoleColor.Yellow;
                     campus.ListeCours.AfficherTousLesCours(campus);
                     string NomDuCours1 = Console.ReadLine();
+                    Serveur.AddLog("Affichage de la liste des cours disponible");
                     RetourMenuPrincipal(campus, NomDuCours1);
                     break;
 
                 case 2:
-                    Console.ForegroundColor = ConsoleColor.White;
-                    Console.WriteLine("                                                       (Retour : 'retour' + Entree)");
                     Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine("\n\n\n     Entrer le nom du cours à ajouter : ");
-                    string NomDuCours2 = Console.ReadLine();
-                    RetourMenuPrincipal(campus, NomDuCours2);
-                    campus.ListeCours.AjouterCours(campus);//new Cours(NomDuCours2));
-
-
+                    campus.ListeCours.AjouterCours(campus);
+                    Utilitaire.RetourMenuApresDelais(campus, 3);
                     break;
 
                 case 3:
-                    Console.ForegroundColor = ConsoleColor.White;
-                    Console.WriteLine("                                                       (Retour : 'retour' + Entree)");
                     Console.ForegroundColor = ConsoleColor.Yellow;
+                    campus.ListeCours.AfficherTousLesCours(campus);
                     campus.ListeCours.SuppressionCours(campus);
-                    string NomDuCours3 = Console.ReadLine();
-                    RetourMenuPrincipal(campus, NomDuCours3);
+                    Utilitaire.RetourMenuApresDelais(campus, 3);
                     break;
 
                 case 4:
+                    Serveur.AddLog("Retour au Menu Principal");
                     MenuPrincipal(campus);//Retour au menu principal
                     break;
                 default:

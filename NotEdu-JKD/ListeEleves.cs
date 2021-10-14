@@ -153,11 +153,14 @@ namespace NotEdu_JKD
                 {
                     ListeDesEleves.Remove(idEleveASupprimer);
                     Console.WriteLine("Suppression de l'élève réussie.");
+                    Serveur.AddLog($"Suppression de l'élève possédant l' ID {idEleveASupprimer}");
                     ActualiserListeJSON();
                 }
                 else
                 {
                     Console.WriteLine("Annulation de la suppression de l'élève.");
+                    Serveur.AddLog("Annulation de la suppression d'un élève");
+
                 }
             }
             SupprimerEleveDansListe(campus);
@@ -201,20 +204,24 @@ namespace NotEdu_JKD
             string input = Console.ReadLine();
             if (input.ToLower() == "retour")
             {
+                Serveur.AddLog("Retour au Menu élève");
                 Utilitaire.RetourMenuApresDelais(campus, 2);
             }
             if (!Utilitaire.VerifUniquementEntiers(input))
             {
                 Console.WriteLine("     L'ID doit être un entier. Retour au menu précédent.");
+                Serveur.AddLog("L'ID est mal renseigné, retour au menu élève");
                 Utilitaire.RetourMenuApresDelais(campus, 2);
             }
             int idEleve = int.Parse(input);
             if (!ListeDesEleves.ContainsKey(idEleve))
             {
                 Console.WriteLine("     L'ID n'existe pas. Retour au menu précédent.");
+                Serveur.AddLog("L'ID n'existe pas. Retour au menu élève");
                 Utilitaire.RetourMenuApresDelais(campus, 2);
             }
             ListeDesEleves[idEleve].AfficherInfoEleve();
+            Serveur.AddLog($"Affichage des informations de l'élève avec l'ID {idEleve}");
         }
     }
 }
