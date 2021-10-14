@@ -8,16 +8,17 @@ namespace NotEdu_JKD
 {
     class Eleve
     {
-        public string Nom { get; set; }
-        public string Prenom { get; set; }
-        public DateTime DateNaissance { get; set; }
-        public List<Note> ListeNotes { get; set; }
+        public string Nom { get; }
+        public string Prenom { get;  }
+        public DateTime DateNaissance { get; }
+        public List<Note> ListeNotes { get; }
 
         public Eleve(string nom, string prenom, DateTime dateNaissance)
         {
             this.Nom = nom;
             this.Prenom = prenom;
             this.DateNaissance = dateNaissance;
+            ListeNotes = new List<Note>();
         }
 
         public void AfficherInfoEleve()
@@ -27,6 +28,47 @@ namespace NotEdu_JKD
             Console.WriteLine("Nom               : " + this.Nom);
             Console.WriteLine("Prénom            : " + this.Prenom);
             Console.WriteLine("Date de naissance : " + Utilitaire.FormatterDateCourteString(this.DateNaissance));
+        }
+
+        public void AjouterNote(Campus campus)
+        {
+            campus.ListeCours.AfficherTousLesCours(campus);
+            try
+            {
+                Console.Write("Quel est l'ID du cours de la note ? ");
+                int idCours = int.Parse(Console.ReadLine());
+                string  coursTitre = campus.ListeCours.ListeDesCours[idCours];
+                Console.Write("Quelle est la valeur de la note ? ");
+                double valeurNote = double.Parse(Console.ReadLine());
+                //!valeurNote.IsDouble ? AjouterNote();
+                valeurNote = valeurNote < 0 ? 0 : valeurNote;
+                valeurNote = valeurNote > 20 ? 20 : valeurNote;
+                Console.WriteLine("Quelle est l'appréciation ? (Touche Entrée si vide) ");
+                string appreciationNote = Console.ReadLine();
+                ListeNotes.Add(new Note(idCours, coursTitre, valeurNote, appreciationNote));
+
+                Console.WriteLine("Récapitulatif de la saisie : ");
+                Console.WriteLine($"Nom de l'élève : {Nom} {Prenom}");
+                Console.WriteLine("Cours de la note : " + coursTitre);
+                Console.WriteLine("Valeur de la note : " + valeurNote);
+                Console.WriteLine("Appréciation : " + appreciationNote);
+
+            }
+            catch
+            {
+                Console.WriteLine("Erreur lors de la saisie de la note.\nVeuillez réessayer.");
+                AjouterNote(campus);
+            }
+            Console.Write("La saisie est-elle correcte ? (Oui/Non) ");
+            string reponse = Console.ReadLine().ToLower();
+            if (reponse == "oui")
+            {
+                return;
+            }
+            else
+            {
+                AjouterNote(campus);
+            }
         }
 
         public void AfficherListeNotesEleve()
@@ -62,6 +104,11 @@ namespace NotEdu_JKD
                 }
                 Console.WriteLine("    Moyenne : " + Utilitaire.FormatterNoteSurVingt(sommeNotes / ListeNotes.Count));
             }
-        }    
+        }  
+        
+        public void SupprimerCours(int coursId)
+        {
+            ListeNotes.RemoveAll(note => note.IdCoursLie == coursId);
+        }
     }
 }

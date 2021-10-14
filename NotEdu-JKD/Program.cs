@@ -10,8 +10,10 @@ namespace NotEdu_JKD
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("\tTest de tabulations");
-            Console.ReadLine();
+            Campus campus = Serveur.DeserializeJSON();
+
+            Menu.MenuPrincipal(campus);
+
         }
     }
 }

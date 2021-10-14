@@ -48,10 +48,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Campus.cs" />
     <Compile Include="ListeEleves.cs" />
     <Compile Include="ListeCours.cs" />
     <Compile Include="obj\Debug\.NETFramework,Version=v4.7.2.AssemblyAttributes.cs" />
-    <Compile Include="obj\Release\.NETFramework,Version=v4.7.2.AssemblyAttributes.cs" />
     <Compile Include="Eleve.cs" />
     <Compile Include="Menu.cs" />
     <Compile Include="Note.cs" />
@@ -62,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="bin\Debug\campusDB.log" />
     <None Include="bin\Debug\NotEdu-JKD.exe.config" />
     <None Include="packages\Newtonsoft.Json.13.0.1\.signature.p7s" />
     <None Include="packages\Newtonsoft.Json.13.0.1\LICENSE.md" />
@@ -94,6 +95,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\Release\" />
+    <Folder Include="obj\Release\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

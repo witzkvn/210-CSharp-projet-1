@@ -1,71 +1,109 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NotEdu_JKD
 {
-    static class ListeCours
+    class ListeCours
     {
-        private static Dictionary<int, string> _listeDesCours = new Dictionary<int, string>();
-        private static int _idGlobalCours = _listeDesCours.Count == 0 ? 0 : _listeDesCours.Keys.Max();
-        
-        public static void AjouterCours()
+        [JsonProperty]
+        public  Dictionary<int, string> ListeDesCours { get; }
+        [JsonProperty]
+        public int IdGlobalCours { get; private set; }
+
+        public ListeCours()
         {
-            Console.WriteLine("Quel est le titre du cours que vous voulez ajouter ?");
+            ListeDesCours = new Dictionary<int, string>();
+            IdGlobalCours = 0;
+        }
+
+        public  void AjouterCours(Campus campus)
+        {
+            Console.Write("     Quel est le titre du cours que vous voulez ajouter ?");
             string titreNouveauCours = Console.ReadLine();
-            while (_listeDesCours.ContainsValue(titreNouveauCours))
+            while (ListeDesCours.ContainsValue(titreNouveauCours))
             {
-                Console.WriteLine("Un cours avec ce titre existe déjà, veuillez entrer un autre titre.");
+                Console.Write("      Un cours avec ce titre existe déjà, veuillez entrer un autre titre.");
                 titreNouveauCours = Console.ReadLine();
             }
-            _listeDesCours.Add(_idGlobalCours, titreNouveauCours);
-            Console.WriteLine($"Ajout du cours {titreNouveauCours} réussi.");
-            _idGlobalCours++;
-        }
-        public static void AfficherTousLesCours()
-        {
-            Console.WriteLine("Liste de tous les cours disponibles : \n");
-            foreach (KeyValuePair<int, string> cours in _listeDesCours)
+            while (!Utilitaire.VerifUniquementLettres(titreNouveauCours))
             {
-                Console.WriteLine($" ID : {cours.Key} | Cours : {cours.Value}\n");
+                Console.WriteLine("     Le titre ne doit contenir que des lettres. Réessayez. ");
+                titreNouveauCours = Console.ReadLine();
             }
+            if (titreNouveauCours.ToLower() == "retour")
+            {
+                Utilitaire.RetourMenuApresDelais(campus, 3);
+            }
+            ListeDesCours.Add(IdGlobalCours, titreNouveauCours);
+            Console.WriteLine($"      Ajout du cours {titreNouveauCours} réussi.");
+            IdGlobalCours++;
+        }
+        public void AfficherTousLesCours(Campus campus)
+        {
+            if(ListeDesCours.Count == 0)
+            {
+                Console.WriteLine("     Aucun cours disponible.");
+                Utilitaire.RetourMenuApresDelais(campus, 3);
+                
+            }
+            Console.WriteLine("      Liste de tous les cours disponibles (ID --- Nom du cours) : \n");
+            foreach (KeyValuePair<int, string> cours in ListeDesCours)
+            {
+                Console.WriteLine($"     {cours.Key} --- {cours.Value}");
+            }
+            Console.ReadLine();
         }
 
         /*Suppression de toutes les occurences d'un cours.*/
-        public static void SuppressionCours()
+        public void SuppressionCours(Campus campus)
         {
-            AfficherTousLesCours();
-            Console.Write("Entrez l'ID du cours à supprimer : ");
-            int coursId = int.Parse(Console.ReadLine());
-            if (!_listeDesCours.ContainsKey(coursId))
+            AfficherTousLesCours(campus);
+            Console.Write("     Entrez l'ID du cours à supprimer : ");
+            string input = Console.ReadLine();
+            
+            while (true)
             {
-                Console.WriteLine("Ce cours n'existe pas, veuillez entrer un cours valide.");
-                return;
+                if (input.ToLower() == "retour")
+                {
+                    Console.WriteLine("     Retour au menu précédent.");
+                    Utilitaire.RetourMenuApresDelais(campus, 3);
+                }
+                else if (!Utilitaire.VerifUniquementEntiers(input))
+                {
+                    Console.Write("     L'ID doit être un entier. Réessayez.");
+                    input = Console.ReadLine();
+                    continue;
+                }
+                
+
+                int idCours = int.Parse(input);
+                if (!ListeDesCours.ContainsKey(idCours))
+                {
+                    Console.Write("     Ce cours n'existe pas. Réessayez.");
+                    input = Console.ReadLine();
+                    continue;
+                }
+                else { break; }
             }
-            string coursASupprimer = _listeDesCours[coursId];
-            Console.Write("/!\\ La suppression d'un cours entraîne la suppression de touses les notes " +
-                "et appréciations qui lui sont liées. \n" +
-                $"Voulez-vous vraiment supprimer le cours {coursASupprimer}? (Oui/Non) ");
+            int coursId = int.Parse(input);
+            string coursASupprimer = ListeDesCours[coursId];
+            Console.Write("     /!\\ La suppression d'un cours entraîne la suppression de touses les notes et appréciations qui lui sont liées.");
+            Console.WriteLine($"Voulez-vous vraiment supprimer le cours {coursASupprimer}? (Oui/Non) ");
             string reponseSuppression = Console.ReadLine().ToLower();
 
             if (reponseSuppression == "oui")
             {
-                /* Loop à travers tout les élèves, dans toutes leurs notes pour trouver l'ID correspondant*/
-                _listeDesCours.Remove(coursId);
+                campus.ListeEleves.SupprimerCours(coursId);
+                ListeDesCours.Remove(coursId);
+                Console.WriteLine($"     Le cours {coursASupprimer} à bien été supprimé.");
+                Utilitaire.RetourMenuApresDelais(campus, 3);
             }
             else
             {
-                Console.WriteLine("Annulation de la suppression du cours.");
+                Console.WriteLine("     Annulation de la suppression du cours.");
+                Utilitaire.RetourMenuApresDelais(campus, 3);
             }
-        }
-        public static void AfficherNotesCours()
-        {
-            AfficherTousLesCours();
-            Console.Write("Entrez l'ID du cours à afficher : ");
-            int coursId = int.Parse(Console.ReadLine());
-            /* Loop dans la liste des élèves pour trouver les notes correspondants au cours */
         }
     }
 }

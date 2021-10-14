@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,5 +10,57 @@ namespace NotEdu_JKD
 {
     class Serveur
     {
+        static string GetAndVerifyDBDirectory()
+        {
+            string path = "DB";
+
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+            return path;
+        }
+        static string GetFilePath(string fileName)
+        {
+            string path = GetAndVerifyDBDirectory();
+            return Path.Combine(path, fileName);
+        }
+
+        public static void AddLog(string logMessage)
+        {
+            string logFilePath = GetFilePath("campusDB.log");
+            File.AppendAllText(logFilePath, $"{DateTime.Now:[dd/MM/yyyy --- HH:mm:ss]} : {logMessage}\n");
+        }
+
+        public static void SerializeAndWriteInJSON(Campus campus)
+        {
+            string jsonFilePath = GetFilePath("campusDB.json");
+            if (!File.Exists(jsonFilePath))
+            {
+                File.Create(jsonFilePath);
+            }
+            string campusJSON = JsonConvert.SerializeObject(campus);
+            File.WriteAllText(jsonFilePath, campusJSON);
+        }
+
+        public static Campus DeserializeJSON()
+        {
+            string jsonFilePath = GetFilePath("campusDB.json");
+            if (!File.Exists(jsonFilePath))
+            {
+                return new Campus();
+            } else
+            {
+                string jsonDB = File.ReadAllText(jsonFilePath);
+                if (jsonDB == "" || jsonDB == "null")
+                {
+                    return new Campus();
+                } else
+                {
+                    Campus campus = JsonConvert.DeserializeObject<Campus>(jsonDB);
+                    return campus;
+                }
+            }
+        }
     }
 }
