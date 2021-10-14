@@ -85,7 +85,7 @@ namespace NotEdu_JKD
                     campus.ListeEleves.AfficherListeEleves(campus);
                     Console.WriteLine("Touche Entrée pour retour");
                     Console.ReadLine();
-                    MenuPrincipal(campus);
+                    MenuEleves(campus);
                     break;
 
                 case 2:

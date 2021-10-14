@@ -217,7 +217,7 @@ namespace NotEdu_JKD
             string saisieUtilisateurIDEleve;
             do
             {
-                Console.Write("     A quel élève voulez-vous ajouter une note ? (donner son ID ou taper 'retour' pour revenir au menu principal) : ");
+                Console.WriteLine("     A quel élève voulez-vous ajouter une note ? (donner son ID ou taper 'retour' pour revenir au menu principal) : ");
                 saisieUtilisateurIDEleve = Console.ReadLine().ToLower();
             } while ((!Int32.TryParse(saisieUtilisateurIDEleve, out idEleve) || !ListeDesEleves.ContainsKey(idEleve)) && saisieUtilisateurIDEleve != "retour");
 
@@ -234,7 +234,7 @@ namespace NotEdu_JKD
             string saisieUtilisateurIDCours;
             do
             {
-                Console.Write("     A quelle matière voulez-vous ajouter cette note ? (donner son ID ou taper 'retour' pour revenir au menu principal) : ");
+                Console.WriteLine("     A quelle matière voulez-vous ajouter cette note ? (donner son ID ou taper 'retour' pour revenir au menu principal) : ");
                 saisieUtilisateurIDCours = Console.ReadLine().ToLower();
             } while ((!Int32.TryParse(saisieUtilisateurIDCours, out idCours) || !campus.ListeCours.ListeDesCours.ContainsKey(idCours)) && saisieUtilisateurIDCours != "retour");
             if (saisieUtilisateurIDCours == "retour")
@@ -244,19 +244,29 @@ namespace NotEdu_JKD
             }
             string coursSelectionne = campus.ListeCours.ListeDesCours[idCours];
 
+            if(eleveSelectionne.ListeNotes.Any(noteEleve => noteEleve.IdCoursLie == idCours))
+            {
+                Console.WriteLine("Attention, une note pour cette matière a déjà été trouvée... ");
+                Console.WriteLine("Vous ne pouvez plus ajouter de note pour cette matière.");
+                Console.WriteLine("Vous allez être automatiquement redirigé...");
+                AjouterNoteEtAppreciationEleve(campus);
+            }
+
             Console.WriteLine();
             double note;
             string saisieUtilisateurNote;
             do
             {
-                Console.Write("     Quelle est la valeur de la note ? (valeur chiffrée ou 'retour' pour revenir au menu principal) : ");
+                Console.WriteLine("     Quelle est la valeur de la note ? (valeur chiffrée ou 'retour' pour revenir au menu principal) : ");
                 saisieUtilisateurNote = Console.ReadLine().ToLower();
-            } while (!Double.TryParse(saisieUtilisateurNote, out note) && note < 0 && note > 20 && saisieUtilisateurIDCours != "retour");
+                saisieUtilisateurNote = saisieUtilisateurNote.Replace('.', ',');
+            } while ((!Double.TryParse(saisieUtilisateurNote, out note) || (note < 0.0 || note > 20.0)) && saisieUtilisateurIDCours != "retour");
             if (saisieUtilisateurNote == "retour")
             {
                 Menu.MenuEleves(campus);
                 return;
             }
+            note = Utilitaire.ArrondirNote(note);
 
             Console.WriteLine();
             string appreciation;
