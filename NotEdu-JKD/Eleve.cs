@@ -35,6 +35,7 @@ namespace NotEdu_JKD
             campus.ListeCours.AfficherTousLesCours(campus);
             try
             {
+                // implémenter les 'retour' et vérifications de type d'input + vérif que les ID matchent des objets existants
                 Console.Write("Quel est l'ID du cours de la note ? ");
                 int idCours = int.Parse(Console.ReadLine());
                 string  coursTitre = campus.ListeCours.ListeDesCours[idCours];
@@ -45,7 +46,7 @@ namespace NotEdu_JKD
                 valeurNote = valeurNote > 20 ? 20 : valeurNote;
                 Console.WriteLine("Quelle est l'appréciation ? (Touche Entrée si vide) ");
                 string appreciationNote = Console.ReadLine();
-                ListeNotes.Add(new Note(idCours, coursTitre, valeurNote, appreciationNote));
+                ListeNotes.Add(new Note(idCours, coursTitre, valeurNote, appreciationNote)); // a ne faire qu'après oui confirmation
 
                 Console.WriteLine("Récapitulatif de la saisie : ");
                 Console.WriteLine($"Nom de l'élève : {Nom} {Prenom}");
@@ -63,7 +64,11 @@ namespace NotEdu_JKD
             string reponse = Console.ReadLine().ToLower();
             if (reponse == "oui")
             {
-                return;
+                // ajouter ici la note à la liste des notes de l'élève
+                Serveur.SerializeAndWriteInJSON(campus);
+                Console.WriteLine("     La saisie est validée.");
+                Console.WriteLine("     Vous allez être redirigé automatiquement...");
+                Utilitaire.RetourMenuApresDelais(campus, 2);
             }
             else
             {
