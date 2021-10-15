@@ -27,7 +27,7 @@ namespace NotEdu_JKD
                 Console.Write("      Un cours avec ce titre existe déjà, veuillez entrer un autre titre.");
                 titreNouveauCours = Console.ReadLine();
             }
-            while (!Utilitaire.VerifUniquementLettres(titreNouveauCours))
+            while (!Utilitaire.VerifUniquementLettres(titreNouveauCours) || (titreNouveauCours == ""))
             {
                 Console.WriteLine("     Le titre ne doit contenir que des lettres. Réessayez. ");
                 titreNouveauCours = Console.ReadLine();
@@ -102,7 +102,7 @@ namespace NotEdu_JKD
 
             if (reponseSuppression == "oui")
             {
-                campus.ListeEleves.SupprimerCours(coursId);
+                campus.ListeEleves.SupprimerCours(campus, coursId);
                 ListeDesCours.Remove(coursId);
                 Serveur.SerializeAndWriteInJSON(campus);
                 Console.WriteLine($"     Le cours {coursASupprimer} à bien été supprimé.");

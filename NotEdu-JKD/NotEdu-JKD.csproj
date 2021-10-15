@@ -62,13 +62,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="bin\Debug\campusDB.log" />
     <None Include="bin\Debug\NotEdu-JKD.exe.config" />
+    <None Include="bin\Debug\DB\campusDB.json" />
+    <None Include="bin\Debug\DB\campusDB.log" />
     <None Include="packages\Newtonsoft.Json.13.0.1\.signature.p7s" />
     <None Include="packages\Newtonsoft.Json.13.0.1\LICENSE.md" />
     <None Include="packages\Newtonsoft.Json.13.0.1\Newtonsoft.Json.13.0.1.nupkg" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\Debug\Newtonsoft.Json.dll" />
+    <Content Include="bin\Debug\Newtonsoft.Json.xml" />
     <Content Include="bin\Debug\NotEdu-JKD.exe" />
     <Content Include="bin\Debug\NotEdu-JKD.pdb" />
     <Content Include="packages\Newtonsoft.Json.13.0.1\lib\net20\Newtonsoft.Json.dll" />
