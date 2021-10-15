@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,9 +9,10 @@ namespace NotEdu_JKD
 {
     class ListeEleves
     {
+        [JsonProperty]
         public Dictionary<int, Eleve> ListeDesEleves { get; }
-        
-        // TODO récupérer liste des élèves du JSON et la mettre dans _listeEleves
+
+        [JsonProperty]
         public int IdGlobalEleve { get; private set; }
 
         public ListeEleves()
@@ -182,7 +184,9 @@ namespace NotEdu_JKD
                 {
                     Console.WriteLine($"{eleve.Key} --- {eleve.Value.Nom.ToUpper()} {Utilitaire.PremiereLettreMajuscule(eleve.Value.Prenom)}");
                 }
-            }
+                Console.WriteLine("Touche Entrée pour retour");
+            }   Console.ReadLine();
+
         }
 
         public void SupprimerCours(Campus campus, int coursId)
@@ -196,6 +200,28 @@ namespace NotEdu_JKD
             {
                 eleve.Value.SupprimerCours(coursId);
             }
+        }
+        public void AfficherUnEleve(Campus campus)
+        {
+            AfficherListeEleves(campus);
+            Console.WriteLine("     Entrez l'ID de l'élève à afficher : ");
+            string input = Console.ReadLine();
+            if (input.ToLower() == "retour")
+            {
+                Utilitaire.RetourMenuApresDelais(campus, 2);
+            }
+            if (!Utilitaire.VerifUniquementEntiers(input))
+            {
+                Console.WriteLine("     L'ID doit être un entier. Retour au menu précédent.");
+                Utilitaire.RetourMenuApresDelais(campus, 2);
+            }
+            int idEleve = int.Parse(input);
+            if (!ListeDesEleves.ContainsKey(idEleve))
+            {
+                Console.WriteLine("     L'ID n'existe pas. Retour au menu précédent.");
+                Utilitaire.RetourMenuApresDelais(campus, 2);
+            }
+            ListeDesEleves[idEleve].AfficherInfoEleve();
         }
     }
 }

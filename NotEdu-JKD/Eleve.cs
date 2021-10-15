@@ -9,7 +9,7 @@ namespace NotEdu_JKD
     class Eleve
     {
         public string Nom { get; }
-        public string Prenom { get; }
+        public string Prenom { get;  }
         public DateTime DateNaissance { get; }
         public List<Note> ListeNotes { get; }
 
