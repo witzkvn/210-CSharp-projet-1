@@ -19,6 +19,7 @@ namespace NotEdu_JKD
 
         public  void AjouterCours(Campus campus)
         {
+            Console.WriteLine("\n\n\n");
             Console.Write("     Quel est le titre du cours que vous voulez ajouter ?");
             string titreNouveauCours = Console.ReadLine();
             while (ListeDesCours.ContainsValue(titreNouveauCours))
@@ -46,7 +47,8 @@ namespace NotEdu_JKD
         }
         public void AfficherTousLesCours(Campus campus)
         {
-            if(ListeDesCours.Count == 0)
+            Console.WriteLine("\n\n\n");
+            if (ListeDesCours.Count == 0)
             {
                 Console.WriteLine("     Aucun cours disponible.");
                 Utilitaire.RetourMenuApresDelais(campus, 3);
