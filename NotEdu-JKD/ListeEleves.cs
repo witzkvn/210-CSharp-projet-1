@@ -26,7 +26,7 @@ namespace NotEdu_JKD
             IdGlobalEleve++;
             ListeDesEleves.Add(IdGlobalEleve, nouvelEleve);
             Console.WriteLine($"     Ajout de l'élève {nouvelEleve.Nom} {nouvelEleve.Prenom} réussi.");
-            ActualiserListeJSON();
+            //ActualiserListeJSON();
             Utilitaire.RetourMenuApresDelais(campus, 2);
         }
 
@@ -93,7 +93,7 @@ namespace NotEdu_JKD
             Console.WriteLine();
             if (choixAction == "1")
             {
-                this.AjouterEleveDansListe(nouvelEleve);
+                this.AjouterEleveDansListe(campus, nouvelEleve);
                 Serveur.SerializeAndWriteInJSON(campus);
                 Console.WriteLine("     Vous allez être redirigé automatiquement...");
                 Utilitaire.RetourMenuApresDelais(campus, 2);
@@ -225,8 +225,18 @@ namespace NotEdu_JKD
                 Serveur.AddLog("L'ID n'existe pas. Retour au menu élève");
                 Utilitaire.RetourMenuApresDelais(campus, 2);
             }
+            Console.WriteLine();
             ListeDesEleves[idEleve].AfficherInfoEleve();
+            Console.WriteLine();
+            ListeDesEleves[idEleve].AfficherListeNotesEleve();
+            Console.WriteLine();
+            ListeDesEleves[idEleve].AfficherMoyenneEleve();
+            Console.WriteLine();
+
             Serveur.AddLog($"Affichage des informations de l'élève avec l'ID {idEleve}");
+
+            Console.WriteLine("   Touche Entrée pour quitter");
+            Console.ReadLine();
         }
 
         public void AjouterNoteEtAppreciationEleve(Campus campus)

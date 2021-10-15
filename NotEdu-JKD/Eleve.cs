@@ -28,6 +28,7 @@ namespace NotEdu_JKD
             Console.WriteLine("Nom               : " + this.Nom);
             Console.WriteLine("Prénom            : " + this.Prenom);
             Console.WriteLine("Date de naissance : " + Utilitaire.FormatterDateCourteString(this.DateNaissance));
+
         }
 
         public void AfficherListeNotesEleve()
