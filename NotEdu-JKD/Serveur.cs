@@ -10,6 +10,7 @@ namespace NotEdu_JKD
 {
     class Serveur
     {
+        private static string _jsonDBPath { get; set; }
         static string GetAndVerifyDBDirectory()
         {
             string path = "DB";
@@ -34,25 +35,35 @@ namespace NotEdu_JKD
 
         public static void SerializeAndWriteInJSON(Campus campus)
         {
-            string jsonFilePath = GetFilePath("campusDB.json");
-            if (!File.Exists(jsonFilePath))
+            if (String.IsNullOrEmpty(_jsonDBPath))
             {
-                File.Create(jsonFilePath);
+                _jsonDBPath = GetFilePath("campusDB.json");
+            } 
+            
+            if (!File.Exists(_jsonDBPath))
+            {
+                File.Create(_jsonDBPath);
             }
             string campusJSON = JsonConvert.SerializeObject(campus);
-            File.WriteAllText(jsonFilePath, campusJSON);
+            File.WriteAllText(_jsonDBPath, campusJSON);
         }
 
-        public static Campus DeserializeJSON()
+        public static Campus DeserializeJSON(string jsonFilePath)
         {
-            string jsonFilePath = GetFilePath("campusDB.json");
-            if (!File.Exists(jsonFilePath))
+            if(String.IsNullOrEmpty(jsonFilePath))
+            {
+                _jsonDBPath = GetFilePath("campusDB.json");
+            } else
+            {
+                _jsonDBPath = jsonFilePath;
+            }
+            if (!File.Exists(_jsonDBPath))
             {
                 return new Campus();
             } else
             {
-                string jsonDB = File.ReadAllText(jsonFilePath);
-                if (jsonDB == "" || jsonDB == "null")
+                string jsonDB = File.ReadAllText(_jsonDBPath);
+                if (String.IsNullOrEmpty(jsonDB))
                 {
                     return new Campus();
                 } else
