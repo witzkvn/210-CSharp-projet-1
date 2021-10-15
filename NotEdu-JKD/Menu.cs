@@ -45,10 +45,12 @@ namespace NotEdu_JKD
             switch (choix)
             {
                 case 1:
+                    Serveur.AddLog("Menu Elèves");
                     MenuEleves(campus);//Si le choix = 1 alors on se rend dans le menu élève
                     break;
 
                 case 2:
+                    Serveur.AddLog("Menu Cours");
                     MenuCours(campus);//Si le choix=2 alors on se rend dans le menu cours
                     break;
                 default :
@@ -83,23 +85,23 @@ namespace NotEdu_JKD
             {
                 case 1:
                     campus.ListeEleves.AfficherListeEleves(campus);
-                    Console.WriteLine("Touche Entrée pour retour");
-                    Console.ReadLine();
-                    MenuEleves(campus);
                     break;
 
                 case 2:
                     campus.ListeEleves.CreerNouvelEleve(campus);
+                    Serveur.AddLog("Création d'un nouvelle élève");
+                    Utilitaire.RetourMenuApresDelais(campus, 2);
                     break;
 
                 case 3:
                     campus.ListeEleves.AfficherUnEleve(campus);
+                    Serveur.AddLog("Consultation de la liste des élèves");
+                    Utilitaire.RetourMenuApresDelais(campus, 2);
                     break;
 
                 case 4:
-                    campus.ListeEleves.AjouterNoteEtAppreciationEleve(campus);
+                    NoteEtAppreciation(campus);  //Ajouter une note et une appréciation pour un cours
                     break;
-
                 case 5:
                     MenuPrincipal(campus);
                     break;
@@ -113,6 +115,8 @@ namespace NotEdu_JKD
 
         //----------------FIN MENU ELEVES---------------------------------------------------
 
+
+ 
 
         //----------------MENU COURS--------------------------------------------------------
         public static void MenuCours(Campus campus)
@@ -135,37 +139,29 @@ namespace NotEdu_JKD
             switch (choix)
             {
                 case 1:
-                    Console.ForegroundColor = ConsoleColor.White;
-                    Console.WriteLine("                                                       (Retour : 'retour' + Entree)");
                     Console.ForegroundColor = ConsoleColor.Yellow;
                     campus.ListeCours.AfficherTousLesCours(campus);
                     Console.WriteLine("Touche Entrée pour retour");
                     Console.ReadLine();
                     MenuPrincipal(campus);
+
                     break;
 
                 case 2:
-                    Console.ForegroundColor = ConsoleColor.White;
-                    Console.WriteLine("                                                       (Retour : 'retour' + Entree)");
                     Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine("\n\n\n     Entrer le nom du cours à ajouter : ");
-                    string NomDuCours2 = Console.ReadLine();
-                    RetourMenuPrincipal(campus, NomDuCours2);
-                    campus.ListeCours.AjouterCours(campus);//new Cours(NomDuCours2));
-
-
+                    campus.ListeCours.AjouterCours(campus);
+                    Utilitaire.RetourMenuApresDelais(campus, 3);
                     break;
 
                 case 3:
-                    Console.ForegroundColor = ConsoleColor.White;
-                    Console.WriteLine("                                                       (Retour : 'retour' + Entree)");
                     Console.ForegroundColor = ConsoleColor.Yellow;
+                    campus.ListeCours.AfficherTousLesCours(campus);
                     campus.ListeCours.SuppressionCours(campus);
-                    string NomDuCours3 = Console.ReadLine();
-                    RetourMenuPrincipal(campus, NomDuCours3);
+                    Utilitaire.RetourMenuApresDelais(campus, 3);
                     break;
 
                 case 4:
+                    Serveur.AddLog("Retour au Menu Principal");
                     MenuPrincipal(campus);//Retour au menu principal
                     break;
                 default:
