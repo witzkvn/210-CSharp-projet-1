@@ -21,11 +21,13 @@ namespace NotEdu_JKD
             IdGlobalEleve = 0;
         }
 
-        public void AjouterEleveDansListe(Eleve nouvelEleve)
+        public void AjouterEleveDansListe(Campus campus, Eleve nouvelEleve)
         {
             IdGlobalEleve++;
             ListeDesEleves.Add(IdGlobalEleve, nouvelEleve);
-            Console.WriteLine($"Ajout de l'élève {nouvelEleve.Nom} {nouvelEleve.Prenom} réussi.");
+            Console.WriteLine($"     Ajout de l'élève {nouvelEleve.Nom} {nouvelEleve.Prenom} réussi.");
+            ActualiserListeJSON();
+            Utilitaire.RetourMenuApresDelais(campus, 2);
         }
 
         public void CreerNouvelEleve(Campus campus)
@@ -36,7 +38,7 @@ namespace NotEdu_JKD
 
             while (!Utilitaire.VerifUniquementLettres(nom) || nom == "")
             {
-                Console.Write("Quel est le nom du nouvel élève ? (lettres uniquement -- 'retour' pour quitter) : ");
+                Console.Write("      Quel est le nom du nouvel élève ? (lettres uniquement -- 'retour' pour quitter) : ");
                 nom = Console.ReadLine().ToLower();
                 if (nom == "retour")
                 {
@@ -47,7 +49,7 @@ namespace NotEdu_JKD
 
             while (!Utilitaire.VerifUniquementLettres(prenom) || prenom == "")
             {
-                Console.Write("Quel est le prénom du nouvel élève ? (lettres uniquement -- 'retour' pour quitter) : ");
+                Console.Write("     Quel est le prénom du nouvel élève ? (lettres uniquement -- 'retour' pour quitter) : ");
                 prenom = Console.ReadLine().ToLower();
                 if (prenom == "retour")
                 {
@@ -58,7 +60,7 @@ namespace NotEdu_JKD
 
             while (!Utilitaire.VerifFormatDate(dateNaissance) || dateNaissance == "")
             {
-                Console.Write("Quel est la date de naissance du nouvel élève ? (format JJ/MM/AAAA -- 'retour' pour quitter) : ");
+                Console.Write("     Quel est la date de naissance du nouvel élève ? (format JJ/MM/AAAA -- 'retour' pour quitter) : ");
                 dateNaissance = Console.ReadLine().ToLower();
                 if (dateNaissance == "retour")
                 {
@@ -74,17 +76,17 @@ namespace NotEdu_JKD
             do
             {
                 Console.Clear();
-                Console.WriteLine("Voici le récapitulatif des informations saisies... ");
+                Console.WriteLine("     Voici le récapitulatif des informations saisies... ");
                 Console.WriteLine();
                 nouvelEleve.AfficherInfoEleve();
                 Console.WriteLine();
-                Console.WriteLine("Que souhaitez-vous faire ? (choisir l'action par son numéro)");
+                Console.WriteLine("      Que souhaitez-vous faire ? (choisir l'action par son numéro)");
                 Console.WriteLine();
-                Console.WriteLine("1 - Valider la saisie et ajouter l'élève au campus");
-                Console.WriteLine("2 - Recommencer la saisie du nouvel élève depuis le début");
-                Console.WriteLine("3 - Annuler la saisie et revenir au menu principal");
+                Console.WriteLine("     1 - Valider la saisie et ajouter l'élève au campus");
+                Console.WriteLine("     2 - Recommencer la saisie du nouvel élève depuis le début");
+                Console.WriteLine("     3 - Annuler la saisie et revenir au menu précédent");
                 Console.WriteLine();
-                Console.Write("Votre choix : ");
+                Console.Write("     Votre choix : ");
                 choixAction = Console.ReadLine();
             } while (choixAction != "1" && choixAction != "2" && choixAction != "3");
 
@@ -103,21 +105,21 @@ namespace NotEdu_JKD
             }
             else
             {
-                Menu.MenuPrincipal(campus);
+                Console.WriteLine("     Retour menu précédent");
+                Utilitaire.RetourMenuApresDelais(campus, 2);
             }
         }
 
         public void SupprimerEleveDansListe(Campus campus)
         {
             Console.Clear();
-            Console.WriteLine("Suppression d'un élève");
+            Console.WriteLine("     Suppression d'un élève");
             Console.WriteLine();
             AfficherListeEleves(campus);
 
             if (ListeDesEleves.Count == 0)
             {
-                Console.WriteLine("La liste des élèves étant vide, vous ne pouvez pas en supprimer.");
-                Console.WriteLine("Vous allez être redirigé automatiquement...");
+                Console.WriteLine("     La liste des élèves étant vide, vous ne pouvez pas en supprimer.");
                 Utilitaire.RetourMenuApresDelais(campus, 2);
                 return;
             }
@@ -127,26 +129,28 @@ namespace NotEdu_JKD
             string saisieUtilisateur;
             do
             {
-                Console.Write("Quel élève souhaitez-vous supprimer ? (donner son ID ou taper 'retour' pour revenir au menu principal) : ");
+                Console.Write("     Quel élève souhaitez-vous supprimer ? (donner son ID ou taper 'retour' pour revenir au menu précédent) : ");
                 saisieUtilisateur = Console.ReadLine().ToLower();
             } while((!Int32.TryParse(saisieUtilisateur, out idEleveASupprimer) || !ListeDesEleves.ContainsKey(idEleveASupprimer)) && saisieUtilisateur != "retour");
 
             if (saisieUtilisateur == "retour")
             {
-                Menu.MenuPrincipal(campus);
+                
+                Console.WriteLine("     Retour au menu précédent");
+                Utilitaire.RetourMenuApresDelais(campus, 2);
                 return;
             }
             else
             {
                 Eleve eleveASupprimer = ListeDesEleves[idEleveASupprimer];
                 Console.Clear();
-                Console.WriteLine("Elève sélectionné : ");
+                Console.WriteLine("     Elève sélectionné : ");
                 eleveASupprimer.AfficherInfoEleve();
                 Console.WriteLine();
 
-                Console.WriteLine("/!\\ La suppression d'un élève entraîne la suppression de toutes les notes " +
+                Console.WriteLine("     /!\\ La suppression d'un élève entraîne la suppression de toutes les notes " +
                 "et appréciations qui lui sont liées.");
-                Console.Write($"Voulez-vous vraiment supprimer l'élève {eleveASupprimer.Nom} {eleveASupprimer.Prenom}? (Oui/Non) : ");
+                Console.Write($"     Voulez-vous vraiment supprimer l'élève {eleveASupprimer.Nom} {eleveASupprimer.Prenom}? (Oui/Non) : ");
                 string reponseSuppression = Console.ReadLine().ToLower();
 
                 if (reponseSuppression == "oui")
@@ -171,9 +175,10 @@ namespace NotEdu_JKD
         {
             if(ListeDesEleves.Count == 0)
             {
-                Console.WriteLine("Aucun élève répertorié pour le moment.");
+                Console.WriteLine("     Aucun élève répertorié pour le moment.");
                 Utilitaire.RetourMenuApresDelais(campus, 2);
-            } else
+            } 
+            else
             {
                 Console.WriteLine("Liste des élèves du campus (ID --- NOM Prénom) : ");
                 Console.WriteLine();
@@ -185,8 +190,13 @@ namespace NotEdu_JKD
             Console.WriteLine();
         }
 
-        public void SupprimerCours(int coursId)
+        public void SupprimerCours(Campus campus, int coursId)
         {
+            if (ListeDesEleves.Count == 0)
+            {
+                Console.WriteLine("     Aucun élève répertorié pour le moment.");
+                Utilitaire.RetourMenuApresDelais(campus, 2);
+            }
             foreach (KeyValuePair<int, Eleve> eleve in ListeDesEleves)
             {
                 eleve.Value.SupprimerCours(coursId);
