@@ -93,7 +93,10 @@ namespace NotEdu_JKD
             Console.WriteLine();
             if (choixAction == "1")
             {
-                this.AjouterEleveDansListe(campus, nouvelEleve);
+                this.AjouterEleveDansListe(nouvelEleve);
+                Serveur.SerializeAndWriteInJSON(campus);
+                Console.WriteLine("     Vous allez être redirigé automatiquement...");
+                Utilitaire.RetourMenuApresDelais(campus, 2);
             }
             else if (choixAction == "2")
             {
@@ -153,20 +156,19 @@ namespace NotEdu_JKD
                 if (reponseSuppression == "oui")
                 {
                     ListeDesEleves.Remove(idEleveASupprimer);
+                    Serveur.SerializeAndWriteInJSON(campus);
                     Console.WriteLine("     Suppression de l'élève réussie.");
-                    ActualiserListeJSON();
+                    Console.WriteLine("     Vous allez être redirigé automatiquement...");
+                    Utilitaire.RetourMenuApresDelais(campus, 2);
                 }
                 else
                 {
-                    Console.WriteLine("Annulation de la suppression de l'élève.");
+                    Console.WriteLine("     Annulation de la suppression de l'élève.");
+                    Console.WriteLine("     Vous allez être redirigé automatiquement...");
+                    Utilitaire.RetourMenuApresDelais(campus, 2);
                 }
             }
             SupprimerEleveDansListe(campus);
-        }
-
-        private void ActualiserListeJSON()
-        {
-            // actualiser la listeEleves dans le JSON
         }
 
         public void AfficherListeEleves(Campus campus)
@@ -185,8 +187,9 @@ namespace NotEdu_JKD
                     Console.WriteLine($"{eleve.Key} --- {eleve.Value.Nom.ToUpper()} {Utilitaire.PremiereLettreMajuscule(eleve.Value.Prenom)}");
                 }
                 Console.WriteLine("Touche Entrée pour retour");
-            }   Console.ReadLine();
-
+            }  
+            Console.ReadLine();
+            Menu.MenuEleves(campus);
         }
 
         public void SupprimerCours(Campus campus, int coursId)

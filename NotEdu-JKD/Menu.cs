@@ -44,23 +44,29 @@ namespace NotEdu_JKD
 
         }
 
-        public static void NoteEtAppreciation()
+        public static void NoteEtAppreciation(Campus campus)
         {
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("     Rentrez la matière :");
-            string matiere = Console.ReadLine();
-            Console.WriteLine("     Rentrez l'ID de l'élève concerné :");
-            int ID = int.Parse(Console.ReadLine());
-            Console.WriteLine("     Note de lélève : ");
-            double note = Double.Parse(Console.ReadLine());
-            Console.WriteLine("     Appreciation de lélève : ");
-            string appreciation = Console.ReadLine();
-            Console.ForegroundColor = ConsoleColor.White;
+            //Console.ForegroundColor = ConsoleColor.Yellow;
+            //Console.WriteLine("     Rentrez la matière :");
+            //string matiere = Console.ReadLine();
+            //Console.WriteLine("     Rentrez l'ID de l'élève concerné :");
+            //int ID = int.Parse(Console.ReadLine());
+            //Console.WriteLine("     Note de lélève : ");
+            //double note = Double.Parse(Console.ReadLine());
+            //Console.WriteLine("     Appreciation de lélève : ");
+            //string appreciation = Console.ReadLine();
+            //Console.ForegroundColor = ConsoleColor.White;
 
 
             //Cours lie = new Cours(matiere);
 
             //Note noteEtAppreciation = new Note(lie, note, appreciation);
+
+
+            // A FAIRE : 
+            // 1) présenter liste des élèves et demander l'id de l'élève à qui ajouter la note (vérif format + si existe)
+            // 2) lister les cours existants et demander l'id du cours à ajouter (vérif format + si existe)
+            // 3) Appeler la méthode AjouterNote
 
         }
 
@@ -146,7 +152,7 @@ namespace NotEdu_JKD
                     break;
 
                 case 4:
-                    NoteEtAppreciation();  //Ajouter une note et une appréciation pour un cours
+                    NoteEtAppreciation(campus);  //Ajouter une note et une appréciation pour un cours
                     break;
 
                 case 5:
