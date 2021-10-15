@@ -27,7 +27,7 @@ namespace NotEdu_JKD
                 Console.Write("      Un cours avec ce titre existe déjà, veuillez entrer un autre titre.");
                 titreNouveauCours = Console.ReadLine();
             }
-            while (!Utilitaire.VerifUniquementLettres(titreNouveauCours))
+            while (!Utilitaire.VerifUniquementLettres(titreNouveauCours) || (titreNouveauCours == ""))
             {
                 Console.WriteLine("     Le titre ne doit contenir que des lettres. Réessayez. ");
                 titreNouveauCours = Console.ReadLine();

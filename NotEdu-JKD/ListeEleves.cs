@@ -233,8 +233,16 @@ namespace NotEdu_JKD
                 Serveur.AddLog("L'ID de l'élève sélectionné n'existe pas. Retour au menu élève automatique");
                 Utilitaire.RetourMenuApresDelais(campus, 2);
             }
+            Console.WriteLine();
             ListeDesEleves[idEleve].AfficherInfoEleve();
             Serveur.AddLog($"Affichage des informations détaillées de l'élève avec l'ID {idEleve}");
+            Console.WriteLine();
+            ListeDesEleves[idEleve].AfficherListeNotesEleve();
+            Console.WriteLine();
+            ListeDesEleves[idEleve].AfficherMoyenneEleve();
+            Console.WriteLine();
+            Console.WriteLine("   Touche Entrée pour quitter");
+            Console.ReadLine();
         }
 
         public void AjouterNoteEtAppreciationEleve(Campus campus)
