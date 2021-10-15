@@ -23,40 +23,40 @@ namespace NotEdu_JKD
 
         public void AfficherInfoEleve()
         {
-            Serveur.AddLog("Affichage des informations personnelles de l'élève");
-            Console.WriteLine("Informations sur l'élève :");
+            Serveur.AddLog("     Affichage des informations personnelles de l'élève");
+            Console.WriteLine("     Informations sur l'élève :");
             Console.WriteLine();
-            Console.WriteLine("Nom               : " + this.Nom);
-            Console.WriteLine("Prénom            : " + this.Prenom);
-            Console.WriteLine("Date de naissance : " + Utilitaire.FormatterDateCourteString(this.DateNaissance));
+            Console.WriteLine("     Nom               : " + this.Nom);
+            Console.WriteLine("     Prénom            : " + this.Prenom);
+            Console.WriteLine("     Date de naissance : " + Utilitaire.FormatterDateCourteString(this.DateNaissance));
 
         }
 
         public void AfficherListeNotesEleve()
         {
-            Serveur.AddLog("Affichage de la liste des notes de l'élève");
-            Console.WriteLine("Résultats scolaires :");
+            Serveur.AddLog("     Affichage de la liste des notes de l'élève");
+            Console.WriteLine("     Résultats scolaires :");
             Console.WriteLine();
             if(ListeNotes.Count == 0)
             {
-                Console.WriteLine("Aucune note attribuée pour le moment.");
+                Console.WriteLine("     Aucune note attribuée pour le moment.");
             } else
             {
                 foreach (var note in ListeNotes)
                 {
-                    Console.WriteLine("     Cours : "); // récupérer un cours par le id spécifié dans la note
-                    Console.WriteLine("         Note : " + Utilitaire.FormatterNoteSurVingt(note.ValeurNote));
-                    Console.WriteLine("         Appréciation : " + note.Appreciation);
+                    Console.WriteLine("          Cours : "); // récupérer un cours par le id spécifié dans la note
+                    Console.WriteLine("              Note : " + Utilitaire.FormatterNoteSurVingt(note.ValeurNote));
+                    Console.WriteLine("              Appréciation : " + note.Appreciation);
                     Console.WriteLine();
                 }
             }
         }
 
         public void AfficherMoyenneEleve() {
-            Serveur.AddLog("Affichage de la moyenne des notes de l'élève");
+            Serveur.AddLog("     Affichage de la moyenne des notes de l'élève");
             if (ListeNotes.Count == 0)
             {
-                Console.WriteLine("Aucune note attribuée pour le moment, calcul de moyenne impossible.");
+                Console.WriteLine("     Aucune note attribuée pour le moment, calcul de moyenne impossible.");
             }
             else
             {
@@ -65,7 +65,7 @@ namespace NotEdu_JKD
                 {
                     sommeNotes += note.ValeurNote;
                 }
-                Console.WriteLine("    Moyenne : " + Utilitaire.FormatterNoteSurVingt(sommeNotes / ListeNotes.Count));
+                Console.WriteLine("         Moyenne : " + Utilitaire.FormatterNoteSurVingt(sommeNotes / ListeNotes.Count));
             }
         }  
         
