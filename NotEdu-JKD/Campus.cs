@@ -15,6 +15,7 @@ namespace NotEdu_JKD
         {
             ListeEleves = new ListeEleves();
             ListeCours = new ListeCours();
+            Serveur.AddLog("Creation d'un nouveau campus");
         }
     }
 }

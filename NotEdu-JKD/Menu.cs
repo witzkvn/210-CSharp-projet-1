@@ -10,35 +10,25 @@ namespace NotEdu_JKD
 {
     static class Menu
     {
-        public static void RetourMenuPrincipal(Campus campus, string NomDuCours)
-        {
-
-            if (NomDuCours.ToLower() == "retour")
-            {
-                Console.Clear();
-                MenuCours(campus);
-            }
-
-        }
         public static void MenuPrincipal(Campus campus)
         {
             while (true)
             {
-            Console.Clear();
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("\n\n\n     __________________________________________");
-            Console.WriteLine("     - - - - - - - - - -MENU- - - - - - - - - -");
-            Console.WriteLine("     __________________________________________\n\n\n");
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine("     1-Elèves");
-            Console.WriteLine("     __________________________________________\n\n\n");
-            Console.WriteLine("     2-Cours");
-            Console.WriteLine("     __________________________________________\n\n\n");
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("     Effectuer votre choix :\n\n\n");
-            string choixLettre = Console.ReadLine();
-            Console.Clear();
-
+                Serveur.AddLog("Accès Menu Principal");
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("\n\n\n     __________________________________________");
+                Console.WriteLine("     - - - - - - - - - -MENU- - - - - - - - - -");
+                Console.WriteLine("     __________________________________________\n\n\n");
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine("     1-Elèves");
+                Console.WriteLine("     __________________________________________\n\n\n");
+                Console.WriteLine("     2-Cours");
+                Console.WriteLine("     __________________________________________\n\n\n");
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("     Effectuer votre choix :\n\n\n");
+                string choixLettre = Console.ReadLine();
+                Console.Clear();
 
                 if (choixLettre == "1" || choixLettre == "2") { }
                 else if (choixLettre == "q")
@@ -46,24 +36,20 @@ namespace NotEdu_JKD
                 else
                     MenuPrincipal(campus);
 
+            int choix = int.Parse(choixLettre);
 
-                int choix = int.Parse(choixLettre);
+            switch (choix)
+            {
+                case 1:
+                    MenuEleves(campus);//Si le choix = 1 alors on se rend dans le menu élève
+                    break;
 
-                switch (choix)
-                {
-                    case 1:
-                        Serveur.AddLog("Menu Elèves");
-                        MenuEleves(campus);//Si le choix = 1 alors on se rend dans le menu élève
-                        break;
-
-                    case 2:
-                        Serveur.AddLog("Menu Cours");
-                        MenuCours(campus);//Si le choix=2 alors on se rend dans le menu cours
-                        break;
-                    default:
-                        MenuPrincipal(campus);
-                        break;
-                }
+                case 2:
+                    MenuCours(campus);//Si le choix=2 alors on se rend dans le menu cours
+                    break;
+                default :
+                    MenuPrincipal(campus);
+                    break;
             }
         }
 
@@ -71,6 +57,7 @@ namespace NotEdu_JKD
 
         public static void MenuEleves(Campus campus)
         {
+            Serveur.AddLog("Accès Menu Elèves");
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("\n\n\n      _____________________________________________________");
@@ -111,14 +98,11 @@ namespace NotEdu_JKD
 
                 case 2:
                     campus.ListeEleves.CreerNouvelEleve(campus);
-                    Serveur.AddLog("Création d'un nouvel élève");
                     Utilitaire.RetourMenuApresDelais(campus, 2);
                     break;
 
                 case 3:
                     campus.ListeEleves.AfficherUnEleve(campus);
-
-                    Serveur.AddLog("Consultation de la liste des élèves");
                     Utilitaire.RetourMenuApresDelais(campus, 2);
                     break;
 
@@ -144,6 +128,7 @@ namespace NotEdu_JKD
         //----------------MENU COURS--------------------------------------------------------
         public static void MenuCours(Campus campus)
         {
+            Serveur.AddLog("Accès Menu Cours");
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("\n\n\n      _____________________________________________________");

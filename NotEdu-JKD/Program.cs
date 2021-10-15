@@ -10,7 +10,6 @@ namespace NotEdu_JKD
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(args[0]);
             Campus campus;
             if (args.Length > 0)
             {

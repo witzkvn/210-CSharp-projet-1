@@ -19,6 +19,7 @@ namespace NotEdu_JKD
 
         public  void AjouterCours(Campus campus)
         {
+            Serveur.AddLog("Accès au menu d'ajout d'un cours");
             Console.WriteLine("\n\n\n");
             Console.Write("     Quel est le titre du cours que vous voulez ajouter ?");
             string titreNouveauCours = Console.ReadLine();
@@ -39,7 +40,7 @@ namespace NotEdu_JKD
             }
             ListeDesCours.Add(IdGlobalCours, titreNouveauCours);
             Console.WriteLine($"      Ajout du cours {titreNouveauCours} réussi.");
-            Serveur.AddLog($"Ajout du cours{titreNouveauCours}");
+            Serveur.AddLog($"Ajout du cours {titreNouveauCours} dans la liste des cours, avec l'ID {IdGlobalCours}");
             IdGlobalCours++;
             Serveur.SerializeAndWriteInJSON(campus);
             Console.WriteLine("Vous allez être redirigé automatiquement...");
@@ -47,6 +48,7 @@ namespace NotEdu_JKD
         }
         public void AfficherTousLesCours(Campus campus)
         {
+            Serveur.AddLog("Accès au menu d'affichage de tous les cours");
             Console.WriteLine("\n\n\n");
             if (ListeDesCours.Count == 0)
             {
@@ -65,6 +67,7 @@ namespace NotEdu_JKD
         /*Suppression de toutes les occurences d'un cours.*/
         public void SuppressionCours(Campus campus)
         {
+            Serveur.AddLog("Accès au menu de suppression d'un cours");
             AfficherTousLesCours(campus);
             Console.Write("     Entrez l'ID du cours à supprimer : ");
             string input = Console.ReadLine();
@@ -74,7 +77,6 @@ namespace NotEdu_JKD
                 if (input.ToLower() == "retour")
                 {
                     Console.WriteLine("     Retour au menu précédent.");
-                    Serveur.AddLog("Retour menu Cours");
                     Utilitaire.RetourMenuApresDelais(campus, 3);
                 }
                 else if (!Utilitaire.VerifUniquementEntiers(input))
@@ -103,6 +105,7 @@ namespace NotEdu_JKD
             if (reponseSuppression == "oui")
             {
                 campus.ListeEleves.SupprimerCours(campus, coursId);
+                Serveur.AddLog($"Suppression du cours {coursASupprimer} ayant l'ID {coursId}");
                 ListeDesCours.Remove(coursId);
                 Serveur.SerializeAndWriteInJSON(campus);
                 Console.WriteLine($"     Le cours {coursASupprimer} à bien été supprimé.");
@@ -111,6 +114,7 @@ namespace NotEdu_JKD
             }
             else
             {
+                Serveur.AddLog("Annulation de la suppression du cours");
                 Console.WriteLine("     Annulation de la suppression du cours.");
                 Console.WriteLine("     Vous allez être redirigé automatiquement...");
                 Utilitaire.RetourMenuApresDelais(campus, 3);

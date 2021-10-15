@@ -23,6 +23,7 @@ namespace NotEdu_JKD
 
         public void AfficherInfoEleve()
         {
+            Serveur.AddLog("Affichage des informations personnelles de l'élève");
             Console.WriteLine("Informations sur l'élève :");
             Console.WriteLine();
             Console.WriteLine("Nom               : " + this.Nom);
@@ -33,6 +34,7 @@ namespace NotEdu_JKD
 
         public void AfficherListeNotesEleve()
         {
+            Serveur.AddLog("Affichage de la liste des notes de l'élève");
             Console.WriteLine("Résultats scolaires :");
             Console.WriteLine();
             if(ListeNotes.Count == 0)
@@ -51,6 +53,7 @@ namespace NotEdu_JKD
         }
 
         public void AfficherMoyenneEleve() {
+            Serveur.AddLog("Affichage de la moyenne des notes de l'élève");
             if (ListeNotes.Count == 0)
             {
                 Console.WriteLine("Aucune note attribuée pour le moment, calcul de moyenne impossible.");
