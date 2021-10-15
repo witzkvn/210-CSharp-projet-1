@@ -10,66 +10,6 @@ namespace NotEdu_JKD
 {
     static class Menu
     {
-        /*        public void AfficherListe(List<string> liste) // Permet d'afficher la liste d'élève
-                {
-                    for (int i=0; i<3; i++)
-                    {
-                        Console.WriteLine(liste[i]);
-                    }
-
-                }*/
-
-        public static void ListeEleve()
-        {
-            var nomEleves = new List<string>();
-            while (true)
-            {
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine("     Rentrez le nom de l'élève à ajouter à la liste : ");
-
-
-                string nom = Console.ReadLine();
-                if (nom == "")
-                {
-                    break;
-                }
-                nomEleves.Add(nom);
-            }
-            //AfficherListe(nomEleves);
-            //Serveur eleve=new Serveur();
-            //eleve.Serialiser(nomEleves);
-
-            /*          jsonString = JsonConvert.SerializeObject(nomEleves, Formatting.Indented); //Serialisation JSON
-                        Console.WriteLine(jsonString);*/
-
-        }
-
-        public static void NoteEtAppreciation(Campus campus)
-        {
-            //Console.ForegroundColor = ConsoleColor.Yellow;
-            //Console.WriteLine("     Rentrez la matière :");
-            //string matiere = Console.ReadLine();
-            //Console.WriteLine("     Rentrez l'ID de l'élève concerné :");
-            //int ID = int.Parse(Console.ReadLine());
-            //Console.WriteLine("     Note de lélève : ");
-            //double note = Double.Parse(Console.ReadLine());
-            //Console.WriteLine("     Appreciation de lélève : ");
-            //string appreciation = Console.ReadLine();
-            //Console.ForegroundColor = ConsoleColor.White;
-
-
-            //Cours lie = new Cours(matiere);
-
-            //Note noteEtAppreciation = new Note(lie, note, appreciation);
-
-
-            // A FAIRE : 
-            // 1) présenter liste des élèves et demander l'id de l'élève à qui ajouter la note (vérif format + si existe)
-            // 2) lister les cours existants et demander l'id du cours à ajouter (vérif format + si existe)
-            // 3) Appeler la méthode AjouterNote
-
-        }
-
         public static void RetourMenuPrincipal(Campus campus, string NomDuCours)
         {
 
@@ -82,6 +22,7 @@ namespace NotEdu_JKD
         }
         public static void MenuPrincipal(Campus campus)
         {
+            Console.Clear();
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("\n\n\n     - - - - - - - - - -MENU- - - - - - - - - -\n\n\n\n\n");
             Console.ForegroundColor = ConsoleColor.White;
@@ -104,10 +45,12 @@ namespace NotEdu_JKD
             switch (choix)
             {
                 case 1:
+                    Serveur.AddLog("Menu Elèves");
                     MenuEleves(campus);//Si le choix = 1 alors on se rend dans le menu élève
                     break;
 
                 case 2:
+                    Serveur.AddLog("Menu Cours");
                     MenuCours(campus);//Si le choix=2 alors on se rend dans le menu cours
                     break;
                 default :
@@ -122,6 +65,7 @@ namespace NotEdu_JKD
 
         public static void MenuEleves(Campus campus)
         {
+            Console.Clear();
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("\n\n\n      - - - - - - - - - -MENU DES ELEVES- - - - - - - - - -\n\n\n\n\n");
             Console.ForegroundColor = ConsoleColor.White;
@@ -145,18 +89,21 @@ namespace NotEdu_JKD
 
                 case 2:
                     campus.ListeEleves.CreerNouvelEleve(campus);
+                    Serveur.AddLog("Création d'un nouvelle élève");
+                    Utilitaire.RetourMenuApresDelais(campus, 2);
                     break;
 
                 case 3:
                     campus.ListeEleves.AfficherUnEleve(campus);
+                    Serveur.AddLog("Consultation de la liste des élèves");
+                    Utilitaire.RetourMenuApresDelais(campus, 2);
                     break;
 
                 case 4:
                     NoteEtAppreciation(campus);  //Ajouter une note et une appréciation pour un cours
                     break;
-
                 case 5:
-                    MenuPrincipal(campus);//Retour au menu principal
+                    MenuPrincipal(campus);
                     break;
                 default:
                     MenuEleves(campus);
@@ -169,9 +116,12 @@ namespace NotEdu_JKD
         //----------------FIN MENU ELEVES---------------------------------------------------
 
 
+ 
+
         //----------------MENU COURS--------------------------------------------------------
         public static void MenuCours(Campus campus)
         {
+            Console.Clear();
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("\n\n\n     - - - - - - - - - -MENU DES COURS- - - - - - - - - -\n\n\n\n\n");
             Console.ForegroundColor = ConsoleColor.White;
@@ -189,36 +139,29 @@ namespace NotEdu_JKD
             switch (choix)
             {
                 case 1:
-                    Console.ForegroundColor = ConsoleColor.White;
-                    Console.WriteLine("                                                       (Retour : 'retour' + Entree)");
                     Console.ForegroundColor = ConsoleColor.Yellow;
                     campus.ListeCours.AfficherTousLesCours(campus);
-                    string NomDuCours1 = Console.ReadLine();
-                    RetourMenuPrincipal(campus, NomDuCours1);
+                    Console.WriteLine("Touche Entrée pour retour");
+                    Console.ReadLine();
+                    MenuPrincipal(campus);
+
                     break;
 
                 case 2:
-                    Console.ForegroundColor = ConsoleColor.White;
-                    Console.WriteLine("                                                       (Retour : 'retour' + Entree)");
                     Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine("\n\n\n     Entrer le nom du cours à ajouter : ");
-                    string NomDuCours2 = Console.ReadLine();
-                    RetourMenuPrincipal(campus, NomDuCours2);
-                    campus.ListeCours.AjouterCours(campus);//new Cours(NomDuCours2));
-
-
+                    campus.ListeCours.AjouterCours(campus);
+                    Utilitaire.RetourMenuApresDelais(campus, 3);
                     break;
 
                 case 3:
-                    Console.ForegroundColor = ConsoleColor.White;
-                    Console.WriteLine("                                                       (Retour : 'retour' + Entree)");
                     Console.ForegroundColor = ConsoleColor.Yellow;
+                    campus.ListeCours.AfficherTousLesCours(campus);
                     campus.ListeCours.SuppressionCours(campus);
-                    string NomDuCours3 = Console.ReadLine();
-                    RetourMenuPrincipal(campus, NomDuCours3);
+                    Utilitaire.RetourMenuApresDelais(campus, 3);
                     break;
 
                 case 4:
+                    Serveur.AddLog("Retour au Menu Principal");
                     MenuPrincipal(campus);//Retour au menu principal
                     break;
                 default:
