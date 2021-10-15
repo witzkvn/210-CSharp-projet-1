@@ -22,43 +22,44 @@ namespace NotEdu_JKD
         }
         public static void MenuPrincipal(Campus campus)
         {
-            Console.Clear();
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("\n\n\n     - - - - - - - - - -MENU- - - - - - - - - -\n\n\n\n\n");
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine("     1-Elèves\n\n\n");
-            Console.WriteLine("     2-Cours\n\n\n\n\n");
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("     Effectuer votre choix\n\n\n");
-            string choixLettre = Console.ReadLine();
-            Console.Clear();
-
-            if (choixLettre == "1" || choixLettre == "2") { }
-            else if (choixLettre == "q")
-                Environment.Exit(1);
-            else
-                MenuPrincipal(campus);
-
-
-            int choix = int.Parse(choixLettre);
-
-            switch (choix)
+            while (true)
             {
-                case 1:
-                    Serveur.AddLog("Menu Elèves");
-                    MenuEleves(campus);//Si le choix = 1 alors on se rend dans le menu élève
-                    break;
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("\n\n\n     - - - - - - - - - -MENU- - - - - - - - - -\n\n\n\n\n");
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine("     1-Elèves\n\n\n");
+                Console.WriteLine("     2-Cours\n\n\n\n\n");
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("     Effectuez votre choix\n\n\n");
+                string choixLettre = Console.ReadLine();
+                Console.Clear();
 
-                case 2:
-                    Serveur.AddLog("Menu Cours");
-                    MenuCours(campus);//Si le choix=2 alors on se rend dans le menu cours
-                    break;
-                default :
+                if (choixLettre == "1" || choixLettre == "2") { }
+                else if (choixLettre == "q")
+                    Environment.Exit(1);
+                else
                     MenuPrincipal(campus);
-                    break;
+
+
+                int choix = int.Parse(choixLettre);
+
+                switch (choix)
+                {
+                    case 1:
+                        Serveur.AddLog("Menu Elèves");
+                        MenuEleves(campus);//Si le choix = 1 alors on se rend dans le menu élève
+                        break;
+
+                    case 2:
+                        Serveur.AddLog("Menu Cours");
+                        MenuCours(campus);//Si le choix=2 alors on se rend dans le menu cours
+                        break;
+                    default:
+                        MenuPrincipal(campus);
+                        break;
+                }
             }
-
-
         }
 
         //-----------------MENU ELEVES------------------------------------------------------
@@ -85,22 +86,26 @@ namespace NotEdu_JKD
             {
                 case 1:
                     campus.ListeEleves.AfficherListeEleves(campus);
+                    Console.WriteLine("   Touche Entrée pour quitter");
+                    Console.ReadLine();
+                    MenuEleves(campus);
                     break;
 
                 case 2:
                     campus.ListeEleves.CreerNouvelEleve(campus);
-                    Serveur.AddLog("Création d'un nouvelle élève");
+                    Serveur.AddLog("Création d'un nouvel élève");
                     Utilitaire.RetourMenuApresDelais(campus, 2);
                     break;
 
                 case 3:
                     campus.ListeEleves.AfficherUnEleve(campus);
+
                     Serveur.AddLog("Consultation de la liste des élèves");
                     Utilitaire.RetourMenuApresDelais(campus, 2);
                     break;
 
                 case 4:
-                    NoteEtAppreciation(campus);  //Ajouter une note et une appréciation pour un cours
+                    campus.ListeEleves.AjouterNoteEtAppreciationEleve(campus);  //Ajouter une note et une appréciation pour un cours
                     break;
                 case 5:
                     MenuPrincipal(campus);
@@ -155,7 +160,6 @@ namespace NotEdu_JKD
 
                 case 3:
                     Console.ForegroundColor = ConsoleColor.Yellow;
-                    campus.ListeCours.AfficherTousLesCours(campus);
                     campus.ListeCours.SuppressionCours(campus);
                     Utilitaire.RetourMenuApresDelais(campus, 3);
                     break;
