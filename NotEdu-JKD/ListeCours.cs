@@ -40,6 +40,9 @@ namespace NotEdu_JKD
             Console.WriteLine($"      Ajout du cours {titreNouveauCours} réussi.");
             Serveur.AddLog($"Ajout du cours{titreNouveauCours}");
             IdGlobalCours++;
+            Serveur.SerializeAndWriteInJSON(campus);
+            Console.WriteLine("Vous allez être redirigé automatiquement...");
+            Utilitaire.RetourMenuApresDelais(campus, 3);
         }
         public void AfficherTousLesCours(Campus campus)
         {
@@ -54,7 +57,7 @@ namespace NotEdu_JKD
             {
                 Console.WriteLine($"     {cours.Key} --- {cours.Value}");
             }
-            Console.ReadLine();
+            Console.WriteLine();
         }
 
         /*Suppression de toutes les occurences d'un cours.*/
@@ -99,14 +102,15 @@ namespace NotEdu_JKD
             {
                 campus.ListeEleves.SupprimerCours(coursId);
                 ListeDesCours.Remove(coursId);
+                Serveur.SerializeAndWriteInJSON(campus);
                 Console.WriteLine($"     Le cours {coursASupprimer} à bien été supprimé.");
-                Serveur.AddLog($"Suppression du cours {coursASupprimer}");
+                Console.WriteLine("      Vous allez être redirigé automatiquement...");
                 Utilitaire.RetourMenuApresDelais(campus, 3);
             }
             else
             {
                 Console.WriteLine("     Annulation de la suppression du cours.");
-                Serveur.AddLog("Annulation de la suppression du cours");
+                Console.WriteLine("     Vous allez être redirigé automatiquement...");
                 Utilitaire.RetourMenuApresDelais(campus, 3);
             }
         }

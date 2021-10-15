@@ -76,5 +76,25 @@ namespace NotEdu_JKD
                 Menu.MenuCours(campus);
             Console.Clear();
         }
+
+        public static double ArrondirNote(double note)
+        {
+            int integerPart = (int)Math.Round(note, 1);
+            double restToRound = note - integerPart;
+            if (restToRound < 0.3)
+            {
+                restToRound = 0;
+            }
+            else if (restToRound <= 0.5)
+            {
+                restToRound = 0.5;
+            }
+            else
+            {
+                restToRound = 1;
+            }
+
+            return integerPart + restToRound;
+        }
     }
 }
