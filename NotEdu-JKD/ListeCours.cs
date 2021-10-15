@@ -55,7 +55,7 @@ namespace NotEdu_JKD
             {
                 Console.WriteLine($"     {cours.Key} --- {cours.Value}");
             }
-            Console.ReadLine();
+            Console.WriteLine();
         }
 
         /*Suppression de toutes les occurences d'un cours.*/
