@@ -26,8 +26,9 @@ namespace NotEdu_JKD
             Console.WriteLine("\n\n\n");
             IdGlobalEleve++;
             ListeDesEleves.Add(IdGlobalEleve, nouvelEleve);
-            Console.WriteLine($"     Ajout de l'élève {nouvelEleve.Nom} {nouvelEleve.Prenom} réussi.");
+            Console.WriteLine($"     Ajout de l'élève {nouvelEleve.Nom} {nouvelEleve.Prenom} réussi. Reidrection automatique, veuillez patienter...");
             Serveur.AddLog($"Ajout du nouvel élève {nouvelEleve.Nom} {nouvelEleve.Prenom} avec l'ID {IdGlobalEleve} dans la liste avec succès.");
+            Serveur.SerializeAndWriteInJSON(campus);
             Utilitaire.RetourMenuApresDelais(campus, 2);
         }
 
@@ -96,11 +97,9 @@ namespace NotEdu_JKD
             Console.WriteLine();
             if (choixAction == "1")
             {
-                this.AjouterEleveDansListe(campus, nouvelEleve);
                 Serveur.AddLog($"Ajout de l'élève {nouvelEleve.Nom} {nouvelEleve.Prenom} dans la liste des élèves");
+                this.AjouterEleveDansListe(campus, nouvelEleve);
                 Serveur.SerializeAndWriteInJSON(campus);
-                Console.WriteLine("     Vous allez être redirigé automatiquement...");
-                Utilitaire.RetourMenuApresDelais(campus, 2);
             }
             else if (choixAction == "2")
             {
@@ -110,7 +109,7 @@ namespace NotEdu_JKD
             }
             else
             {
-                Console.WriteLine("     Retour menu précédent");
+                Console.WriteLine("     Retour menu précédent. Veuillez patienter...");
                 Utilitaire.RetourMenuApresDelais(campus, 2);
             }
         }
@@ -194,7 +193,7 @@ namespace NotEdu_JKD
                 Console.WriteLine();
                 foreach (KeyValuePair<int, Eleve> eleve in ListeDesEleves)
                 {
-                    Console.WriteLine($"{eleve.Key} --- {eleve.Value.Nom.ToUpper()} {Utilitaire.PremiereLettreMajuscule(eleve.Value.Prenom)}");
+                    Console.WriteLine($"     {eleve.Key} --- {eleve.Value.Nom.ToUpper()} {Utilitaire.PremiereLettreMajuscule(eleve.Value.Prenom)}");
                 }
             }
             Console.WriteLine();

@@ -161,7 +161,7 @@ namespace NotEdu_JKD
                 case 1:
                     Console.ForegroundColor = ConsoleColor.Yellow;
                     campus.ListeCours.AfficherTousLesCours(campus);
-                    Console.WriteLine("Touche Entrée pour retour");
+                    Console.WriteLine("     Touche Entrée pour retour");
                     Console.ReadLine();
                     MenuPrincipal(campus);
 
