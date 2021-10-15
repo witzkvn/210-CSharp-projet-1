@@ -117,7 +117,8 @@ namespace NotEdu_JKD
             if (ListeDesEleves.Count == 0)
             {
                 Console.WriteLine("La liste des élèves étant vide, vous ne pouvez pas en supprimer.");
-                // ajouter appel méthode retour au menu
+                Console.WriteLine("Vous allez être redirigé automatiquement...");
+                Utilitaire.RetourMenuApresDelais(campus, 2);
                 return;
             }
             Console.WriteLine();
@@ -132,8 +133,7 @@ namespace NotEdu_JKD
 
             if (saisieUtilisateur == "retour")
             {
-                // appeler méthode de menu pour revenir au menu principal
-                Console.WriteLine("Retour au menu principal");
+                Menu.MenuPrincipal(campus);
                 return;
             }
             else
@@ -156,7 +156,9 @@ namespace NotEdu_JKD
                 }
                 else
                 {
-                    Console.WriteLine("Annulation de la suppression de l'élève.");
+                    Console.WriteLine("     Annulation de la suppression de l'élève.");
+                    Console.WriteLine("     Vous allez être redirigé automatiquement...");
+                    Utilitaire.RetourMenuApresDelais(campus, 2);
                 }
             }
             SupprimerEleveDansListe(campus);
