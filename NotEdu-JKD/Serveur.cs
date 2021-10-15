@@ -18,13 +18,15 @@ namespace NotEdu_JKD
             if (!Directory.Exists(path))
             {
                 Directory.CreateDirectory(path);
+                Serveur.AddLog($"Création du répertoire de la DB");
             }
             return path;
         }
         static string GetFilePath(string fileName)
         {
             string path = GetAndVerifyDBDirectory();
-            return Path.Combine(path, fileName);
+            string combinedPath = Path.Combine(path, fileName);
+            return combinedPath;
         }
 
         public static void AddLog(string logMessage)
@@ -43,9 +45,11 @@ namespace NotEdu_JKD
             if (!File.Exists(_jsonDBPath))
             {
                 File.Create(_jsonDBPath);
+                Serveur.AddLog($"Création du fichier de la DB au chemin d'accès : {_jsonDBPath}");
             }
             string campusJSON = JsonConvert.SerializeObject(campus);
             File.WriteAllText(_jsonDBPath, campusJSON);
+            Serveur.AddLog($"Ecriture de la DB au chemin d'accès : {_jsonDBPath}");
         }
 
         public static Campus DeserializeJSON(string jsonFilePath)
@@ -57,18 +61,21 @@ namespace NotEdu_JKD
             {
                 _jsonDBPath = jsonFilePath;
             }
+
             if (!File.Exists(_jsonDBPath))
             {
                 return new Campus();
             } else
             {
                 string jsonDB = File.ReadAllText(_jsonDBPath);
+                Serveur.AddLog($"Récupération du contenu de la DB au chemin d'accès : {_jsonDBPath}");
                 if (String.IsNullOrEmpty(jsonDB))
                 {
                     return new Campus();
                 } else
                 {
                     Campus campus = JsonConvert.DeserializeObject<Campus>(jsonDB);
+                    Serveur.AddLog("Déserialisation du contenu de la DB");
                     return campus;
                 }
             }

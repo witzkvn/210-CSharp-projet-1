@@ -93,8 +93,9 @@ namespace NotEdu_JKD
             {
                 restToRound = 1;
             }
-
-            return integerPart + restToRound;
+            double noteArrondie = integerPart + restToRound;
+            Serveur.AddLog($"La note de {note} a été arrondie à {noteArrondie}");
+            return noteArrondie;
         }
     }
 }

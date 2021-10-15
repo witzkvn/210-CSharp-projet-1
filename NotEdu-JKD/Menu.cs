@@ -10,18 +10,9 @@ namespace NotEdu_JKD
 {
     static class Menu
     {
-        public static void RetourMenuPrincipal(Campus campus, string NomDuCours)
-        {
-
-            if (NomDuCours.ToLower() == "retour")
-            {
-                Console.Clear();
-                MenuCours(campus);
-            }
-
-        }
         public static void MenuPrincipal(Campus campus)
         {
+            Serveur.AddLog("Accès Menu Principal");
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("\n\n\n     - - - - - - - - - -MENU- - - - - - - - - -\n\n\n\n\n");
@@ -39,18 +30,17 @@ namespace NotEdu_JKD
             else
                 MenuPrincipal(campus);
 
-
             int choix = int.Parse(choixLettre);
 
             switch (choix)
             {
                 case 1:
-                    Serveur.AddLog("Menu Elèves");
+                    Serveur.AddLog("Accès Menu Elèves");
                     MenuEleves(campus);//Si le choix = 1 alors on se rend dans le menu élève
                     break;
 
                 case 2:
-                    Serveur.AddLog("Menu Cours");
+                    Serveur.AddLog("Accès Menu Cours");
                     MenuCours(campus);//Si le choix=2 alors on se rend dans le menu cours
                     break;
                 default :
@@ -89,7 +79,6 @@ namespace NotEdu_JKD
 
                 case 2:
                     campus.ListeEleves.CreerNouvelEleve(campus);
-                    Serveur.AddLog("Création d'un nouvelle élève");
                     Utilitaire.RetourMenuApresDelais(campus, 2);
                     break;
 
@@ -100,7 +89,7 @@ namespace NotEdu_JKD
                     break;
 
                 case 4:
-                    NoteEtAppreciation(campus);  //Ajouter une note et une appréciation pour un cours
+                    campus.ListeEleves.AjouterNoteEtAppreciationEleve(campus);  //Ajouter une note et une appréciation pour un cours
                     break;
                 case 5:
                     MenuPrincipal(campus);
