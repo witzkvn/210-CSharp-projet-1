@@ -36,20 +36,21 @@ namespace NotEdu_JKD
                 else
                     MenuPrincipal(campus);
 
-            int choix = int.Parse(choixLettre);
+                int choix = int.Parse(choixLettre);
 
-            switch (choix)
-            {
-                case 1:
-                    MenuEleves(campus);//Si le choix = 1 alors on se rend dans le menu élève
-                    break;
+                switch (choix)
+                {
+                    case 1:
+                        MenuEleves(campus);//Si le choix = 1 alors on se rend dans le menu élève
+                        break;
 
-                case 2:
-                    MenuCours(campus);//Si le choix=2 alors on se rend dans le menu cours
-                    break;
-                default :
-                    MenuPrincipal(campus);
-                    break;
+                    case 2:
+                        MenuCours(campus);//Si le choix=2 alors on se rend dans le menu cours
+                        break;
+                    default:
+                        MenuPrincipal(campus);
+                        break;
+                }
             }
         }
 
