@@ -79,7 +79,13 @@ namespace NotEdu_JKD
             Console.ForegroundColor = ConsoleColor.Yellow;
 
             Console.WriteLine("     Que voulez-vous faire ?");
-            int choix = int.Parse(Console.ReadLine());
+            string input = Console.ReadLine();
+            while (!Utilitaire.VerifUniquementEntiers(input))
+            {
+                Console.WriteLine("     Choix du menu incorrect.");
+                input = Console.ReadLine();
+            }
+            int choix = int.Parse(input);
             Console.Clear();
 
             switch (choix)
@@ -135,9 +141,14 @@ namespace NotEdu_JKD
             Console.WriteLine("     3-Supprimer un cours par son identifiant\n\n\n");
             Console.WriteLine("     4-Revenir au menu Principal\n\n\n\n\n");
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("     Que voulez-vous faire ?\n\n\n");
+            Console.WriteLine("     Que voulez-vous faire ?\n");
 
-            int choix = int.Parse(Console.ReadLine());
+            string input = Console.ReadLine();
+            while (!Utilitaire.VerifUniquementEntiers(input))
+            {
+                input = Console.ReadLine();
+            }
+            int choix = int.Parse(input);
             Console.Clear();
 
 
