@@ -23,6 +23,7 @@ namespace NotEdu_JKD
 
         public void AjouterEleveDansListe(Campus campus, Eleve nouvelEleve)
         {
+            Console.WriteLine("\n\n\n");
             IdGlobalEleve++;
             ListeDesEleves.Add(IdGlobalEleve, nouvelEleve);
             Console.WriteLine($"     Ajout de l'élève {nouvelEleve.Nom} {nouvelEleve.Prenom} réussi.");
@@ -32,6 +33,7 @@ namespace NotEdu_JKD
 
         public void CreerNouvelEleve(Campus campus)
         {
+            Console.WriteLine("\n\n\n");
             string nom = "";
             string prenom = "";
             string dateNaissance = "";
@@ -173,14 +175,15 @@ namespace NotEdu_JKD
 
         public void AfficherListeEleves(Campus campus)
         {
-            if(ListeDesEleves.Count == 0)
+            Console.WriteLine("\n\n\n");
+            if (ListeDesEleves.Count == 0)
             {
                 Console.WriteLine("     Aucun élève répertorié pour le moment.");
                 Utilitaire.RetourMenuApresDelais(campus, 2);
             } 
             else
             {
-                Console.WriteLine("Liste des élèves du campus (ID --- NOM Prénom) : ");
+                Console.WriteLine("     Liste des élèves du campus (ID --- NOM Prénom) : ");
                 Console.WriteLine();
                 foreach (KeyValuePair<int, Eleve> eleve in ListeDesEleves)
                 {
@@ -192,6 +195,7 @@ namespace NotEdu_JKD
 
         public void SupprimerCours(Campus campus, int coursId)
         {
+            Console.WriteLine("\n\n\n");
             if (ListeDesEleves.Count == 0)
             {
                 Console.WriteLine("     Aucun élève répertorié pour le moment.");
@@ -275,9 +279,9 @@ namespace NotEdu_JKD
 
             if(eleveSelectionne.ListeNotes.Any(noteEleve => noteEleve.IdCoursLie == idCours))
             {
-                Console.WriteLine("Attention, une note pour cette matière a déjà été trouvée... ");
-                Console.WriteLine("Vous ne pouvez plus ajouter de note pour cette matière.");
-                Console.WriteLine("Vous allez être automatiquement redirigé...");
+                Console.WriteLine("     Attention, une note pour cette matière a déjà été trouvée... ");
+                Console.WriteLine("     Vous ne pouvez plus ajouter de note pour cette matière.");
+                Console.WriteLine("     Vous allez être automatiquement redirigé...");
                 AjouterNoteEtAppreciationEleve(campus);
             }
 
@@ -308,13 +312,13 @@ namespace NotEdu_JKD
                 return;
             }
 
-            Console.WriteLine("Récapitulatif de la saisie : ");
-            Console.WriteLine($"Nom de l'élève : {eleveSelectionne.Nom} {eleveSelectionne.Prenom}");
-            Console.WriteLine("Cours de la note : " + coursSelectionne);
-            Console.WriteLine("Valeur de la note : " + Utilitaire.FormatterNoteSurVingt(note));
-            Console.WriteLine("Appréciation : " + appreciation);
+            Console.WriteLine("     Récapitulatif de la saisie : ");
+            Console.WriteLine($"     Nom de l'élève : {eleveSelectionne.Nom} {eleveSelectionne.Prenom}");
+            Console.WriteLine("     Cours de la note : " + coursSelectionne);
+            Console.WriteLine("     Valeur de la note : " + Utilitaire.FormatterNoteSurVingt(note));
+            Console.WriteLine("     Appréciation : " + appreciation);
             Console.WriteLine();
-            Console.Write("La saisie est-elle correcte ? (Oui/Non) ");
+            Console.Write("     La saisie est-elle correcte ? (Oui/Non) ");
             string reponse = Console.ReadLine().ToLower();
             if (reponse == "oui")
             {

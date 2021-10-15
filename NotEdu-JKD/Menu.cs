@@ -24,16 +24,21 @@ namespace NotEdu_JKD
         {
             while (true)
             {
-                Console.Clear();
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("\n\n\n     - - - - - - - - - -MENU- - - - - - - - - -\n\n\n\n\n");
-                Console.ForegroundColor = ConsoleColor.White;
-                Console.WriteLine("     1-Elèves\n\n\n");
-                Console.WriteLine("     2-Cours\n\n\n\n\n");
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine("     Effectuez votre choix\n\n\n");
-                string choixLettre = Console.ReadLine();
-                Console.Clear();
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("\n\n\n     __________________________________________");
+            Console.WriteLine("     - - - - - - - - - -MENU- - - - - - - - - -");
+            Console.WriteLine("     __________________________________________\n\n\n");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("     1-Elèves");
+            Console.WriteLine("     __________________________________________\n\n\n");
+            Console.WriteLine("     2-Cours");
+            Console.WriteLine("     __________________________________________\n\n\n");
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("     Effectuer votre choix :\n\n\n");
+            string choixLettre = Console.ReadLine();
+            Console.Clear();
+
 
                 if (choixLettre == "1" || choixLettre == "2") { }
                 else if (choixLettre == "q")
@@ -68,14 +73,21 @@ namespace NotEdu_JKD
         {
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("\n\n\n      - - - - - - - - - -MENU DES ELEVES- - - - - - - - - -\n\n\n\n\n");
+            Console.WriteLine("\n\n\n      _____________________________________________________");
+            Console.WriteLine("      - - - - - - - - - -MENU DES ELEVES- - - - - - - - - -");
+            Console.WriteLine("      _____________________________________________________\n\n");
             Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine("     1-Lister les élèves\n\n\n");
-            Console.WriteLine("     2 -Créer un nouvel élève\n\n\n");
-            Console.WriteLine("     3-Consulter un élève existant\n\n\n");
-            Console.WriteLine("     4-Ajouter une note et une appréciation pour un cours\n\n\n");
-            Console.WriteLine("     5-Revenir au menu Principal\n\n\n\n\n");
-           
+            Console.WriteLine("     1-Lister les élèves");
+            Console.WriteLine("      _____________________________________________________\n\n");
+            Console.WriteLine("     2-Créer un nouvel élève");
+            Console.WriteLine("      _____________________________________________________\n\n");
+            Console.WriteLine("     3-Consulter un élève existant");
+            Console.WriteLine("      _____________________________________________________\n\n");
+            Console.WriteLine("     4-Ajouter une note et une appréciation pour un cours");
+            Console.WriteLine("      _____________________________________________________\n\n");
+            Console.WriteLine("     5-Revenir au menu Principal");
+            Console.WriteLine("      _____________________________________________________\n\n\n\n\n");
+
             Console.ForegroundColor = ConsoleColor.Yellow;
 
             Console.WriteLine("     Que voulez-vous faire ?");
@@ -134,12 +146,18 @@ namespace NotEdu_JKD
         {
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("\n\n\n     - - - - - - - - - -MENU DES COURS- - - - - - - - - -\n\n\n\n\n");
+            Console.WriteLine("\n\n\n      _____________________________________________________");
+            Console.WriteLine("      - - - - - - - - - -MENU DES COURS- - - - - - - - - -");
+            Console.WriteLine("      _____________________________________________________\n\n\n");
             Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine("     1-Lister les cours existant\n\n\n");
-            Console.WriteLine("     2-Ajouter un nouveau cours au programme\n\n\n");
-            Console.WriteLine("     3-Supprimer un cours par son identifiant\n\n\n");
-            Console.WriteLine("     4-Revenir au menu Principal\n\n\n\n\n");
+            Console.WriteLine("     1-Lister les cours existant");
+            Console.WriteLine("      _____________________________________________________\n\n");
+            Console.WriteLine("     2-Ajouter un nouveau cours au programme");
+            Console.WriteLine("      _____________________________________________________\n\n");
+            Console.WriteLine("     3-Supprimer un cours par son identifiant");
+            Console.WriteLine("      _____________________________________________________\n\n");
+            Console.WriteLine("     4-Revenir au menu Principal");
+            Console.WriteLine("      _____________________________________________________\n\n\n\n\n");
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("     Que voulez-vous faire ?\n");
 
